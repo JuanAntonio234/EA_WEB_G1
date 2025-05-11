@@ -1,0 +1,42 @@
+/* src/pages/FeaturesPage/FeaturesPage.css */
+.features-page {
+    padding: 20px 0;
+  }
+  
+  .features-page h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .features-intro {
+    text-align: center;
+    font-size: 1.1em;
+    margin-bottom: 40px;
+    color: #555;
+  }
+  
+  .feature-list {
+    display: grid;
+    gap: 30px;
+  }
+  
+  .feature-detail-item {
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+  }
+  
+  .feature-detail-item h2 {
+    font-size: 1.5em;
+    color: #007bff;
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+  
+  .feature-detail-item p {
+    font-size: 1em;
+    line-height: 1.6;
+    color: #444;
+  }

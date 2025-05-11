@@ -1,0 +1,115 @@
+/* src/pages/UserProfilePage/UserProfilePage.css */
+.profile-page {
+    padding-top: 20px;
+  }
+  
+  .profile-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 30px;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    margin-bottom: 30px;
+  }
+  
+  .profile-avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #eee;
+  }
+  
+  .profile-info h1 {
+    margin-top: 0;
+    margin-bottom: 8px;
+    font-size: 2em;
+    color: #333;
+  }
+  
+  .profile-email, .profile-joindate, .profile-bio {
+    font-size: 1em;
+    color: #555;
+    margin-bottom: 8px;
+    line-height: 1.5;
+  }
+  .profile-bio {
+    margin-top: 15px;
+  }
+  
+  .profile-info .btn { /* Estilo para el botón dentro del perfil */
+      margin-top: 15px;
+  }
+  
+  
+  .profile-stats, .profile-activities {
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    margin-bottom: 30px;
+  }
+  
+  .profile-stats h2, .profile-activities h2 {
+    font-size: 1.6em;
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+  }
+  
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+  }
+  
+  .stat-item {
+    text-align: center;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 6px;
+  }
+  
+  .stat-item span {
+    display: block;
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #007bff;
+    margin-bottom: 5px;
+  }
+  
+  .stat-item p {
+    font-size: 0.9em;
+    color: #555;
+    margin: 0;
+  }
+  
+  .activity-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .activity-item {
+    border: 1px solid #e0e0e0;
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    background-color: #fdfdfd;
+  }
+  
+  .activity-item h3 {
+    font-size: 1.2em;
+    color: #0056b3;
+    margin-top: 0;
+    margin-bottom: 8px;
+  }
+  
+  .activity-item p {
+    font-size: 0.95em;
+    color: #444;
+    margin: 4px 0;
+  }

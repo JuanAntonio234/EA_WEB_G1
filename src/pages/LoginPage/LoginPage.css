@@ -1,0 +1,62 @@
+/* src/pages/LoginPage/LoginPage.css */
+.login-page, .register-page { /* Aplicar también a RegisterPage */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 0;
+  }
+  
+  .login-form-container, .register-form-container { /* Aplicar también a RegisterPage */
+    background-color: #ffffff;
+    padding: 30px 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 450px;
+    text-align: center;
+  }
+  
+  .login-form-container h2, .register-form-container h2 {
+    margin-bottom: 25px;
+    color: #333;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+    text-align: left;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555;
+  }
+  
+  .form-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+  
+  .form-group input:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+  }
+  
+  .form-switch-link {
+    margin-top: 20px;
+    font-size: 0.9em;
+  }
+  
+  .form-switch-link a {
+    color: #007bff;
+    font-weight: bold;
+  }
+  
+  .form-switch-link a:hover {
+    text-decoration: underline;
+  }
