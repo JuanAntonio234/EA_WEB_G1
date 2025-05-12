@@ -1,7 +1,6 @@
-// src/pages/HomePage/HomePage.tsx
 import React from 'react';
 import './HomePage';
-import Button from '../../components/Button/Button'; // Importa el botón
+import Button from '../../components/Button/Button'; 
 
 const HomePage: React.FC = () => {
   const handleDownloadAndroid = () => {

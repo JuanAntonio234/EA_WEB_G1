@@ -1,12 +1,11 @@
-/* src/pages/LoginPage/LoginPage.css */
-.login-page, .register-page { /* Aplicar también a RegisterPage */
+.login-page, .register-page { 
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 40px 0;
   }
   
-  .login-form-container, .register-form-container { /* Aplicar también a RegisterPage */
+  .login-form-container, .register-form-container { 
     background-color: #ffffff;
     padding: 30px 40px;
     border-radius: 8px;

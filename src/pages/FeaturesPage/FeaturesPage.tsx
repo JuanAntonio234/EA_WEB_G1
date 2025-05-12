@@ -1,4 +1,3 @@
-// src/pages/FeaturesPage/FeaturesPage.tsx
 import React from 'react';
 import './FeaturesPage';
 
