@@ -1,10 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './Navbar';
+import './Navbar.css';
 
 const Navbar: React.FC = () => {
-  // Simulación de estado de autenticación
-  const isAuthenticated = false; // Cambia esto para probar la UI
+  const isAuthenticated = false; // Simulación
 
   return (
     <nav className="navbar">
@@ -13,10 +12,12 @@ const Navbar: React.FC = () => {
       </div>
       <ul className="navbar-links">
         <li><Link to="/">Inicio</Link></li>
-        <li><Link to="/features">Características</Link></li>
+        <li><Link to="/about">Sobre Nosotros</Link></li> 
+
         {isAuthenticated ? (
           <>
             <li><Link to="/profile/me">Mi Perfil</Link></li>
+            <li><Link to="/settings">Configuración</Link></li>
             <li><button className="navbar-logout-btn">Cerrar Sesión</button></li>
           </>
         ) : (
