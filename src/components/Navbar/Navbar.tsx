@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
 import { useAuth } from '../../hooks/useAuth';
@@ -17,6 +17,22 @@ interface NavbarProps {
 const Navbar: React.FC<NavbarProps> = ({ title, links, className }) => {
   const { user, logout } = useAuth();
   const [menuOpen, setMenuOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+
+useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      // Si el menú está abierto y el click NO está dentro del menú, lo cerramos
+      if (menuOpen && menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setMenuOpen(false);
+      }
+    }
+    // Escuchamos el click en todo el documento
+    document.addEventListener('mousedown', handleClickOutside);
+    // Cleanup: removemos el listener cuando se desmonta o cambia menuOpen
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [menuOpen]);
 
    return (
     <nav className={`navbar ${className || ''}`}>
@@ -34,7 +50,7 @@ const Navbar: React.FC<NavbarProps> = ({ title, links, className }) => {
         <div className="navbar-end">
           <div className="navbar-item">
             {user ? (
-              <div className="user-menu">
+              <div className="user-menu" ref={menuRef}>
                 <div className="user-avatar-container" onClick={() => setMenuOpen(!menuOpen)}>
                   {user.profilePicture ? (
                     <img src={user.profilePicture} alt="Avatar" className="user-avatar" />

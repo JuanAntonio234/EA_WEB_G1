@@ -3,6 +3,7 @@ import Layout from './layouts/layout';
 import HomePage from './pages/Home/HomePage'; 
 import AboutPage from './pages/About/AboutPage';
 import LoginPage from './pages/Login/LoginPage';
+
 import { AuthProvider } from './context/AuthProvider';
 function App() {
   return (
@@ -13,7 +14,6 @@ function App() {
         <Route path="/home" element={<Layout><HomePage /></Layout>} />
         <Route path="/about" element={<Layout><AboutPage /></Layout>} />
         <Route path="/login" element={<Layout><LoginPage /></Layout>} />
-        <Route path="/signup" element={<Layout><div>Register Page</div></Layout>} />
       </Routes>
     </Router>
     </AuthProvider>

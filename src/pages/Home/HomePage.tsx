@@ -21,7 +21,6 @@ console.log('User en componente:', user);
       <h1>Bienvenido a la Página de Inicio</h1>
       <h1>Bienvenido a la Página de Inicio</h1>
       <h1>Bienvenido a la Página de Inicio</h1>
-    <h2>Bienvenido, {user?.username }</h2>
 
     </div>
   );
