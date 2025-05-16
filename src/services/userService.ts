@@ -1,7 +1,10 @@
 import axios from 'axios';
 import { User } from '../types/userTypes.ts';
 
-
+interface LoginResponse {
+  message: string;
+  user: User;
+}
 
 
 
@@ -44,13 +47,13 @@ export const addUser = async (newUser: User): Promise<User> => {
     }
 };
 
-export const login = async (username: string, password: string): Promise<User> => {
+export const loginUser = async (username: string, password: string): Promise<User> => {
     try {
-        const response = await axios.post<User>('http://localhost:3000/api/users/login', { username, password });
+        const response = await axios.post<LoginResponse>('http://localhost:3000/api/users/login', { username, password });
         if (response.status !== 200) {
             throw new Error('Failed to log in');
         }
-        return response.data; 
+        return response.data.user; 
     } catch (error) {
         console.error('Error logging in:', error);
         throw error;
