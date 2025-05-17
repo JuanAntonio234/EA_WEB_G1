@@ -20,13 +20,13 @@ export const fetchUsers = async (): Promise<User[]> => {
 
 export const register = async (newUser: RegisterData): Promise<User> => {
     try {
-        const response = await api.post<User>(ApiConstants.register, newUser);
+        const response = await api.post<LoginResponse>(ApiConstants.register, newUser);
         if (response.status !== 200 && response.status !== 201) {
             throw new Error('Failed to add user');
         }
         localStorage.setItem('accessToken', response.data.token);
         localStorage.setItem('refreshToken', response.data.refreshToken);
-        return response.data;
+        return response.data.user;
     } catch (error) {
         console.error('Error adding user:', error);
         throw error; 
