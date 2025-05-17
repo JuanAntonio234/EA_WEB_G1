@@ -33,8 +33,7 @@ export const fetchUsers = async (): Promise<User[]> => {
     }
 };
 
-// Add a new user
-export const addUser = async (newUser: User): Promise<User> => {
+export const register = async (newUser: User): Promise<User> => {
     try {
         const response = await axios.post<User>('http://localhost:3000/api/users', newUser);
         if (response.status !== 200 && response.status !== 201) {
