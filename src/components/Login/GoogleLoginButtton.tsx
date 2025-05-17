@@ -13,7 +13,7 @@ const handleSuccess = async (credentialResponse: CredentialResponse) => {
     const { credential } = credentialResponse;
     if (!credential) return;
 
-    const res = await axios.post('http://localhost:3000/api/auth/login/token', 
+    const res = await axios.post('http://localhost:8080/api/auth/login/token', 
       { token: credential }, 
       { 
         withCredentials: true,

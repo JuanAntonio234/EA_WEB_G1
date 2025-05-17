@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar/Navbar'; 
-import './Layout.css'; 
+import './layout.css'; 
 import Footer from '../components/Footer/Footer';
 
 interface LayoutProps {
