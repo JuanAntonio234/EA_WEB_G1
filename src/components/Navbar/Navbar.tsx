@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
 import { useAuth } from '../../hooks/useAuth';
+import { useNavigate } from 'react-router-dom';
 
 interface NavLink {
   href: string;
@@ -18,6 +19,7 @@ const Navbar: React.FC<NavbarProps> = ({ title, links, className }) => {
   const { user, logout } = useAuth();
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
 
 useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -65,7 +67,7 @@ useEffect(() => {
                   <div className="dropdown-menu">
                     <Link to="/profile" onClick={() => setMenuOpen(false)}>Mi perfil</Link>
                     <Link to="/settings" onClick={() => setMenuOpen(false)}>Configuración</Link>
-                    <button onClick={() => { logout(); setMenuOpen(false); }}>
+                    <button onClick={() => { logout(); setMenuOpen(false); navigate('/home');}}>
                       Cerrar sesión
                     </button>
                   </div>
