@@ -11,14 +11,14 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!username || !password) return alert('Email y contraseña requeridos');
+    if (!username || !password) return alert('Correu electrònic i contrasenya son obligatoris');
     onLogin({ username, password });
   };
 
   return (
     <form onSubmit={handleSubmit} className={styles.form}>
       <label>
-        Username:
+        Correu electrònic:
         <input
           type="username"
           value={username}
@@ -28,7 +28,7 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
         />
       </label>
       <label>
-        Contraseña:
+        Contrasenya:
         <input
           type="password"
           value={password}

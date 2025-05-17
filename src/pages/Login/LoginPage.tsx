@@ -6,7 +6,7 @@ import { useAuth } from '../../hooks/useAuth';
 import GoogleLoginButton from '../../components/Login/GoogleLoginButtton';
 
 function LoginPage() {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   const { login } = useAuth();
 
     const handleLogin = async (username: string, password: string) => {
