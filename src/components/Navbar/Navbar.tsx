@@ -75,7 +75,7 @@ useEffect(() => {
               </div>
             ) : (
               <div className="buttons">
-                <Link to="/signup" className="button is-primary"><strong>Sign up</strong></Link>
+                <Link to="/register" className="button is-primary"><strong>Sign up</strong></Link>
                 <Link to="/login" className="button is-light">Log in</Link>
               </div>
             )}
