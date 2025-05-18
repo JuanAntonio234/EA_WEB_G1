@@ -33,7 +33,7 @@ export const register = async (newUser: RegisterData): Promise<User> => {
     }
 };
 
-export const loginUser = async (email: string, password: string): Promise<User> => {
+export const loginUser = async (email: string, password: string): Promise<string> => {
     try {
         const response = await api.post<LoginResponse>(ApiConstants.login, { email, password });
         if (response.status !== 200) {
@@ -41,7 +41,7 @@ export const loginUser = async (email: string, password: string): Promise<User> 
         }
         localStorage.setItem('accessToken', response.data.token);
         localStorage.setItem('refreshToken', response.data.refreshToken);
-        return response.data.user; 
+        return response.data.token; 
     } catch (error) {
         console.error('Error logging in:', error);
         throw error;
