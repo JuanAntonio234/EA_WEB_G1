@@ -1,6 +1,6 @@
 import api from '../config/axios_instance.ts';
 import { ApiConstants } from '../config/api_constants';
-import { User } from '../types/userTypes.ts';
+import { RegisterData, User } from '../types/userTypes.ts';
 
 interface LoginResponse {
   token: string;
@@ -18,13 +18,15 @@ export const fetchUsers = async (): Promise<User[]> => {
     }
 };
 
-export const register = async (newUser: User): Promise<User> => {
+export const register = async (newUser: RegisterData): Promise<User> => {
     try {
-        const response = await api.post<User>(ApiConstants.register, newUser);
+        const response = await api.post<LoginResponse>(ApiConstants.register, newUser);
         if (response.status !== 200 && response.status !== 201) {
             throw new Error('Failed to add user');
         }
-        return response.data;
+        localStorage.setItem('accessToken', response.data.token);
+        localStorage.setItem('refreshToken', response.data.refreshToken);
+        return response.data.user;
     } catch (error) {
         console.error('Error adding user:', error);
         throw error; 

@@ -16,3 +16,9 @@ export interface User {
   visibility: boolean;
   role: 'user' | 'admin';
 }
+
+export interface RegisterData {
+  username: string;
+  email: string;
+  password: string;
+}
