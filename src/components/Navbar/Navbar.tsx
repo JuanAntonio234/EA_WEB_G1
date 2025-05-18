@@ -67,6 +67,7 @@ useEffect(() => {
                   <div className="dropdown-menu">
                     <Link to="/profile" onClick={() => setMenuOpen(false)}>Mi perfil</Link>
                     <Link to="/settings" onClick={() => setMenuOpen(false)}>Configuración</Link>
+                    <Link to="/activities" onClick={() => setMenuOpen(false)}>Les meves activitats</Link>
                     <button onClick={() => { logout(); setMenuOpen(false); navigate('/home');}}>
                       Cerrar sesión
                     </button>

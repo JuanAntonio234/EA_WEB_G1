@@ -7,8 +7,6 @@ import GoogleLoginButton from '../../components/Login/GoogleLoginButtton';
 import { jwtDecode } from 'jwt-decode';
 import { User } from '../../context/AuthContext';
 
-
-
 function LoginPage() {
   const navigate = useNavigate();
   const { login } = useAuth();

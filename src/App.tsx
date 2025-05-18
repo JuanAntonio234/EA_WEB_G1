@@ -4,8 +4,9 @@ import HomePage from './pages/Home/HomePage';
 import AboutPage from './pages/About/AboutPage';
 import LoginPage from './pages/Login/LoginPage';
 import RegisterPage from './pages/Register/RegisterPage';
-
+import ActivitiesPage from './pages/Activities/ActivitiesPage';
 import { AuthProvider } from './context/AuthProvider';
+
 function App() {
   return (
     <AuthProvider>
@@ -16,6 +17,7 @@ function App() {
         <Route path="/about" element={<Layout><AboutPage /></Layout>} />
         <Route path="/login" element={<Layout><LoginPage /></Layout>} />
         <Route path="/register" element={<Layout><RegisterPage /></Layout>} />
+        <Route path="/activities" element={<Layout><ActivitiesPage /></Layout>} />
       </Routes>
     </Router>
     </AuthProvider>
