@@ -11,15 +11,15 @@ function LoginPage() {
   const navigate = useNavigate();
   const { login } = useAuth();
 
-  const handleLogin = async (username: string, password: string) => {
+  const handleLogin = async (email: string, password: string) => {
     try {
-      const token = await loginUser(username, password);
+      const token = await loginUser(email, password);
       const user: User = jwtDecode(token);
       login(user);
       navigate('/home');
-      console.log('Login successful:', user);
+      console.log('Inici de sessió vàlid:', user);
     } catch (error) {
-      console.error('Login failed:', error);
+      console.error('Inici de sessió fallit:', error);
       alert('Login fallido');
     }
   };
