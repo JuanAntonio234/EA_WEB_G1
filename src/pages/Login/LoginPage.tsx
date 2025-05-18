@@ -5,13 +5,9 @@ import { loginUser } from '../../services/userService';
 import { useAuth } from '../../hooks/useAuth';
 import GoogleLoginButton from '../../components/Login/GoogleLoginButtton';
 import { jwtDecode } from 'jwt-decode';
+import { User } from '../../context/AuthContext';
 
-interface DecodedUser {
-  _id: string;
-  email: string;
-  name: string;
-  // añade aquí las propiedades que tenga tu token
-}
+
 
 function LoginPage() {
   const navigate = useNavigate();
@@ -20,7 +16,7 @@ function LoginPage() {
   const handleLogin = async (username: string, password: string) => {
     try {
       const token = await loginUser(username, password);
-      const user: DecodedUser = jwtDecode(token);
+      const user: User = jwtDecode(token);
       login(user);
       navigate('/home');
       console.log('Login successful:', user);
