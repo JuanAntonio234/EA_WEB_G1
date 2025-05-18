@@ -80,9 +80,9 @@ export const updateUser = async(updateUser: User): Promise<User> => {
     }
 };
 
-export const getUsersById = async (userId: string): Promise<User[]> => {
+export const getUserById = async (userId: string): Promise<User> => {
     try {
-        const response = await api.get<User[]>(`${ApiConstants.users}/${userId}`);
+        const response = await api.get<User>(`${ApiConstants.users}/${userId}`);
         return response.data;
     } catch (error) {
         console.error('Error obtaining the user:', error);
