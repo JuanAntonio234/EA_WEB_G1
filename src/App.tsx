@@ -6,7 +6,7 @@ import LoginPage from './pages/Login/LoginPage';
 import RegisterPage from './pages/Register/RegisterPage';
 import ActivitiesPage from './pages/Activities/ActivitiesPage';
 import ProfilePage from './pages/Profile/ProfilePage';
-
+import AchievementsPage from './pages/Achievements/AchievementsPage';
 import { AuthProvider } from './context/AuthProvider';
 
 function App() {
@@ -20,6 +20,7 @@ function App() {
         <Route path="/register" element={<Layout><RegisterPage /></Layout>} />
         <Route path="/activities" element={<Layout><ActivitiesPage /></Layout>} />
         <Route path="/profile/:iduser" element={<Layout><ProfilePage /></Layout>} />
+        <Route path="/achievements" element={<Layout><AchievementsPage /></Layout>} />
       </Routes>
     </Router>
     </AuthProvider>

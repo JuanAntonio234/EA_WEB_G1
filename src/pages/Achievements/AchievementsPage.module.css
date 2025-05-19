@@ -1,0 +1,36 @@
+
+.achievementsPageContainer { 
+  padding: 20px;
+  max-width: 1200px; 
+  margin: 20px auto; 
+  background-color: #f9f9f9; 
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.05);
+}
+
+.achievementsPageTitle {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 2.2em;
+  color: #2c3e50; 
+  font-weight: 600;
+}
+
+.achievementsStatus { 
+  text-align: center;
+  font-size: 1.2em;
+  padding: 40px 20px;
+  color: #555;
+  min-height: 200px; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+}
+
+.errorMessage { 
+  color: #c0392b; 
+  background-color: #fdecea; 
+  border: 1px solid #e74c3c;
+  padding: 20px; 
+}

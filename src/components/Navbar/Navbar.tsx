@@ -1,8 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
-import './Navbar.css';
-import { useAuth } from '../../hooks/useAuth';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom'; 
+import './Navbar.css'; 
+import { useAuth } from '../../hooks/useAuth'; 
 
 interface NavLink {
   href: string;
@@ -11,26 +10,23 @@ interface NavLink {
 
 interface NavbarProps {
   title: string;
-  links: NavLink[];
+  links: NavLink[]; 
   className?: string;
 }
 
 const Navbar: React.FC<NavbarProps> = ({ title, links, className }) => {
-  const { user, logout } = useAuth();
+  const { user, logout } = useAuth(); 
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
-      // Si el menú está abierto y el click NO está dentro del menú, lo cerramos
       if (menuOpen && menuRef.current && !menuRef.current.contains(event.target as Node)) {
         setMenuOpen(false);
       }
     }
-    // Escuchamos el click en todo el documento
     document.addEventListener('mousedown', handleClickOutside);
-    // Cleanup: removemos el listener cuando se desmonta o cambia menuOpen
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
@@ -56,7 +52,13 @@ const Navbar: React.FC<NavbarProps> = ({ title, links, className }) => {
     }
   }, [darkMode]);
 
-   return (
+  const handleLogout = () => {
+    logout(); 
+    setMenuOpen(false);
+    navigate('/'); 
+  };
+
+  return (
     <nav className={`navbar ${className || ''}`}>
       <div className="navbar-brand">
         <Link to="/" className="navbar-item">{title}</Link>
@@ -81,11 +83,11 @@ const Navbar: React.FC<NavbarProps> = ({ title, links, className }) => {
         </div>
         <div className="navbar-end">
           <div className="navbar-item">
-            {user ? (
+            {user ? ( 
               <div className="user-menu" ref={menuRef}>
                 <div className="user-avatar-container" onClick={() => setMenuOpen(!menuOpen)}>
                   {user.profilePicture ? (
-                    <img src={user.profilePicture || '/default-profile.png'} alt="Avatar" className="user-avatar" />
+                    <img src={user.profilePicture} alt="Avatar" className="user-avatar" onError={(e) => (e.currentTarget.src = '/default-profile.png')} />
                   ) : (
                     <div className="user-avatar">
                       {user.username?.charAt(0).toUpperCase()}
@@ -95,10 +97,13 @@ const Navbar: React.FC<NavbarProps> = ({ title, links, className }) => {
 
                 {menuOpen && (
                   <div className="dropdown-menu">
-                    <Link to={`/profile/${user.id}`} onClick={() => setMenuOpen(false)}>Mi perfil</Link>
+                    <Link to={`/profile/${user._id}`} onClick={() => setMenuOpen(false)}>Mi perfil</Link>
+                    
+                    <Link to="/achievements" onClick={() => setMenuOpen(false)}>Assoliments</Link>
+                    
                     <Link to="/settings" onClick={() => setMenuOpen(false)}>Configuración</Link>
-                    <Link to="/activities" onClick={() => setMenuOpen(false)}>Les meves activitats</Link>
-                    <button onClick={() => { logout(); setMenuOpen(false); navigate('/');}}>
+                    <Link to="/activities" onClick={() => setMenuOpen(false)}>Les meves activitats</Link> 
+                    <button onClick={handleLogout}>
                       Cerrar sesión
                     </button>
                   </div>
@@ -109,7 +114,6 @@ const Navbar: React.FC<NavbarProps> = ({ title, links, className }) => {
                 <Link to="/register" className="button is-primary"><strong>Sign up</strong></Link>
                 <Link to="/login" className="button is-light">Log in</Link>
               </div>
-              
             )}
           </div>
         </div>

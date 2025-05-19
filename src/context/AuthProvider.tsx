@@ -8,9 +8,17 @@ interface AuthProviderProps {
   children: ReactNode;
 }
 
+interface JwtTokenPayload {
+  id: string; 
+  role: 'user' | 'admin';
+  name: string; 
+  email: string;
+  profilePicture?: string;
+}
+
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
-  const [loadingInitial, setLoadingInitial] = useState<boolean>(true); // Para saber cuándo ha terminado la carga inicial del token
+  const [loadingInitial, setLoadingInitial] = useState<boolean>(true);
 
   const login = (userData: User) => {
     setUser(userData);
@@ -37,13 +45,34 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     const token = localStorage.getItem('accessToken');
     if (token) {
       try {
-        const decodedUserFromToken = jwtDecode<User>(token); 
-        setUser(decodedUserFromToken);
+        const decodedPayload = jwtDecode<JwtTokenPayload>(token); 
+        const userFromToken: User = {
+          _id: decodedPayload.id, 
+          username: decodedPayload.name, 
+          email: decodedPayload.email,
+          profilePicture: decodedPayload.profilePicture,
+          role: decodedPayload.role,
+          level: 0, 
+          totalDistance: 0, 
+          totalTime: 0,
+          activities: [], 
+          achievements: [], 
+          challengesCompleted: [], 
+          createdAt: new Date().toISOString(),
+          updatedAt: new Date().toISOString(),
+          visibility: true, 
+        };
+        setUser(userFromToken);
 
+        const idFromToken = decodedPayload.id; 
         const storedUserId = localStorage.getItem('userId');
-        if (storedUserId !== decodedUserFromToken._id) {
-            console.warn("El ID de usuario en localStorage no coincide con el token. Re-estableciendo userId.");
-            localStorage.setItem('userId', decodedUserFromToken._id);
+
+        if (storedUserId !== idFromToken) {
+          console.warn("El ID de usuario en localStorage no coincide con el ID del token o no existe. Re-estableciendo userId con el ID del token.");
+          localStorage.setItem('userId', idFromToken);
+        } else if (!storedUserId && idFromToken) { 
+          console.log("Estableciendo userId en localStorage desde el token.");
+          localStorage.setItem('userId', idFromToken);
         }
 
       } catch (error) {

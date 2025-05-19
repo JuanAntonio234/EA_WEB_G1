@@ -1,7 +1,7 @@
 .achievement-item {
   background-color: #ffffff;
   border: 1px solid #e0e0e0;
-  border-left-width: 5px;
+  border-left-width: 5px; 
   border-left-style: solid;
   border-radius: 8px;
   padding: 16px;
@@ -19,8 +19,9 @@
 
 .achievement-item.difficulty-bronze { border-left-color: #cd7f32; } 
 .achievement-item.difficulty-silver { border-left-color: #c0c0c0; } 
-.achievement-item.difficulty-gold { border-left-color: #ffd700; }   
+.achievement-item.difficulty-gold { border-left-color: #ffd700; }  
 .achievement-item.difficulty-diamond { border-left-color: #b9f2ff; } 
+
 
 .achievement-icon {
   width: 50px; 
@@ -54,13 +55,6 @@
   line-height: 1.4;
 }
 
-.achievement-condition { 
-  font-size: 0.8em;
-  color: #777;
-  font-style: italic;
-  margin-bottom: 10px;
-}
-
 .achievement-meta {
   display: flex;
   align-items: center;
@@ -89,9 +83,3 @@
   color: #4CAF50; 
 }
 
-.achievement-date {
-  font-size: 0.8em;
-  color: #777;
-  margin-top: auto; 
-  padding-top: 5px;
-}
