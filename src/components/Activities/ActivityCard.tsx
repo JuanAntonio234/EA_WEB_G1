@@ -1,6 +1,5 @@
 import { Activity } from '../../types/activityTypes';
-import './ActivityStyles.css';
-
+import '../../index.css';
 interface Props {
   activity: Activity;
 }

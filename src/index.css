@@ -28,6 +28,10 @@
   --footer-bg: #f1f1f1;
   --footer-text: #444;
   --footer-border: #ddd;
+
+  --activity-card-bg: #fff;
+  --activity-card-text: #222;
+  --activity-type-color: #4b5563;
 }
 
 body.dark {
@@ -60,4 +64,8 @@ body.dark {
   --footer-bg: #232a29;
   --footer-text: #bdbdbd;
   --footer-border: #333;
+
+   --activity-card-bg: #1e2423;
+  --activity-card-text: #f3f3f3;
+  --activity-type-color: #bdbdbd;
 }
