@@ -1,14 +1,14 @@
 body {
   font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
-  background: #eaf1ec;
 }
 
 .card {
-  background-color: white;
+  background-color: var(--card-bg);
+  color: var(--text-main);
+  box-shadow: var(--card-shadow);
   font-family: inherit;
   padding: 2rem;
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   max-width: 500px;
   margin: 2rem auto;
 }
@@ -17,20 +17,20 @@ body {
   font-size: 2rem;
   font-weight: 700;
   margin-bottom: 12px;
-  color: #1a6d3d;
+  color: var(--text-main);
   text-align: center;
   letter-spacing: -1px;
 }
 .intro-text {
   font-size: 1.15rem;
-  color: #444;
+  color: var(--text-main);
   margin-bottom: 28px;
   text-align: center;
 }
 .features-section h3,
 .mobile-app-section h3 {
   font-size: 1.15rem;
-  color: #1a6d3d;
+  color: var(--text-main);
   margin-bottom: 12px;
   font-weight: 600;
 }
@@ -50,26 +50,34 @@ body {
   margin-top: 28px;
 }
 
-.app-links {
+.appLinks {
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 18px;
   margin-top: 10px;
 }
 
-.app-links img {
-  height: 44px;
+.androidBadge {
+  height: 42px;
   width: auto;
-  border-radius: 8px;
-  background: #fff;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
-  border: 1px solid #e0e0e0;
   transition: transform 0.15s, box-shadow 0.15s;
   padding: 4px 10px;
-  display: block;
 }
 
-.app-links img:hover {
+.androidBadge:hover {
+  transform: scale(1.08);
+  box-shadow: 0 4px 16px rgba(26, 109, 61, 0.25);
+}
+
+.appleBadge {
+  height: 44px;
+  width: auto;
+  transition: transform 0.15s, box-shadow 0.15s;
+  padding: 4px 14px;
+}
+
+.appleBadge:hover {
   transform: scale(1.08);
   box-shadow: 0 4px 16px rgba(26, 109, 61, 0.25);
 }

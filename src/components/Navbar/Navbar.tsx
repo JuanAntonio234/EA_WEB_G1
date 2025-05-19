@@ -21,7 +21,7 @@ const Navbar: React.FC<NavbarProps> = ({ title, links, className }) => {
   const menuRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
 
-useEffect(() => {
+  useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       // Si el menú está abierto y el click NO está dentro del menú, lo cerramos
       if (menuOpen && menuRef.current && !menuRef.current.contains(event.target as Node)) {
@@ -36,6 +36,26 @@ useEffect(() => {
     };
   }, [menuOpen]);
 
+  const [darkMode, setDarkMode] = useState(() =>
+    localStorage.getItem('darkmode') === 'true' ||
+    (localStorage.getItem('darkmode') === null && window.matchMedia('(prefers-color-scheme: dark)').matches)
+  );
+
+  const toggleDark = () => {
+    document.body.classList.toggle('dark');
+    const isDark = document.body.classList.contains('dark');
+    setDarkMode(isDark);
+    localStorage.setItem('darkmode', isDark.toString());
+  };
+
+  useEffect(() => {
+    if (darkMode) {
+      document.body.classList.add('dark');
+    } else {
+      document.body.classList.remove('dark');
+    }
+  }, [darkMode]);
+
    return (
     <nav className={`navbar ${className || ''}`}>
       <div className="navbar-brand">
@@ -48,6 +68,16 @@ useEffect(() => {
               {link.label}
             </Link>
           ))}
+        </div>
+        <div className='navbar-darmode-toggle'>
+          <button
+            className="darkmode-toggle"
+            onClick={toggleDark}
+            title={darkMode ? "Switch to light mode" : "Switch to dark mode"}
+            aria-label="Toggle dark mode"
+          >
+            {darkMode ? "🌙" : "☀️"}
+          </button>
         </div>
         <div className="navbar-end">
           <div className="navbar-item">
@@ -78,6 +108,7 @@ useEffect(() => {
                 <Link to="/register" className="button is-primary"><strong>Sign up</strong></Link>
                 <Link to="/login" className="button is-light">Log in</Link>
               </div>
+              
             )}
           </div>
         </div>

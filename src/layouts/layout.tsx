@@ -28,13 +28,13 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   },[lastScrollY]);
 
   const navLinks = [
-    { href: '/', label: 'Inicio' },
-    { href: '/about', label: 'Acerca de' }
+    { href: '/', label: 'Inici' },
+    { href: '/about', label: 'Sobre nosaltres' }
   ];
 
   return (
     <div className="layout-container">
-      <Navbar title="Mi Aplicación" links={navLinks} 
+      <Navbar title="SportsTracker" links={navLinks} 
       className={isNavbarVisible?'navbar-visible' : 'navbar-hidden'}/>
       <main className="main-content">
         {children} {/* Aquí se renderizará el contenido específico de cada página */}
