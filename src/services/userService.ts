@@ -39,6 +39,7 @@ export const loginUser = async (email: string, password: string): Promise<string
         if (response.status !== 200) {
             throw new Error('Failed to log in');
         }
+        localStorage.setItem('userId', response.data.user._id);
         localStorage.setItem('accessToken', response.data.token);
         localStorage.setItem('refreshToken', response.data.refreshToken);
         return response.data.token; 
