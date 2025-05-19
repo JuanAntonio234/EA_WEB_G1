@@ -1,8 +1,6 @@
-import axios from 'axios';
+import { ApiConstants } from '../config/api_constants';
+import api from '../config/axios_instance.ts';
 import { Activity } from '../types/activityTypes.ts';
-
-const API_URL = 'http://localhost:3000/api/activities';
-
 export interface PaginatedActivities {
   activities: Activity[];
   totalActivities: number;
@@ -12,7 +10,7 @@ export interface PaginatedActivities {
 
 // Obtener actividades paginadas
 export const getActivitiesByUserId = async (userId: string, page = 1, limit = 4): Promise<PaginatedActivities> => {
-  const response = await axios.get<PaginatedActivities>(`${API_URL}/user/${userId}`, {
+  const response = await api.get<PaginatedActivities>(`${ApiConstants.activities}/user/${userId}`, {
     params: { page, limit }
   });
   return response.data;
