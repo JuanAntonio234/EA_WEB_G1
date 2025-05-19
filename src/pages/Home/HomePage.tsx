@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './HomePage.module.css';
+import styles from './HomePage.module.css';
 
 const HomePage: React.FC = () => {
   return (
-    <div className="homepage-container">
+    <div className={styles.pageContainer}>
       <h1 className="welcome-message">Welcome to SportsTracker!</h1>
       <p className="intro-text">
         Track your runs, rides, and workouts. Log where you train, earn achievements, and join a community of active people!

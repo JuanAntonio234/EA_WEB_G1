@@ -16,11 +16,11 @@ function LoginPage() {
       const token = await loginUser(email, password);
       const user: User = jwtDecode(token);
       login(user);
-      navigate('/home');
+      navigate('/');
       console.log('Inici de sessió vàlid:', user);
     } catch (error) {
       console.error('Inici de sessió fallit:', error);
-      alert('Login fallido');
+      alert('Inici de sessió fallit');
     }
   };
 
