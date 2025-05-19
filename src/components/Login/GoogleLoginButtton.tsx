@@ -1,8 +1,9 @@
 import React from 'react';
 import { CredentialResponse, GoogleLogin } from '@react-oauth/google';
-import axios from 'axios';
 import { useAuth } from '../../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
+import { ApiConstants } from '../../config/api_constants';
+import api from '../../config/axios_instance';
 
 const GoogleLoginButton: React.FC = () => {
   const { login } = useAuth();
@@ -13,7 +14,7 @@ const handleSuccess = async (credentialResponse: CredentialResponse) => {
     const { credential } = credentialResponse;
     if (!credential) return;
 
-    const res = await axios.post('http://localhost:8080/api/auth/login/token', 
+    const res = await api.post(`${ApiConstants.login}/token`, 
       { token: credential }, 
       { 
         withCredentials: true,

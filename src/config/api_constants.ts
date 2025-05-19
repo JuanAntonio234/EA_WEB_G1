@@ -24,4 +24,7 @@ export class ApiConstants {
   static get challenges(): string {
     return `${this.baseUrl}/${this.apiPath}/challenges`;
   }
+  static get activities(): string {
+    return `${this.baseUrl}/${this.apiPath}/activities`;
+  }
 }
