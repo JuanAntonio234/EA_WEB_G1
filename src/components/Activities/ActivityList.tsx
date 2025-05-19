@@ -1,6 +1,7 @@
 import { Activity } from '../../types/activityTypes';
 import ActivityCard from './ActivityCard';
 import './ActivityStyles.css';
+import '../../index.css';
 
 interface Props {
   activities: Activity[];

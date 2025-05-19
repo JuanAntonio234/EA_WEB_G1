@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styles from './Register.module.css';
+import PasswordStrengthMeter from '../PasswordStrength/PasswordStrengthMeter';
 
 interface RegisterProps {
   onRegister: (credentials: { username: string; email: string; password: string }) => void;
@@ -47,6 +48,7 @@ const Register: React.FC<RegisterProps> = ({ onRegister }) => {
           required
           className={styles.input}
         />
+      {password && <PasswordStrengthMeter password={password} />}
       </label>
       <button type="submit" className={styles.button}>Registrar</button>
     </form>

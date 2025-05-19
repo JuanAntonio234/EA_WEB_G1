@@ -1,35 +1,43 @@
-/* ActivityStyles.css */
-
 .activity-list {
   display: flex;
-  gap: 1rem; /* igual a Tailwind gap-4 */
+  gap: 3.5rem;
   overflow-x: auto;
-  padding: 1rem;
+  justify-content: center;
+  padding: 1rem 1rem 1rem 0;
 }
 
 .activity-item {
   flex-shrink: 0;
-  margin-top: -20px; /* solapado vertical */
+  margin-top: -20px;
 }
 
 .activity-card {
-  border: 1px solid #d1d5db; /* similar a border en Tailwind */
-  padding: 1rem;
-  border-radius: 0.5rem; /* rounded-lg */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* shadow-md */
-  background-color: white;
-  min-width: 250px; /* para que no se hagan demasiado pequeñas */
+  background-color: var(--activity-card-bg);
+  color: var(--activity-card-text);
+  box-shadow: var(--card-shadow);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  width: 100%;
+  max-width: 400px;
+  flex-shrink: 0;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Opcional: estilos para textos */
 .activity-card h2 {
   font-weight: 700;
-  font-size: 1.25rem; /* text-xl */
+  font-size: 1.25rem;
   margin-bottom: 0.25rem;
 }
 
 .activity-card .activity-type {
-  font-size: 0.875rem; /* text-sm */
-  color: #4b5563; /* gray-600 */
+  font-size: 0.875rem;
+  color: var(--activity-type-color);
   margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.activity-card p {
+  margin: 0.25rem 0;
+  line-height: 1.4;
 }
