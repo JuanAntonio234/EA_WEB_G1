@@ -1,0 +1,33 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  color: var(--text-main);
+  gap: 1rem;
+  width: 300px;
+  padding: 2rem;
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  box-shadow: var(--card-shadow);
+}
+
+.input {
+  background: var(--card-bg);
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--text-main);
+}
+
+.button {
+  padding: 0.5rem;
+  background-color: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: var(--primary-hover);
+}

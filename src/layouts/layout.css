@@ -1,0 +1,28 @@
+.layout-container {
+  background-image: url('/background.png');
+  background-size: cover; 
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh; 
+  display: flex;
+  flex-direction: column; 
+  background-attachment: fixed; 
+}
+.hidden {
+  transform: translateY(-100%); 
+  transition: transform 0.3s ease-in-out;  /* Añade una animación suave */
+}
+.main-content {
+  flex-grow: 1;
+  padding: 20px;
+  width: 100%;         
+  box-sizing: border-box; 
+  padding-top: 50px; 
+}
+
+.footer-content {
+  background-color: #f1f1f1;
+  text-align: center;
+  padding: 1rem;
+  border-top: 1px solid #ddd;
+}

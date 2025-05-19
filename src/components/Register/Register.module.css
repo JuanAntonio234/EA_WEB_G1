@@ -1,0 +1,37 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--card-bg);
+  color: var(--text-main);
+  box-shadow: var(--card-shadow);
+  gap: 1rem;
+  width: 300px;
+  padding: 2rem;
+  border-radius: 8px;
+}
+
+.input {
+  padding: 0.5rem;
+  font-size: 1rem;
+  border-radius: 4px;
+  background: var(--card-bg);
+  color: var(--text-main);
+  border: 1px solid var(--border);
+}
+
+.button {
+  padding: 0.5rem;
+  background-color: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: var(--primary-hover);
+}
+.error {
+  color: red;
+  font-size: 0.875rem;
+}
