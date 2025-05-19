@@ -1,0 +1,23 @@
+.achievement-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 20px; 
+  padding: 20px 0;
+}
+
+.no-achievements-message {
+  font-size: 1.1em;
+  color: #666;
+  text-align: center;
+  padding: 30px 20px;
+  background-color: #f7f7f7;
+  border: 1px dashed #ccc;
+  border-radius: 8px;
+  margin-top: 20px;
+}
+
+@media (max-width: 768px) { 
+  .achievement-list {
+    grid-template-columns: 1fr;
+  }
+}

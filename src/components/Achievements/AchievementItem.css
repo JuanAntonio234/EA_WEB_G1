@@ -1,0 +1,97 @@
+.achievement-item {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-left-width: 5px;
+  border-left-style: solid;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: flex-start; 
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.achievement-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.achievement-item.difficulty-bronze { border-left-color: #cd7f32; } 
+.achievement-item.difficulty-silver { border-left-color: #c0c0c0; } 
+.achievement-item.difficulty-gold { border-left-color: #ffd700; }   
+.achievement-item.difficulty-diamond { border-left-color: #b9f2ff; } 
+
+.achievement-icon {
+  width: 50px; 
+  height: 50px;
+  margin-right: 16px;
+  margin-top: 3px; 
+  border-radius: 8px; 
+  object-fit: cover;
+  flex-shrink: 0; 
+  background-color: #f0f0f0; 
+}
+
+.achievement-details {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.achievement-name {
+  font-size: 1.2em; 
+  font-weight: 600;
+  color: #333;
+  margin-top: 0;
+  margin-bottom: 6px;
+}
+
+.achievement-description {
+  font-size: 0.9em; 
+  color: #555;
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+
+.achievement-condition { 
+  font-size: 0.8em;
+  color: #777;
+  font-style: italic;
+  margin-bottom: 10px;
+}
+
+.achievement-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px; 
+  margin-bottom: 8px;
+}
+
+.achievement-difficulty.difficulty-badge {
+  font-size: 0.8em;
+  font-weight: 500;
+  padding: 3px 8px;
+  border-radius: 4px;
+  color: #fff; 
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.difficulty-badge.difficulty-bronze { background-color: #cd7f32; }
+.difficulty-badge.difficulty-silver { background-color: #a7a7a7; color: #333; } 
+.difficulty-badge.difficulty-gold { background-color: #ffd700; color: #4d3800; }    
+.difficulty-badge.difficulty-diamond { background-color: #5eb9d7; }
+
+.achievement-points {
+  font-size: 0.9em;
+  font-weight: bold;
+  color: #4CAF50; 
+}
+
+.achievement-date {
+  font-size: 0.8em;
+  color: #777;
+  margin-top: auto; 
+  padding-top: 5px;
+}

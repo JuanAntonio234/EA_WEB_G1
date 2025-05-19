@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styles from './ProfilePage.module.css';
 import { getUserById } from '../../services/userService';
-import { getAchievementById } from '../../services/achievementService';
+import { getAchievementById } from '../../services/achievementsService';
 import { getChallengeById } from '../../services/challengeService';
 import { User } from '../../types/userTypes';
 import { Achievement } from '../../types/achievementTypes';
