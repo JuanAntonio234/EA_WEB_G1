@@ -25,7 +25,7 @@ const handleSuccess = async (credentialResponse: CredentialResponse) => {
 
     // Guarda los datos del usuario y redirige
     login(res.data.user);
-    navigate('/home');
+    navigate('/');
   } catch (error) {
     console.error("Error al iniciar sesión con Google", error);
     alert("Inicio de sesión con Google fallido");

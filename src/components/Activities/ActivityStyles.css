@@ -1,0 +1,43 @@
+.activity-list {
+  display: flex;
+  gap: 3.5rem;
+  overflow-x: auto;
+  justify-content: center;
+  padding: 1rem 1rem 1rem 0;
+}
+
+.activity-item {
+  flex-shrink: 0;
+  margin-top: -20px;
+}
+
+.activity-card {
+  background-color: var(--activity-card-bg);
+  color: var(--activity-card-text);
+  box-shadow: var(--card-shadow);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  width: 100%;
+  max-width: 400px;
+  flex-shrink: 0;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.activity-card h2 {
+  font-weight: 700;
+  font-size: 1.25rem;
+  margin-bottom: 0.25rem;
+}
+
+.activity-card .activity-type {
+  font-size: 0.875rem;
+  color: var(--activity-type-color);
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.activity-card p {
+  margin: 0.25rem 0;
+  line-height: 1.4;
+}

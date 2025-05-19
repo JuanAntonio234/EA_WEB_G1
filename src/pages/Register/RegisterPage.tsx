@@ -1,31 +1,34 @@
-/*import Login from '../../components/Login/Login';
 import styles from './RegisterPage.module.css';
 import { useNavigate } from 'react-router-dom';
 import { register } from '../../services/userService';
 import { useAuth } from '../../hooks/useAuth';
-import { User } from '../../types/userTypes';
+import { RegisterData } from '../../types/userTypes';
+import Register from '../../components/Register/Register';
+import { jwtDecode } from 'jwt-decode';
+import { User } from '../../context/AuthContext';
 
 function RegisterPage() {
     const navigate = useNavigate();
   const { login } = useAuth();
 
-    const handleRegister = async (newUser: User) => {
+    const handleRegister = async (newUser: RegisterData) => {
         try {
-            const user = await register(newUser);
-            login(user);
-            navigate('/home');
-            console.log('Login successful:', user);
+          const token = await register(newUser);
+          const user: User = jwtDecode(token);
+          login(user);
+            navigate('/');
+            console.log('Registre satisfactori:', user);
         } catch (error) {
-            console.error('Login failed:', error);
-            alert('Login fallido');
+            console.error('Registre fallit:', error);
+            alert('Registre fallit');
         }
     }
 
   return (
     <div className={styles.pageContainer}>
-        <Login onLogin={({ username, password }) => handleRegister({ ...newUser, username, password })}/>
+      <Register onRegister={({ username, email, password }) => handleRegister({ username, email, password })} />
     </div>
   );
-};
+}
 
-export default RegisterPage;*/
+export default RegisterPage;

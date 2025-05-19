@@ -1,0 +1,100 @@
+.profileContainer {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: var(--card-bg);
+  border-radius: 12px;
+  box-shadow: var(--card-shadow);
+  color: var(--text-main);
+}
+
+.profileTitle {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-weight: bold;
+  color: var(--text-main);
+}
+
+.profileHeader {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.profileIcon {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--profile-border);
+  background: var(--profile-bg);
+}
+
+.profileInfo {
+  flex: 1;
+  font-size: 1.1rem;
+  color: var(--text-main);
+}
+
+.achievementsSection,
+.challengesSection {
+  margin-top: 2.5rem;
+}
+
+.achievementsList,
+.challengesList {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.achievementCard,
+.challengeCard {
+  background: var(--card-bg);
+  color: var(--text-main);
+  border-radius: 8px;
+  padding: 1rem 1.2rem;
+  min-width: 200px;
+  box-shadow: var(--card-shadow);
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+  flex: 1 1 250px;
+}
+
+.achievementIcon {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  border-radius: 8px;
+  margin-right: 0.7rem;
+  background: var(--profile-bg);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  display: inline-block;
+  vertical-align: middle;
+}
+
+@media (max-width: 600px) {
+  .profileContainer {
+    padding: 1rem;
+  }
+  .profileHeader {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .achievementsList,
+  .challengesList {
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+  .achievementCard,
+  .challengeCard {
+    min-width: unset;
+    width: 100%;
+  }
+}

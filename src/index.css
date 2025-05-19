@@ -1,0 +1,71 @@
+:root {
+  --background: #eaf1ec;
+  --card-bg: #fff;
+  --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --primary: #1a6d3d;
+  --primary-hover: #14512e;
+  --text-main: #222;
+  --text-light: #444;
+  --border: #e0e0e0;
+
+  --navbar-bg: #f1f1f1;
+  --navbar-text: #444;
+  --navbar-link-hover: #000000;
+
+  --button-primary-bg: #00d1b2;
+  --button-primary-bg-hover: #00b89c;
+  --button-light-bg: #f5f5f5;
+  --button-light-text: #363636;
+  --button-light-border: #dbdbdb;
+  --button-light-hover: #e8e8e8;
+
+  --dropdown-bg: #fff;
+  --dropdown-text: #000;
+  --dropdown-hover: #f5f5f5;
+  --avatar-bg: #666;
+  --avatar-text: #fff;
+
+  --footer-bg: #f1f1f1;
+  --footer-text: #444;
+  --footer-border: #ddd;
+
+  --activity-card-bg: #fff;
+  --activity-card-text: #222;
+  --activity-type-color: #4b5563;
+}
+
+body.dark {
+  --background: #151a19;
+  --card-bg: #1e2423;
+  --card-shadow: 0 2px 12px rgba(0,0,0,0.28);
+  --primary: #4fd18b;
+  --primary-hover: #2a7c4e;
+  --text-main: #f3f3f3;
+  --text-light: #bdbdbd;
+  --border: #333;
+
+  --navbar-bg: #181c1b;
+  --navbar-text: #eaf1ec;
+  --navbar-link-hover: #222;
+
+  --button-primary-bg: #1f7547;
+  --button-primary-bg-hover: #114427;
+  --button-light-bg: #232a29;
+  --button-light-text: #eaf1ec;
+  --button-light-border: #333;
+  --button-light-hover: #222;
+
+  --dropdown-bg: #232a29;
+  --dropdown-text: #eaf1ec;
+  --dropdown-hover: #222;
+  --avatar-bg: #222;
+  --avatar-text: #eaf1ec;
+
+  --footer-bg: #232a29;
+  --footer-text: #bdbdbd;
+  --footer-border: #333;
+
+   --activity-card-bg: #1e2423;
+  --activity-card-text: #f3f3f3;
+  --activity-type-color: #bdbdbd;
+}
