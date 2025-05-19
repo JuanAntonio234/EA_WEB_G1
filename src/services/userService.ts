@@ -18,7 +18,7 @@ export const fetchUsers = async (): Promise<User[]> => {
     }
 };
 
-export const register = async (newUser: RegisterData): Promise<User> => {
+export const register = async (newUser: RegisterData): Promise<string> => {
     try {
         const response = await api.post<LoginResponse>(ApiConstants.register, newUser);
         if (response.status !== 200 && response.status !== 201) {
@@ -26,7 +26,7 @@ export const register = async (newUser: RegisterData): Promise<User> => {
         }
         localStorage.setItem('accessToken', response.data.token);
         localStorage.setItem('refreshToken', response.data.refreshToken);
-        return response.data.user;
+        return response.data.token;
     } catch (error) {
         console.error('Error adding user:', error);
         throw error; 
@@ -81,9 +81,9 @@ export const updateUser = async(updateUser: User): Promise<User> => {
     }
 };
 
-export const getUsersById = async (userId: string): Promise<User[]> => {
+export const getUserById = async (userId: string): Promise<User> => {
     try {
-        const response = await api.get<User[]>(`${ApiConstants.users}/${userId}`);
+        const response = await api.get<User>(`${ApiConstants.users}/${userId}`);
         return response.data;
     } catch (error) {
         console.error('Error obtaining the user:', error);

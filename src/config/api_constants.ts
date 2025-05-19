@@ -18,4 +18,10 @@ export class ApiConstants {
   static get users(): string {
     return `${this.baseUrl}/${this.apiPath}/users`;
   }
+  static get achievements(): string {
+    return `${this.baseUrl}/${this.apiPath}/achievements`;
+  }
+  static get challenges(): string {
+    return `${this.baseUrl}/${this.apiPath}/challenges`;
+  }
 }

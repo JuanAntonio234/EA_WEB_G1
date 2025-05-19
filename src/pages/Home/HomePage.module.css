@@ -1,106 +1,83 @@
-.homepage-container {
-  max-width: 520px;
-  margin: 40px auto;
-  padding: 32px 24px;
-  background: #fff;
-  border-radius: 18px;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.07);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+body {
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+}
+
+.card {
+  background-color: var(--card-bg);
+  color: var(--text-main);
+  box-shadow: var(--card-shadow);
+  font-family: inherit;
+  padding: 2rem;
+  border-radius: 8px;
+  max-width: 500px;
+  margin: 2rem auto;
 }
 
 .welcome-message {
-  font-size: 2.3rem;
+  font-size: 2rem;
   font-weight: 700;
   margin-bottom: 12px;
-  color: #1a6d3d;
+  color: var(--text-main);
   text-align: center;
+  letter-spacing: -1px;
 }
-
 .intro-text {
-  font-size: 1.1rem;
-  color: #444;
+  font-size: 1.15rem;
+  color: var(--text-main);
   margin-bottom: 28px;
   text-align: center;
 }
-
-.button-group {
-  display: flex;
-  gap: 18px;
-  margin-bottom: 32px;
-}
-
-.login-btn,
-.register-btn {
-  padding: 12px 32px;
-  font-size: 1.1rem;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: background 0.2s, color 0.2s;
-}
-
-.login-btn {
-  background: #1a6d3d;
-  color: #fff;
-}
-
-.login-btn:hover {
-  background: #14512e;
-}
-
-.register-btn {
-  background: #fff;
-  color: #1a6d3d;
-  border: 2px solid #1a6d3d;
-}
-
-.register-btn:hover {
-  background: #e6faee;
-}
-
-.features-section {
-  margin: 32px 0 24px 0;
-  width: 100%;
-}
-
-.features-section h3 {
-  font-size: 1.2rem;
-  color: #1a6d3d;
+.features-section h3,
+.mobile-app-section h3 {
+  font-size: 1.15rem;
+  color: var(--text-main);
   margin-bottom: 12px;
+  font-weight: 600;
+}
+.features-section ul {
+  font-size: 1rem;
+  line-height: 1.7;
 }
 
-.features-section ul {
-  padding-left: 20px;
-  color: #333;
-  font-size: 1rem;
+.features-section,
+.mobile-app-section {
+  margin: 36px 0 28px 0;
+  width: 100%;
 }
 
 .mobile-app-section {
   text-align: center;
-  margin-top: 16px;
+  margin-top: 28px;
 }
 
-.mobile-app-section h3 {
-  font-size: 1.1rem;
-  color: #1a6d3d;
-  margin-bottom: 8px;
-}
-
-.app-links {
+.appLinks {
   display: flex;
   justify-content: center;
-  gap: 14px;
+  align-items: center;
+  gap: 18px;
   margin-top: 10px;
 }
 
-.app-links img {
+.androidBadge {
   height: 42px;
-  transition: transform 0.15s;
+  width: auto;
+  transition: transform 0.15s, box-shadow 0.15s;
+  padding: 4px 10px;
 }
 
-.app-links img:hover {
-  transform: scale(1.06);
+.androidBadge:hover {
+  transform: scale(1.08);
+  box-shadow: 0 4px 16px rgba(26, 109, 61, 0.25);
+}
+
+.appleBadge {
+  height: 44px;
+  width: auto;
+  transition: transform 0.15s, box-shadow 0.15s;
+  padding: 4px 14px;
+}
+
+.appleBadge:hover {
+  transform: scale(1.08);
+  box-shadow: 0 4px 16px rgba(26, 109, 61, 0.25);
 }

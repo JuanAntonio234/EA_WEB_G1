@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styles from './Register.module.css';
 
 interface RegisterProps {
-  onRegister: (credentials: { username: string;email: string; password: string }) => void;
+  onRegister: (credentials: { username: string; email: string; password: string }) => void;
 }
 
 const Register: React.FC<RegisterProps> = ({ onRegister }) => {
@@ -12,14 +12,14 @@ const Register: React.FC<RegisterProps> = ({ onRegister }) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!username || !password) return alert('Email, usuario y contraseña requeridos');
-    onRegister({ username,email, password });
+    if (!username || !password) return alert('Tots els camps son obligatoris');
+    onRegister({ username, email, password });
   };
 
   return (
     <form onSubmit={handleSubmit} className={styles.form}>
       <label>
-        Username:
+        Nom d'usuari:
         <input
           type="username"
           value={username}
@@ -29,7 +29,7 @@ const Register: React.FC<RegisterProps> = ({ onRegister }) => {
         />
       </label>
       <label>
-        Email:
+        Correu electrònic:
         <input
           type="email"
           value={email}
@@ -39,7 +39,7 @@ const Register: React.FC<RegisterProps> = ({ onRegister }) => {
         />
       </label>
       <label>
-        Contraseña:
+        Contrasenya:
         <input
           type="password"
           value={password}
@@ -48,7 +48,7 @@ const Register: React.FC<RegisterProps> = ({ onRegister }) => {
           className={styles.input}
         />
       </label>
-      <button type="submit" className={styles.button}>Entrar</button>
+      <button type="submit" className={styles.button}>Registrar</button>
     </form>
   );
 };
