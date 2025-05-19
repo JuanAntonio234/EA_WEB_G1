@@ -24,12 +24,12 @@ const HomePage: React.FC = () => {
           <p>
             Take la meva aplicació with you everywhere. Download our app for:
           </p>
-          <div className="app-links">
+          <div className={styles.appLinks}>
             <a href="https://play.google.com/store/apps/details?id=your.app.id" target="_blank" rel="noopener noreferrer">
-              <img src="/google-play-badge.png" alt="Get it on Google Play" className="android-badge"/>
+              <img src="/google-play-badge.png" alt="Get it on Google Play" className={styles.androidBadge}/>
             </a>
             <a href="https://apps.apple.com/app/your-app-id" target="_blank" rel="noopener noreferrer">
-              <img src="/app-store-badge-black.svg" alt="Download on the App Store" className="apple-badge"/>
+              <img src="/app-store-badge-black.svg" alt="Download on the App Store" className={styles.appleBadge}/>
             </a>
           </div>
         </section>

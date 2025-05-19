@@ -19,7 +19,7 @@ const Register: React.FC<RegisterProps> = ({ onRegister }) => {
   return (
     <form onSubmit={handleSubmit} className={styles.form}>
       <label>
-        Username:
+        Nom d'usuari:
         <input
           type="username"
           value={username}
@@ -29,7 +29,7 @@ const Register: React.FC<RegisterProps> = ({ onRegister }) => {
         />
       </label>
       <label>
-        Email:
+        Correu electrònic:
         <input
           type="email"
           value={email}
@@ -39,7 +39,7 @@ const Register: React.FC<RegisterProps> = ({ onRegister }) => {
         />
       </label>
       <label>
-        Contraseña:
+        Contrasenya:
         <input
           type="password"
           value={password}
@@ -48,7 +48,7 @@ const Register: React.FC<RegisterProps> = ({ onRegister }) => {
           className={styles.input}
         />
       </label>
-      <button type="submit" className={styles.button}>Entrar</button>
+      <button type="submit" className={styles.button}>Registrar</button>
     </form>
   );
 };

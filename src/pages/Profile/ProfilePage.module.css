@@ -2,9 +2,10 @@
   max-width: 800px;
   margin: 2rem auto;
   padding: 2rem;
-  background: #fff;
+  background: var(--card-bg);
   border-radius: 12px;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+  box-shadow: var(--card-shadow);
+  color: var(--text-main);
 }
 
 .profileTitle {
@@ -12,7 +13,7 @@
   margin-bottom: 1.5rem;
   text-align: center;
   font-weight: bold;
-  color: #222;
+  color: var(--text-main);
 }
 
 .profileHeader {
@@ -27,13 +28,14 @@
   height: 100px;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid #eee;
-  background: #fafafa;
+  border: 2px solid var(--profile-border);
+  background: var(--profile-bg);
 }
 
 .profileInfo {
   flex: 1;
   font-size: 1.1rem;
+  color: var(--text-main);
 }
 
 .achievementsSection,
@@ -53,11 +55,12 @@
 
 .achievementCard,
 .challengeCard {
-  background: #f7f7f7;
+  background: var(--card-bg);
+  color: var(--text-main);
   border-radius: 8px;
   padding: 1rem 1.2rem;
   min-width: 200px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+  box-shadow: var(--card-shadow);
   display: flex;
   align-items: flex-start;
   gap: 0.7rem;
@@ -70,7 +73,7 @@
   object-fit: contain;
   border-radius: 8px;
   margin-right: 0.7rem;
-  background: #fafafa;
+  background: var(--profile-bg);
   box-shadow: 0 1px 4px rgba(0,0,0,0.04);
   display: inline-block;
   vertical-align: middle;
