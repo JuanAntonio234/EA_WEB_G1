@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styles from './Register.module.css';
 
 interface RegisterProps {
-  onRegister: (credentials: { username: string;email: string; password: string }) => void;
+  onRegister: (credentials: { username: string; email: string; password: string }) => void;
 }
 
 const Register: React.FC<RegisterProps> = ({ onRegister }) => {
@@ -12,8 +12,8 @@ const Register: React.FC<RegisterProps> = ({ onRegister }) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!username || !password) return alert('Email, usuario y contraseña requeridos');
-    onRegister({ username,email, password });
+    if (!username || !password) return alert('Tots els camps son obligatoris');
+    onRegister({ username, email, password });
   };
 
   return (

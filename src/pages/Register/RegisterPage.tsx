@@ -2,8 +2,10 @@ import styles from './RegisterPage.module.css';
 import { useNavigate } from 'react-router-dom';
 import { register } from '../../services/userService';
 import { useAuth } from '../../hooks/useAuth';
-import { RegisterData} from '../../types/userTypes';
+import { RegisterData } from '../../types/userTypes';
 import Register from '../../components/Register/Register';
+import { jwtDecode } from 'jwt-decode';
+import { User } from '../../context/AuthContext';
 
 function RegisterPage() {
     const navigate = useNavigate();
@@ -11,13 +13,14 @@ function RegisterPage() {
 
     const handleRegister = async (newUser: RegisterData) => {
         try {
-          const user = await register(newUser);
+          const token = await register(newUser);
+          const user: User = jwtDecode(token);
           login(user);
-            navigate('/home');
-            console.log('Register successful:', user);
+            navigate('/');
+            console.log('Registre satisfactori:', user);
         } catch (error) {
-            console.error('Register failed:', error);
-            alert('Register fallido');
+            console.error('Registre fallit:', error);
+            alert('Registre fallit');
         }
     }
 

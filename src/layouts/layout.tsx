@@ -28,7 +28,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   },[lastScrollY]);
 
   const navLinks = [
-    { href: '/home', label: 'Inicio' },
+    { href: '/', label: 'Inicio' },
     { href: '/about', label: 'Acerca de' }
   ];
 

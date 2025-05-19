@@ -55,7 +55,7 @@ useEffect(() => {
               <div className="user-menu" ref={menuRef}>
                 <div className="user-avatar-container" onClick={() => setMenuOpen(!menuOpen)}>
                   {user.profilePicture ? (
-                    <img src={user.profilePicture} alt="Avatar" className="user-avatar" />
+                    <img src={user.profilePicture || '/default-profile.png'} alt="Avatar" className="user-avatar" />
                   ) : (
                     <div className="user-avatar">
                       {user.username?.charAt(0).toUpperCase()}
@@ -67,7 +67,7 @@ useEffect(() => {
                   <div className="dropdown-menu">
                     <Link to={`/profile/${user.id}`} onClick={() => setMenuOpen(false)}>Mi perfil</Link>
                     <Link to="/settings" onClick={() => setMenuOpen(false)}>Configuración</Link>
-                    <button onClick={() => { logout(); setMenuOpen(false); navigate('/home');}}>
+                    <button onClick={() => { logout(); setMenuOpen(false); navigate('/');}}>
                       Cerrar sesión
                     </button>
                   </div>
