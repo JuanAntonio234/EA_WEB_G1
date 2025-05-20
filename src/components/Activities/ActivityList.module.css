@@ -1,0 +1,25 @@
+.activityListContainer {
+  display: grid;
+  gap: 20px;
+  padding: 10px 0;
+  grid-template-columns: 1fr;
+}
+
+.noActivitiesMessage {
+  text-align: center;
+  color: #777;
+  margin-top: 40px;
+  font-size: 1.2em;
+}
+
+@media (min-width: 600px) {
+  .activityListContainer {
+    grid-template-columns: repeat(2, 1fr); 
+  }
+}
+
+@media (min-width: 900px) {
+  .activityListContainer {
+    grid-template-columns: repeat(3, 1fr); 
+  }
+}

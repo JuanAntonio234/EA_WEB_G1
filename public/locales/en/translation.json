@@ -1,0 +1,98 @@
+{
+  "general": {
+    "loading": "Loading...",
+    "error": "Error",
+    "noData": "No data available"
+  },
+  "navbar": {
+    "home": "Home",
+    "exploreRoutes": "Explore Routes",
+    "about": "About Us",
+    "myProfile": "My Profile",
+    "myActivities": "My Activities",
+    "myAchievements": "My Achievements",
+    "settings": "Settings",
+    "logout": "Log Out",
+    "login": "Log In",
+    "signup": "Sign Up"
+  },
+  "exploreRoutesPage": {
+    "title": "Explore Routes & Activities 🗺️",
+    "loading": "Loading available routes...",
+    "noRoutes": "No routes or activities found at this time.",
+    "error": "Error: Could not load routes.",
+    "pagination": "Page {{currentPage}} of {{totalPages}}"
+  },
+  "achievementsPage": {
+    "title": "My Achievements 🏆",
+    "loading": "Loading achievements...",
+    "noAchievements": "You haven't unlocked any achievements yet. Keep pushing! 💪",
+    "error": "Error: Could not load achievements."
+  },
+  "activityCard": {
+    "detailsButton": "View Details",
+    "distance": "Distance",
+    "duration": "Duration",
+    "elevation": "Elevation",
+    "avgSpeed": "Avg. Speed",
+    "createdBy": "Created by",
+    "startTime": "Start",
+    "endTime": "End"
+  },
+  "activityDetailPage": {
+    "backButton": "Back",
+    "startRouteButton": "Start This Route",
+    "loading": "Loading route details...",
+    "errorDefault": "Could not load activity details.",
+    "notFound": "Details for this route were not found.",
+    "returnToExplore": "Back to explore",
+    "routeInfoTitle": "Route (GPS Points)",
+    "routePointsInfo": "This route has {{count}} GPS points.",
+    "noRoutePoints": "No detailed GPS point information for this route.",
+    "playlistTitle": "Music Playlist",
+    "mapPlaceholder": "Map View (Implementation Pending)",
+    "distance": "Distance",
+    "duration": "Duration",
+    "elevationGain": "Elevation Gain",
+    "avgSpeed": "Average Speed",
+    "caloriesBurned": "Calories Burned",
+    "startTime": "Start",
+    "endTime": "End",
+    "createdBy": "Created by"
+  },
+  "languageSwitcher": {
+    "selectLabel": "Select language:"
+  },
+  "homePage": {
+    "welcomeMessage": "Welcome to SportsTracker!",
+    "introText": "Track your runs, rides, and workouts. Log where you train, earn achievements, and join a community of active people!",
+    "featuresTitle": "Achievements & Activity Logging",
+    "feature1": "Register your running, cycling, or other activities with location tracking.",
+    "feature2": "Earn badges and achievements as you reach new milestones.",
+    "feature3": "Review your stats and progress over time.",
+    "mobileAppTitle": "Download the app now and improve your sports routine!",
+    "mobileAppText": "Take SportsTracker with you everywhere. Download our app for:",
+    "googlePlayAlt": "Get it on Google Play",
+    "appStoreAlt": "Download on the App Store"
+  },
+  "profilePage": {
+    "title": "Profile of {{username}}",
+    "loading": "Loading profile...",
+    "notFound": "User not found",
+    "level": "Level",
+    "bio": "Biography",
+    "totalDistance": "Total distance",
+    "totalTime": "Total time",
+    "achievementsSectionTitle": "Achievements",
+    "noAchievements": "No achievements yet.",
+    "viewAllAchievements": "View all achievements",
+    "consultAchievements": "Consult my achievements",
+    "challengesSectionTitle": "Completed Challenges",
+    "noChallenges": "No challenges completed.",
+    "difficulty": "Difficulty",
+    "points": "Points",
+    "goal": "Goal",
+    "reward": "Reward",
+    "dateRange": "From: {{startDate}} to {{endDate}}"
+  }
+}

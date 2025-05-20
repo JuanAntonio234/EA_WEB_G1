@@ -1,0 +1,156 @@
+.pageContainer {
+  padding: 20px;
+  max-width: 900px;
+  margin: 20px auto;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+
+.backButton {
+  background: none;
+  border: 1px solid #ccc;
+  color: #333;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.backButton:hover {
+  background-color: #eee;
+}
+
+.activityTitle {
+  text-align: center;
+  margin-bottom: 10px;
+  color: #333;
+  font-size: 2em;
+}
+
+.activityMeta {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #555;
+  font-size: 0.9em;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px 20px;
+}
+
+.metaItem {
+  display: inline-block;
+}
+
+.activityType {
+  font-weight: bold;
+  color: #007bff;
+  background-color: #e7f3ff;
+  padding: 4px 10px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.detailsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 15px;
+  margin-bottom: 30px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  border: 1px solid #eee;
+}
+
+.detailItem {
+  font-size: 1em;
+  padding: 10px;
+  border-bottom: 1px dotted #f0f0f0;
+}
+.detailItem:last-child {
+  border-bottom: none;
+}
+.detailItem strong {
+  color: #333;
+  margin-right: 5px;
+}
+
+.section {
+  margin-top: 20px;
+  margin-bottom: 30px;
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #eee;
+  border-radius: 5px;
+}
+
+.section h2 {
+  margin-top: 0;
+  color: #444;
+  font-size: 1.4em;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+
+.mapPlaceholder {
+  height: 300px;
+  background-color: #e9e9e9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #777;
+  border-radius: 5px;
+  margin-top: 15px;
+  border: 1px solid #ddd;
+  font-style: italic;
+}
+
+.pointList {
+  list-style-type: decimal;
+  padding-left: 20px;
+  max-height: 150px;
+  overflow-y: auto;
+  background-color: #fdfdfd;
+  border: 1px solid #efefef;
+  border-radius: 4px;
+  padding: 10px;
+}
+.pointList li {
+  font-size: 0.85em;
+  padding: 3px 0;
+}
+
+.startRouteButton {
+  display: block;
+  width: 100%;
+  padding: 15px;
+  font-size: 1.2em;
+  font-weight: bold;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.startRouteButton:hover {
+  background-color: #218838;
+}
+
+.messageContainer {
+  text-align: center;
+  padding: 40px 20px;
+  font-size: 1.1em;
+  color: #555;
+}
+
+.messageContainer.error {
+  color: #e74c3c;
+  font-weight: bold;
+}
