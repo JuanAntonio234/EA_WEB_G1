@@ -102,3 +102,19 @@ export const deleteUser = async (userId: string): Promise<void> => {
         throw error;
     }
 };
+
+
+export const searchUsers = async (query: string) => {
+  if (query.length < 2) return [];
+
+  try {
+    const response = await api.get(`http://localhost:3000/api/users/search?search=${encodeURIComponent(query)}`);
+    return response.data.users;
+  } catch (error: any) {
+    if (error.response?.status === 404) {
+        throw new Error('No se han encontrado usuarios');
+    } else {
+      throw new Error('Error al buscar usuarios');
+    }
+  }
+};

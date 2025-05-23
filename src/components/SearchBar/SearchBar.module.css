@@ -30,8 +30,8 @@
   outline: none;
   font-size: 1rem;
   background-color: transparent;
-  border-bottom: 1px solid var(--text-light);
-  color: var(--text-main);
+  border-bottom: 1px solid var(--search-border);
+  color: var(--search-text);
   transition: width 0.3s ease, opacity 0.3s ease;
   margin-left: 0.5rem;
   margin-right: 0.5rem;
@@ -41,4 +41,54 @@
 .expanded .searchInput {
   width: 140px;
   opacity: 1;
+}
+.resultsDropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: var(--search-bg);
+  color: var(--search-text);
+  border: 1px solid #ccc;
+  width: 220px;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 1000;
+  border-radius: 5px;
+}
+
+.resultItem {
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  cursor: pointer;
+  
+}
+
+.resultItem img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.resultItem:hover {
+  background-color: var(--search-result-hover);
+}
+
+.error {
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 4px;
+}
+
+.resultMessage {
+  padding: 8px;
+  font-style: italic;
+  color: #666;
+}
+
+.resultError {
+  padding: 8px;
+  color: red;
+  font-weight: bold;
 }

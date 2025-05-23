@@ -30,9 +30,8 @@ const Navbar: React.FC<NavbarProps> = ({ title, links, className }) => {
         setMenuOpen(false);
       }
     }
-    // Escuchamos el click en todo el documento
     document.addEventListener('mousedown', handleClickOutside);
-    // Cleanup: removemos el listener cuando se desmonta o cambia menuOpen
+
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
