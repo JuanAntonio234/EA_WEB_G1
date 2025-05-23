@@ -1,20 +1,27 @@
-import { Activity } from '../../types/activityTypes';
 import ActivityCard from './ActivityCard';
+import { Activity } from '../../types/activityTypes';
 import './ActivityStyles.css';
-import '../../index.css';
 
 interface Props {
   activities: Activity[];
+  lastItemRef?: (node: HTMLDivElement) => void;
 }
 
-const ActivityList = ({ activities }: Props) => {
+const ActivityList = ({ activities, lastItemRef }: Props) => {
   return (
     <div className="activity-list">
-      {activities.map(activity => (
-        <div key={activity._id} className="activity-item">
-          <ActivityCard activity={activity} />
-        </div>
-      ))}
+      {activities.map((activity, index) => {
+        const isLast = index === activities.length - 1;
+        return (
+          <div
+            key={activity._id}
+            className="activity-item"
+            ref={isLast ? lastItemRef : null}
+          >
+            <ActivityCard activity={activity} />
+          </div>
+        );
+      })}
     </div>
   );
 };

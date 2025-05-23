@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import './Navbar.css';
 import { useAuth } from '../../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
+import SearchBar from '../SearchBar/SearchBar';
+
 
 interface NavLink {
   href: string;
@@ -69,6 +71,9 @@ const Navbar: React.FC<NavbarProps> = ({ title, links, className }) => {
             </Link>
           ))}
         </div>
+        <div className="navbar-search">
+        <SearchBar />
+        </div>
         <div className='navbar-darmode-toggle'>
           <button
             className="darkmode-toggle"
@@ -109,7 +114,6 @@ const Navbar: React.FC<NavbarProps> = ({ title, links, className }) => {
                 <Link to="/register" className="button is-primary"><strong>Sign up</strong></Link>
                 <Link to="/login" className="button is-light">Log in</Link>
               </div>
-              
             )}
           </div>
         </div>
