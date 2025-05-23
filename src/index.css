@@ -32,6 +32,12 @@
   --activity-card-bg: #fff;
   --activity-card-text: #222;
   --activity-type-color: #4b5563;
+
+  --search-bg: #fff;
+  --search-text: #000;
+  --search-border: #ccc;
+  --search-result-hover: #f0f0f0;
+
 }
 
 body.dark {
@@ -65,7 +71,13 @@ body.dark {
   --footer-text: #bdbdbd;
   --footer-border: #333;
 
-   --activity-card-bg: #1e2423;
+  --activity-card-bg: #1e2423;
   --activity-card-text: #f3f3f3;
   --activity-type-color: #bdbdbd;
+
+  --search-bg: #222;
+  --search-text: #eee;
+  --search-border: #555;
+  --search-result-hover: #333;
+
 }

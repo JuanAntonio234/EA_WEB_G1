@@ -1,43 +1,53 @@
 .activity-list {
   display: flex;
-  gap: 3.5rem;
-  overflow-x: auto;
-  justify-content: center;
-  padding: 1rem 1rem 1rem 0;
+  flex-direction: column;    
+  gap: 1rem;               
+  padding: 1rem;
+  align-items: center;      
+  scrollbar-width: none;     
+  -ms-overflow-style: none;  
 }
 
 .activity-item {
-  flex-shrink: 0;
-  margin-top: -20px;
+  width: 400px;              
+  max-width: 90vw;           
 }
 
 .activity-card {
-  background-color: var(--activity-card-bg);
-  color: var(--activity-card-text);
+  background-color: var(--card-bg);
+  color: var(--text-main);
   box-shadow: var(--card-shadow);
-  border: 1px solid var(--border);
   border-radius: 12px;
   padding: 1.5rem;
-  width: 100%;
-  max-width: 400px;
-  flex-shrink: 0;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  width: 100%;               
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .activity-card h2 {
-  font-weight: 700;
-  font-size: 1.25rem;
+  font-size: 1.4rem;
+  font-weight: 600;
   margin-bottom: 0.25rem;
 }
 
+.activity-list::-webkit-scrollbar {
+  display: none;             
+}
+
 .activity-card .activity-type {
-  font-size: 0.875rem;
-  color: var(--activity-type-color);
-  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
   font-weight: 500;
+  color: var(--primary);
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
 }
 
 .activity-card p {
-  margin: 0.25rem 0;
-  line-height: 1.4;
+  font-size: 0.95rem;
+  color: var(--text-light);
+  margin: 0;
+}
+
+.activity-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 }
