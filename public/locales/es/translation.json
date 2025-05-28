@@ -1,0 +1,98 @@
+{
+  "general": {
+    "loading": "Cargando...",
+    "error": "Error",
+    "noData": "Sin datos disponibles"
+  },
+  "navbar": {
+    "home": "Inicio",
+    "exploreRoutes": "Explorar Rutas",
+    "about": "Sobre nosotros",
+    "myProfile": "Mi Perfil",
+    "myActivities": "Mis Actividades",
+    "myAchievements": "Mis Logros",
+    "settings": "Configuración",
+    "logout": "Cerrar Sesión",
+    "login": "Iniciar Sesión",
+    "signup": "Registrarse"
+  },
+  "exploreRoutesPage": {
+    "title": "Explora Rutas y Actividades 🗺️",
+    "loading": "Cargando rutas disponibles...",
+    "noRoutes": "No se han encontrado rutas o actividades disponibles.",
+    "error": "Error: No se pudieron cargar las rutas.",
+    "pagination": "Página {{currentPage}} de {{totalPages}}"
+  },
+  "achievementsPage": {
+    "title": "Mis Logros 🏆",
+    "loading": "Cargando logros...",
+    "noAchievements": "Aún no has desbloqueado ningún logro. ¡Sigue esforzándote! 💪",
+    "error": "Error: No se pudieron cargar los logros."
+  },
+  "activityCard": {
+    "detailsButton": "Ver Detalles",
+    "distance": "Distancia",
+    "duration": "Duración",
+    "elevation": "Desnivel",
+    "avgSpeed": "Vel. media",
+    "createdBy": "Creado por",
+    "startTime": "Inicio",
+    "endTime": "Fin"
+  },
+  "activityDetailPage": {
+    "backButton": "Atrás",
+    "startRouteButton": "Comenzar Esta Ruta",
+    "loading": "Cargando detalles de la ruta...",
+    "errorDefault": "No se pudieron cargar los detalles de la actividad.",
+    "notFound": "No se encontraron detalles para esta ruta.",
+    "returnToExplore": "Volver a explorar",
+    "routeInfoTitle": "Ruta (Puntos GPS)",
+    "routePointsInfo": "Esta ruta tiene {{count}} puntos GPS.",
+    "noRoutePoints": "No hay información detallada de puntos GPS para esta ruta.",
+    "playlistTitle": "Playlist de Música",
+    "mapPlaceholder": "Visualización del Mapa (Pendiente de Implementar)",
+    "distance": "Distancia",
+    "duration": "Duración",
+    "elevationGain": "Desnivel Positivo",
+    "avgSpeed": "Velocidad Media",
+    "caloriesBurned": "Calorías Quemadas",
+    "startTime": "Inicio",
+    "endTime": "Fin",
+    "createdBy": "Creado por"
+  },
+  "languageSwitcher": {
+    "selectLabel": "Selecciona el idioma:"
+  },
+  "homePage": {
+    "welcomeMessage": "¡Bienvenido a SportsTracker!",
+    "introText": "Realiza un seguimiento de tus carreras, rutas en bicicleta y entrenamientos. ¡Registra dónde entrenas, gana logros y únete a una comunidad de gente activa!",
+    "featuresTitle": "Logros y Registro de Actividades",
+    "feature1": "Registra tus actividades de correr, ciclismo u otras con seguimiento de ubicación.",
+    "feature2": "Gana insignias y logros a medida que alcanzas nuevos hitos.",
+    "feature3": "Revisa tus estadísticas y progreso a lo largo del tiempo.",
+    "mobileAppTitle": "¡Descarga la aplicación ahora y mejora tu rutina deportiva!",
+    "mobileAppText": "Lleva SportsTracker contigo a todas partes. Descarga nuestra aplicación para:",
+    "googlePlayAlt": "Disponible en Google Play",
+    "appStoreAlt": "Descargar en la App Store"
+  },
+  "profilePage": {
+    "title": "Perfil de {{username}}",
+    "loading": "Cargando perfil...",
+    "notFound": "Usuario no encontrado",
+    "level": "Nivel",
+    "bio": "Biografía",
+    "totalDistance": "Distancia total",
+    "totalTime": "Tiempo total",
+    "achievementsSectionTitle": "Logros",
+    "noAchievements": "Ningún logro todavía.",
+    "viewAllAchievements": "Ver todos los logros",
+    "consultAchievements": "Consultar mis logros",
+    "challengesSectionTitle": "Retos completados",
+    "noChallenges": "Ningún reto completado.",
+    "difficulty": "Dificultad",
+    "points": "Puntos",
+    "goal": "Objetivo",
+    "reward": "Recompensa",
+    "dateRange": "Desde: {{startDate}} hasta {{endDate}}"
+  }
+}

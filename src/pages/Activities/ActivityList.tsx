@@ -1,14 +1,13 @@
 import React from 'react';
 import { Activity } from '../../types/activityTypes';
-import ActivityCard from './ActivityCard';
+import ActivityCard from '../../components/Activities/ActivityCard';
 import styles from './ActivityList.module.css';
 
 interface ActivityListProps {
   activities: Activity[];
-  lastItemRef?: (node: HTMLDivElement) => void;
 }
 
-const ActivityList: React.FC<ActivityListProps> = ({ activities, lastItemRef }) => {
+const ActivityList: React.FC<ActivityListProps> = ({ activities }) => {
   if (!activities || activities.length === 0) {
     return <p className={styles.noActivitiesMessage}>No s'han trobat rutes o activitats disponibles.</p>;
   }

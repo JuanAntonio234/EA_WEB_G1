@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import styles from './ProfilePage.module.css';
 import { getUserById } from '../../services/userService';
 import { getAchievementById } from '../../services/achievementService';
@@ -7,97 +8,132 @@ import { getChallengeById } from '../../services/challengeService';
 import { User } from '../../types/userTypes';
 import { Achievement } from '../../types/achievementTypes';
 import { Challenge } from '../../types/challengeTypes';
+import { useAuth } from '../../hooks/useAuth';
 
 const ProfilePage: React.FC = () => {
-  function capitalizeFirst(str: string) {
-    return str.charAt(0).toUpperCase() + str.slice(1);
-}
+  const { t, i18n } = useTranslation();
   const { iduser } = useParams<{ iduser: string }>();
+  const { user: loggedInUser } = useAuth();
   const [user, setUser] = useState<User | null>(null);
   const [achievements, setAchievements] = useState<Achievement[]>([]);
   const [challenges, setChallenges] = useState<Challenge[]>([]);
   const [loading, setLoading] = useState(true);
 
+  const isMyProfile = loggedInUser && loggedInUser.id === iduser;
+
+  const capitalizeFirst = (str: string | undefined) => {
+    if (!str) return '';
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  };
+
   useEffect(() => {
     const fetchProfile = async () => {
       setLoading(true);
       try {
-        const userData = await getUserById(iduser!);
+        if (!iduser) {
+          setUser(null);
+          throw new Error("User ID is missing");
+        }
+        const userData = await getUserById(iduser);
         setUser(userData);
 
-        // Only fetch first 3 achievements
-        const achievementIds = userData.achievements.slice(0, 3);
-        const achievementPromises = achievementIds.map(id => getAchievementById(id));
-        const achievementData = await Promise.all(achievementPromises);
+        if (userData && userData.achievements && userData.achievements.length > 0) {
+          const achievementIds = userData.achievements.slice(0, 3);
+          const achievementPromises = achievementIds.map(id => getAchievementById(id));
+          const achievementData = await Promise.all(achievementPromises);
+          setAchievements(achievementData);
+        } else {
+          setAchievements([]);
+        }
+        
+        if (userData && userData.challengesCompleted && userData.challengesCompleted.length > 0) {
+          const challengeIds = userData.challengesCompleted.slice(0, 3);
+          const challengePromises = challengeIds.map(id => getChallengeById(id));
+          const challengeData = await Promise.all(challengePromises);
+          setChallenges(challengeData);
+        } else {
+          setChallenges([]);
+        }
 
-        // Only fetch first 3 challenges
-        const challengeIds = userData.challengesCompleted.slice(0, 3);
-        const challengePromises = challengeIds.map(id => getChallengeById(id));
-        const challengeData = await Promise.all(challengePromises);
-
-        setAchievements(achievementData);
-        setChallenges(challengeData);
       } catch (err) {
+        console.error("Error fetching profile data:", err);
         setUser(null);
+        setAchievements([]);
+        setChallenges([]);
       }
       setLoading(false);
     };
     if (iduser) fetchProfile();
   }, [iduser]);
 
-  if (loading) return <div className={styles.profileContainer}>Loading...</div>;
-  if (!user) return <div className={styles.profileContainer}>User not found</div>;
+  if (loading) return <div className={styles.profileContainer}><p>{t('profilePage.loading')}</p></div>;
+  if (!user) return <div className={styles.profileContainer}><p>{t('profilePage.notFound')}</p></div>;
 
   return (
     <div className={styles.profileContainer}>
-      <h1 className={styles.profileTitle}>Perfil de {user.username}</h1>
+      <h1 className={styles.profileTitle}>{t('profilePage.title', { username: user.username })}</h1>
       <div className={styles.profileHeader}>
         <img
           src={user.profilePicture || '/default-profile.png'}
-          alt="Profile"
+          alt={user.username}
           className={styles.profileIcon}
         />
         <div className={styles.profileInfo}>
-          <p><strong>Nivell:</strong> {user.level}</p>
-          <p><strong>Biografia:</strong> {user.bio || '-'}</p>
-          <p><strong>Distància total:</strong> {user.totalDistance} km</p>
-          <p><strong>Temps total:</strong> {user.totalTime} hrs</p>
+          <p><strong>{t('profilePage.level')}:</strong> {user.level}</p>
+          <p><strong>{t('profilePage.bio')}:</strong> {user.bio || '-'}</p>
+          <p><strong>{t('profilePage.totalDistance')}:</strong> {user.totalDistance || 0} km</p>
+          <p><strong>{t('profilePage.totalTime')}:</strong> {user.totalTime || 0} hrs</p>
         </div>
       </div>
       <section className={styles.achievementsSection}>
-        <h3>Assoliments</h3>
-        {achievements.length === 0 && <p>Cap assoliment encara.</p>}
+        <div className={styles.sectionHeader}>
+          <h3>
+            <Link to="/my-achievements" className={styles.sectionTitleLink}>
+              {t('profilePage.achievementsSectionTitle')}
+            </Link>
+          </h3>
+          {isMyProfile && achievements.length > 0 && (
+            <Link to="/my-achievements" className={styles.viewAllLink}>
+              {t('profilePage.viewAllAchievements')}
+            </Link>
+          )}
+        </div>
+        {achievements.length === 0 && <p>{t('profilePage.noAchievements')}</p>}
         <ul className={styles.achievementsList}>
         {achievements.map(a => (
           <li key={a._id} className={styles.achievementCard}>
             <img
-              src={`/achievement-icons/${a.icon}`}
+              src={a.icon && a.icon.startsWith('http') ? a.icon : `/achievement-icons/${a.icon}.png`} 
               alt={a.title}
               className={styles.achievementIcon}
+              onError={(e) => { (e.target as HTMLImageElement).src = '/default_achievement_icon.png';}}
             />
             <div>
               <strong>{a.title}</strong> - {a.description}
               <br />
-              <small>Dificultat: {capitalizeFirst(a.difficulty)}, Punts: {a.points}</small>
+              <small>{t('profilePage.difficulty')}: {capitalizeFirst(a.difficulty)}, {t('profilePage.points')}: {a.points}</small>
             </div>
           </li>
         ))}
       </ul>
+      {isMyProfile && achievements.length === 0 && (
+         <Link to="/my-achievements" className={styles.viewAllLink}>{t('profilePage.consultAchievements')}</Link>
+      )}
       </section>
       <section className={styles.challengesSection}>
-        <h3>Reptes completats</h3>
-        {challenges.length === 0 && <p>Cap repte completat.</p>}
+        <h3>{t('profilePage.challengesSectionTitle')}</h3>
+        {challenges.length === 0 && <p>{t('profilePage.noChallenges')}</p>}
         <ul className={styles.challengesList}>
           {challenges.map(c => (
             <li key={c._id} className={styles.challengeCard}>
               <strong>{c.title}</strong> - {c.description}
               <br />
               <small>
-                Objectiu: {c.goalType} - {c.goalValue}, Recompensa: {c.reward}
+                {t('profilePage.goal')}: {c.goalType} - {c.goalValue}, {t('profilePage.reward')}: {c.reward}
                 <br />
                 {c.startDate && c.endDate && (
                   <>
-                    Des de: {new Date(c.startDate).toLocaleDateString()} fins {new Date(c.endDate).toLocaleDateString()}
+                    {t('profilePage.dateRange', { startDate: new Date(c.startDate).toLocaleDateString(i18n.language), endDate: new Date(c.endDate).toLocaleDateString(i18n.language) })}
                   </>
                 )}
               </small>

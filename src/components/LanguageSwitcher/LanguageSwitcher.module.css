@@ -1,0 +1,37 @@
+.languageSwitcherContainer {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 10px; 
+}
+
+.selectElement {
+  padding: 6px 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc; 
+  background-color: #fff; 
+  color: #333; 
+  cursor: pointer;
+  font-size: 0.9em;
+  min-width: 100px; 
+}
+
+.selectElement:hover {
+  border-color: #888; 
+}
+
+.selectElement:focus {
+  outline: none;
+  border-color: #007bff; 
+  box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25); 
+}
+
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}

@@ -1,0 +1,98 @@
+{
+  "general": {
+    "loading": "Carregant...",
+    "error": "Error",
+    "noData": "Sense dades disponibles"
+  },
+  "navbar": {
+    "home": "Inici",
+    "exploreRoutes": "Explorar Rutes",
+    "about": "Sobre nosaltres",
+    "myProfile": "El Meu Perfil",
+    "myActivities": "Les Meves Activitats",
+    "myAchievements": "Els Meus Assoliments",
+    "settings": "Configuració",
+    "logout": "Tancar Sessió",
+    "login": "Iniciar Sessió",
+    "signup": "Registrar-se"
+  },
+  "exploreRoutesPage": {
+    "title": "Explora Rutes i Activitats 🗺️",
+    "loading": "Carregant rutes disponibles...",
+    "noRoutes": "No s'han trobat rutes o activitats disponibles.",
+    "error": "Error: No s'han pogut carregar les rutes.",
+    "pagination": "Pàgina {{currentPage}} de {{totalPages}}"
+  },
+  "achievementsPage": {
+    "title": "Els Meus Assoliments 🏆",
+    "loading": "Carregant assoliments...",
+    "noAchievements": "Encara no has desbloquejat cap assoliment. Continua esforçant-te! 💪",
+    "error": "Error: No s'han pogut carregar els assoliments."
+  },
+  "activityCard": {
+    "detailsButton": "Veure Detalls",
+    "distance": "Distància",
+    "duration": "Durada",
+    "elevation": "Desnivell",
+    "avgSpeed": "Vel. mitja",
+    "createdBy": "Creat per",
+    "startTime": "Inici",
+    "endTime": "Fi"
+  },
+  "activityDetailPage": {
+    "backButton": "Enrere",
+    "startRouteButton": "Començar Aquesta Ruta",
+    "loading": "Carregant detalls de la ruta...",
+    "errorDefault": "No s'han pogut carregar els detalls de l'activitat.",
+    "notFound": "No s'han trobat detalls per a aquesta ruta.",
+    "returnToExplore": "Tornar a explorar",
+    "routeInfoTitle": "Ruta (Punts GPS)",
+    "routePointsInfo": "Aquesta ruta té {{count}} punts GPS.",
+    "noRoutePoints": "No hi ha informació detallada de punts GPS per a aquesta ruta.",
+    "playlistTitle": "Playlist de Música",
+    "mapPlaceholder": "Visualització del Mapa (Pendent d'Implementar)",
+    "distance": "Distància",
+    "duration": "Durada",
+    "elevationGain": "Desnivell Positiu",
+    "avgSpeed": "Velocitat Mitja",
+    "caloriesBurned": "Calories Cremades",
+    "startTime": "Inici",
+    "endTime": "Fi",
+    "createdBy": "Creat per"
+  },
+  "languageSwitcher": {
+    "selectLabel": "Selecciona l'idioma:"
+  },
+  "homePage": {
+    "welcomeMessage": "Benvingut a SportsTracker!",
+    "introText": "Fes el seguiment de les teves curses, rutes en bicicleta i entrenaments. Registra on entrenes, guanya assoliments i uneix-te a una comunitat de gent activa!",
+    "featuresTitle": "Assoliments i Registre d'Activitats",
+    "feature1": "Registra les teves activitats de córrer, ciclisme o altres amb seguiment de localització.",
+    "feature2": "Guanya insígnies i assoliments a mesura que assoleixes noves fites.",
+    "feature3": "Revisa les teves estadístiques i progrés al llarg del temps.",
+    "mobileAppTitle": "Descarrega't l'aplicació ara i millora la teva rutina esportiva!",
+    "mobileAppText": "Porta SportsTracker amb tu a tot arreu. Descarrega la nostra aplicació per a:",
+    "googlePlayAlt": "Disponible a Google Play",
+    "appStoreAlt": "Descarregar a l'App Store"
+  },
+  "profilePage": {
+    "title": "Perfil de {{username}}",
+    "loading": "Carregant perfil...",
+    "notFound": "Usuari no trobat",
+    "level": "Nivell",
+    "bio": "Biografia",
+    "totalDistance": "Distància total",
+    "totalTime": "Temps total",
+    "achievementsSectionTitle": "Assoliments",
+    "noAchievements": "Cap assoliment encara.",
+    "viewAllAchievements": "Veure tots els assoliments",
+    "consultAchievements": "Consultar els meus assoliments",
+    "challengesSectionTitle": "Reptes completats",
+    "noChallenges": "Cap repte completat.",
+    "difficulty": "Dificultat",
+    "points": "Punts",
+    "goal": "Objectiu",
+    "reward": "Recompensa",
+    "dateRange": "Des de: {{startDate}} fins {{endDate}}"
+  }
+}
