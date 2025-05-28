@@ -1,62 +1,85 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
-import { getActivitiesByUserId } from '../../services/activityService';
+import React, { useEffect, useState } from 'react';
+import { useAuth } from '../../hooks/useAuth';
+import { getActivitiesByUserId, PaginatedActivities } from '../../services/activityService'; 
 import { Activity } from '../../types/activityTypes';
 import ActivityList from '../../components/Activities/ActivityList';
-import styles from './ActivitiesPage.module.css';
+import styles from './ActivitiesPage.module.css'; 
+import { useTranslation } from 'react-i18next';
 
-const ActivitiesPage = () => {
-  const [activities, setActivities] = useState<Activity[]>([]);
+const ActivitiesPage: React.FC = () => {
+  const { t } = useTranslation();
+  const { user } = useAuth();
+  const [userActivities, setUserActivities] = useState<Activity[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  
   const [currentPage, setCurrentPage] = useState(1);
-  const [hasMore, setHasMore] = useState(true);
-  const observer = useRef<IntersectionObserver | null>(null);
-
-  const userId = localStorage.getItem('userId');
-
-  const fetchActivities = useCallback(
-    async (page: number) => {
-      if (!userId || !hasMore) return;
-
-      try {
-        const data = await getActivitiesByUserId(userId, page, 4);
-        console.log('Respuesta del backend:', data);
-
-        setActivities(prev => {
-          const existingIds = new Set(prev.map(a => a._id));
-          const newActivities = data.activities.filter(a => !existingIds.has(a._id));
-          return [...prev, ...newActivities];
-        });
-
-        setHasMore(data.currentPage < data.totalPages);
-      } catch (error) {
-        console.error('Error fetching activities:', error);
-      }
-    },
-    [userId, hasMore]
-  );
+  const [totalPages, setTotalPages] = useState(0);
+  const itemsPerPage = 4; 
 
   useEffect(() => {
-    fetchActivities(currentPage);
-  }, [fetchActivities, currentPage]);
-
-  const lastItemRef = useCallback(
-    (node: HTMLDivElement | null) => {
-      if (observer.current) observer.current.disconnect();
-
-      observer.current = new IntersectionObserver(entries => {
-        if (entries[0].isIntersecting && hasMore) {
-          setCurrentPage(prev => prev + 1);
+    if (user && user.id) { 
+      const fetchActivities = async () => {
+        setIsLoading(true);
+        setError(null);
+        try {
+          const paginatedData: PaginatedActivities = await getActivitiesByUserId(user.id, currentPage, itemsPerPage);
+          setUserActivities(paginatedData.activities);
+          setTotalPages(paginatedData.totalPages);
+        } catch (err: any) {
+          setError(t('activitiesPage.errorLoading', "Error carregant les teves activitats."));
+          setUserActivities([]);
+          setTotalPages(0);
+        } finally {
+          setIsLoading(false);
         }
-      });
+      };
+      fetchActivities();
+    } else {
+      setIsLoading(false);
+    }
+  }, [user, currentPage, itemsPerPage, t]);
 
-      if (node) observer.current.observe(node);
-    },
-    [hasMore]
-  );
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  const handlePrevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  if (isLoading) {
+    return <div className={styles.messageContainer}>{t('general.loading', 'Carregant...')}</div>;
+  }
+
+  if (error) {
+    return <div className={`${styles.messageContainer} ${styles.error}`}>{error}</div>;
+  }
+  
+  if (!user) {
+    return <div className={styles.messageContainer}>{t('activitiesPage.notLoggedIn', "Has d'iniciar sessió per veure les teves activitats.")}</div>;
+  }
 
   return (
-    <div className={styles.container}>
-      <h1 className={styles.title}>Mis Actividades</h1>
-      <ActivityList activities={activities} lastItemRef={lastItemRef} />
+    <div className={styles.pageContainer}>
+      <h1 className={styles.pageTitle}>{t('navbar.myActivities', "Les Meves Activitats")}</h1>
+      <ActivityList activities={userActivities} showAuthorInfo={false} /> 
+      
+      {totalPages > 1 && (
+        <div className={styles.paginationControls}>
+          <button onClick={handlePrevPage} disabled={currentPage <= 1}>
+            {t('general.previous', 'Anterior')}
+          </button>
+          <span> {t('exploreRoutesPage.pagination', "Pàgina {{currentPage}} de {{totalPages}}", { currentPage, totalPages })} </span>
+          <button onClick={handleNextPage} disabled={currentPage >= totalPages}>
+            {t('general.next', 'Següent')}
+          </button>
+        </div>
+      )}
     </div>
   );
 };

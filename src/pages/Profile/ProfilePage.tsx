@@ -88,8 +88,8 @@ const ProfilePage: React.FC = () => {
         <div className={styles.profileInfo}>
           <p><strong>{t('profilePage.level')}:</strong> {profileUser.level}</p>
           <p><strong>{t('profilePage.bio')}:</strong> {profileUser.bio || '-'}</p>
-          <p><strong>{t('profilePage.totalDistance')}:</strong> {profileUser.totalDistance || 0} km</p>
-          <p><strong>{t('profilePage.totalTime')}:</strong> {profileUser.totalTime || 0} hrs</p>
+          <p><strong>{t('profilePage.totalDistance')}:</strong> {profileUser.totalDistance.toFixed(2) || 0} km</p>
+          <p><strong>{t('profilePage.totalTime')}:</strong> {profileUser.totalTime.toFixed(2) || 0} hrs</p>
           
           {isMyProfile && (
             <div className={styles.profileActions}>

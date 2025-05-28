@@ -3,14 +3,16 @@ import { Activity, AuthorInfo } from '../../types/activityTypes';
 import { Link } from 'react-router-dom';
 import styles from './ActivityCard.module.css'; 
 import '../../index.css';
-import './ActivityStyles.css';
-
+import { useTranslation } from 'react-i18next';
 
 interface Props {
   activity: Activity;
+  showAuthorInfo?: boolean; 
 }
 
-const ActivityCard: React.FC<Props> = ({ activity }: Props) => {
+const ActivityCard: React.FC<Props> = ({ activity, showAuthorInfo = true }: Props) => {
+  const { t } = useTranslation();
+
   const startDate = activity.startTime ? new Date(activity.startTime) : null;
   const endDate = activity.endTime ? new Date(activity.endTime) : null;
 
@@ -36,23 +38,25 @@ const ActivityCard: React.FC<Props> = ({ activity }: Props) => {
   
   const authorDisplay = typeof activity.author === 'object' 
     ? (activity.author as AuthorInfo).username 
-    : 'Desconegut';
+    : t('activityCard.unknownAuthor', 'Desconegut'); // Afegeix 'activityCard.unknownAuthor' als teus JSONs
 
   return (
     <div className={styles.activityCard}>
       <h3 className={styles.activityName}>{activity.name}</h3>
       <p className={styles.activityType}>{activity.type.toUpperCase()}</p>
       <div className={styles.activityDetails}>
-        <p><strong>Distància:</strong> {formatDistance(activity.distance)}</p>
-        <p><strong>Durada:</strong> {formatDuration(activity.duration)}</p>
-        <p><strong>Desnivell:</strong> {activity.elevationGain?.toFixed(0) || '-'} m</p>
-        <p><strong>Vel. mitja:</strong> {formatSpeed(activity.averageSpeed)}</p>
-        <p><strong>Creat per:</strong> {authorDisplay}</p>
-        {startDate && <p><strong>Inici:</strong> {startDate.toLocaleString()}</p>}
-        {endDate && <p><strong>Fi:</strong> {endDate.toLocaleString()}</p>}
+        <p><strong>{t('activityCard.distance')}:</strong> {formatDistance(activity.distance)}</p>
+        <p><strong>{t('activityCard.duration')}:</strong> {formatDuration(activity.duration)}</p>
+        <p><strong>{t('activityCard.elevation')}:</strong> {activity.elevationGain?.toFixed(0) || '-'} m</p>
+        <p><strong>{t('activityCard.avgSpeed')}:</strong> {formatSpeed(activity.averageSpeed)}</p>
+        {showAuthorInfo && ( 
+          <p><strong>{t('activityCard.createdBy')}:</strong> {authorDisplay}</p>
+        )}
+        {startDate && <p><strong>{t('activityCard.startTime')}:</strong> {startDate.toLocaleString()}</p>}
+        {endDate && <p><strong>{t('activityCard.endTime')}:</strong> {endDate.toLocaleString()}</p>}
       </div>
       <Link to={`/activities/${activity._id}`} className={styles.detailsButton}>
-        Veure Detalls
+        {t('activityCard.detailsButton')}
       </Link>
     </div>
   );
