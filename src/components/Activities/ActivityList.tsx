@@ -5,7 +5,7 @@ import styles from './ActivityList.module.css';
 
 interface ActivityListProps {
   activities: Activity[];
-  lastItemRef?: (node: HTMLDivElement) => void;
+  lastItemRef?: (node: HTMLDivElement | null) => void;
 }
 
 const ActivityList: React.FC<ActivityListProps> = ({ activities, lastItemRef }) => {
@@ -15,9 +15,18 @@ const ActivityList: React.FC<ActivityListProps> = ({ activities, lastItemRef }) 
 
   return (
     <div className={styles.activityListContainer}> 
-      {activities.map((activity) => (
-        <ActivityCard key={activity._id} activity={activity} />
-      ))}
+      {activities.map((activity, index) => {
+        const isLastItem = index === activities.length - 1;
+        return (
+          <div 
+            key={activity._id}
+            ref={isLastItem && lastItemRef ? lastItemRef : null}
+            className={styles.activityItem} 
+          >
+            <ActivityCard activity={activity} />
+          </div>
+        );
+      })}
     </div>
   );
 };
