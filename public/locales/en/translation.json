@@ -2,7 +2,8 @@
   "general": {
     "loading": "Loading...",
     "error": "Error",
-    "noData": "No data available"
+    "noData": "No data available",
+    "cancel": "Cancel"
   },
   "navbar": {
     "home": "Home",
@@ -93,6 +94,26 @@
     "points": "Points",
     "goal": "Goal",
     "reward": "Reward",
-    "dateRange": "From: {{startDate}} to {{endDate}}"
+    "dateRange": "From: {{startDate}} to {{endDate}}",
+    "visibilityLabel": "Profile Visibility:",
+    "publicProfile": "Public",
+    "privateProfile": "Private",
+    "makePrivate": "Make Private",
+    "makePublic": "Make Public",
+    "visibilityUpdatedSuccess": "Profile visibility updated successfully.",
+    "visibilityUpdatedError": "Error updating profile visibility."
+  },
+  "editProfilePage": {
+    "title": "Edit Profile",
+    "loadingUser": "Loading user data...",
+    "usernameLabel": "Username",
+    "emailLabel": "Email (not editable)",
+    "bioLabel": "Biography",
+    "saveChangesButton": "Save Changes",
+    "savingChanges": "Saving changes...",
+    "profileUpdatedSuccess": "Profile updated successfully!",
+    "profileUpdatedError": "Error updating profile.",
+    "errorNoUser": "Could not load user data for editing.",
+    "goBackToProfile": "Back to Profile"
   }
 }

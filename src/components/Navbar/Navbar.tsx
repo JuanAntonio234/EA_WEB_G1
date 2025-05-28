@@ -3,8 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import './Navbar.css';
 import { useAuth } from '../../hooks/useAuth';
 import { useTranslation } from 'react-i18next';
-import SearchBar from '../SearchBar/SearchBar';
-import LanguageSwitcher from '../LanguageSwitcher/LanguageSwitcher'; 
+import LanguageSwitcher from '../LanguageSwitcher/LanguageSwitcher';
 
 interface NavLink {
   href: string;
@@ -31,7 +30,6 @@ const Navbar: React.FC<NavbarProps> = ({ title, links, className }) => {
       }
     }
     document.addEventListener('mousedown', handleClickOutside);
-
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
@@ -60,7 +58,7 @@ const Navbar: React.FC<NavbarProps> = ({ title, links, className }) => {
   return (
     <nav className={`navbar ${className || ''}`}>
       <div className="navbar-brand">
-        <Link to="/" className="navbar-item">{t(title)}</Link> 
+        <Link to="/" className="navbar-item">{t(title)}</Link>
       </div>
       <div className="navbar-menu">
         <div className="navbar-start">
@@ -69,9 +67,6 @@ const Navbar: React.FC<NavbarProps> = ({ title, links, className }) => {
               {t(link.labelKey)}
             </Link>
           ))}
-        </div>
-        <div className="navbar-search">
-        <SearchBar />
         </div>
         <div className='navbar-controls-right'>
             <div className='navbar-darmode-toggle'>
@@ -104,7 +99,7 @@ const Navbar: React.FC<NavbarProps> = ({ title, links, className }) => {
                     <Link to={`/profile/${user.id}`} onClick={() => setMenuOpen(false)}>{t('navbar.myProfile')}</Link>
                     <Link to="/activities" onClick={() => setMenuOpen(false)}>{t('navbar.myActivities')}</Link>
                     <Link to="/my-achievements" onClick={() => setMenuOpen(false)}>{t('navbar.myAchievements')}</Link>
-                    <Link to="/settings" onClick={() => setMenuOpen(false)}>{t('navbar.settings')}</Link>
+                    <Link to="/profile/edit" onClick={() => setMenuOpen(false)}>{t('navbar.settings')}</Link>
                     <button onClick={() => { logout(); setMenuOpen(false); navigate('/');}}>
                       {t('navbar.logout')}
                     </button>

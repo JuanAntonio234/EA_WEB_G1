@@ -1,0 +1,140 @@
+.pageContainer {
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: var(--card-bg, #fff);
+  border-radius: 12px;
+  box-shadow: var(--card-shadow, 0 4px 12px rgba(0,0,0,0.1));
+  color: var(--text-main);
+}
+
+.pageTitle {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.editForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.formGroup label {
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  font-size: 0.95em;
+  color: var(--text-secondary);
+}
+
+.formGroup input[type="text"],
+.formGroup input[type="email"],
+.formGroup textarea {
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border-color, #ccc);
+  border-radius: 6px;
+  font-size: 1rem;
+  background-color: var(--input-bg, #fff);
+  color: var(--input-text, #333);
+  transition: border-color 0.2s ease;
+}
+
+.formGroup input[type="text"]:focus,
+.formGroup input[type="email"]:focus,
+.formGroup textarea:focus {
+  outline: none;
+  border-color: var(--primary-color, #007bff);
+  box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+}
+
+.formGroup textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.readOnlyInput {
+  background-color: var(--input-disabled-bg, #e9ecef);
+  color: var(--input-disabled-text, #6c757d);
+  cursor: not-allowed;
+}
+.readOnlyInput:focus {
+  border-color: var(--border-color, #ccc);
+  box-shadow: none;
+}
+
+
+.formActions {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.saveButton,
+.cancelButton {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease, opacity 0.2s ease;
+}
+
+.saveButton {
+  background-color: var(--primary-color, #007bff);
+  color: white;
+}
+.saveButton:hover:not(:disabled) {
+  background-color: var(--primary-color-dark, #0056b3);
+}
+.saveButton:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.cancelButton {
+  background-color: var(--secondary-button-bg, #6c757d);
+  color: var(--secondary-button-text, white);
+}
+.cancelButton:hover {
+  background-color: var(--secondary-button-hover-bg, #5a6268);
+}
+
+.feedbackMessage {
+  padding: 10px 15px;
+  margin-bottom: 1.5rem;
+  border-radius: 5px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.feedbackMessage.success {
+  background-color: var(--success-bg-light, #d4edda);
+  color: var(--success-text-dark, #155724);
+  border: 1px solid var(--success-border-light, #c3e6cb);
+}
+
+.feedbackMessage.error {
+  background-color: var(--danger-bg-light, #f8d7da);
+  color: var(--danger-text-dark, #721c24);
+  border: 1px solid var(--danger-border-light, #f5c6cb);
+}
+
+.messageContainer {
+  text-align: center;
+  padding: 40px 20px;
+  font-size: 1.1em;
+  color: #555;
+}
+.messageContainer.error {
+  color: #e74c3c;
+  font-weight: bold;
+}

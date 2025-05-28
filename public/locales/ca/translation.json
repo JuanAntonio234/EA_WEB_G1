@@ -2,7 +2,8 @@
   "general": {
     "loading": "Carregant...",
     "error": "Error",
-    "noData": "Sense dades disponibles"
+    "noData": "Sense dades disponibles",
+    "cancel": "Cancel·lar"
   },
   "navbar": {
     "home": "Inici",
@@ -93,6 +94,26 @@
     "points": "Punts",
     "goal": "Objectiu",
     "reward": "Recompensa",
-    "dateRange": "Des de: {{startDate}} fins {{endDate}}"
+    "dateRange": "Des de: {{startDate}} fins {{endDate}}",
+    "visibilityLabel": "Visibilitat del Perfil:",
+    "publicProfile": "Públic",
+    "privateProfile": "Privat",
+    "makePrivate": "Fer Privat",
+    "makePublic": "Fer Públic",
+    "visibilityUpdatedSuccess": "Visibilitat del perfil actualitzada correctament.",
+    "visibilityUpdatedError": "Error en actualitzar la visibilitat del perfil."
+  },
+  "editProfilePage": {
+    "title": "Editar Perfil",
+    "loadingUser": "Carregant dades de l'usuari...",
+    "usernameLabel": "Nom d'usuari",
+    "emailLabel": "Correu Electrònic (no editable)",
+    "bioLabel": "Biografia",
+    "saveChangesButton": "Desar Canvis",
+    "savingChanges": "Desant canvis...",
+    "profileUpdatedSuccess": "Perfil actualitzat correctament!",
+    "profileUpdatedError": "Error en actualitzar el perfil.",
+    "errorNoUser": "No s'han pogut carregar les dades de l'usuari per editar.",
+    "goBackToProfile": "Tornar al Perfil"
   }
 }

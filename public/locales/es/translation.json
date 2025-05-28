@@ -2,7 +2,8 @@
   "general": {
     "loading": "Cargando...",
     "error": "Error",
-    "noData": "Sin datos disponibles"
+    "noData": "Sin datos disponibles",
+    "cancel": "Cancelar"
   },
   "navbar": {
     "home": "Inicio",
@@ -93,6 +94,26 @@
     "points": "Puntos",
     "goal": "Objetivo",
     "reward": "Recompensa",
-    "dateRange": "Desde: {{startDate}} hasta {{endDate}}"
+    "dateRange": "Desde: {{startDate}} hasta {{endDate}}",
+    "visibilityLabel": "Visibilidad del Perfil:",
+    "publicProfile": "Público",
+    "privateProfile": "Privado",
+    "makePrivate": "Hacer Privado",
+    "makePublic": "Hacer Público",
+    "visibilityUpdatedSuccess": "Visibilidad del perfil actualizada correctamente.",
+    "visibilityUpdatedError": "Error al actualizar la visibilidad del perfil."
+  },
+  "editProfilePage": {
+    "title": "Editar Perfil",
+    "loadingUser": "Cargando datos del usuario...",
+    "usernameLabel": "Nombre de usuario",
+    "emailLabel": "Correo Electrónico (no editable)",
+    "bioLabel": "Biografía",
+    "saveChangesButton": "Guardar Cambios",
+    "savingChanges": "Guardando cambios...",
+    "profileUpdatedSuccess": "¡Perfil actualizado correctamente!",
+    "profileUpdatedError": "Error al actualizar el perfil.",
+    "errorNoUser": "No se pudieron cargar los datos del usuario para editar.",
+    "goBackToProfile": "Volver al Perfil"
   }
 }

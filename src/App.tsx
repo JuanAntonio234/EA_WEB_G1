@@ -9,6 +9,7 @@ import ProfilePage from './pages/Profile/ProfilePage';
 import AchievementsPage from './pages/Achievements/AchievementsPage';
 import ExploreRoutesPage from './pages/ExploreRoutes/ExploreRoutesPage';
 import ActivityDetailPage from './pages/ActivityDetail/ActivityDetailPage';
+import EditProfilePage from './pages/EditProfile/EditProfilePage';
 
 import { AuthProvider } from './context/AuthProvider';
 
@@ -26,6 +27,7 @@ function App() {
           <Route path="/my-achievements" element={<Layout><AchievementsPage /></Layout>} />
           <Route path="/explore-routes" element={<Layout><ExploreRoutesPage /></Layout>} />
           <Route path="/activities/:activityId" element={<Layout><ActivityDetailPage /></Layout>} />
+          <Route path="/profile/edit" element={<Layout><EditProfilePage /></Layout>} />
         </Routes>
       </Router>
     </AuthProvider>

@@ -68,16 +68,16 @@ export const logoutUser = async (): Promise<void> => {
     }
 };
 
-export const updateUser = async(updateUser: User): Promise<User> => {
+export const updateUser = async(updateUserData: Partial<User> & { _id: string }): Promise<User> => {
     try{
-        const response =await api.put<User>(`${ApiConstants.users}/${updateUser._id}`, updateUser);
-        if(response.status !==200 && response.status !==201){
-            throw new Error('Failed to update user');
+        const response = await api.put<{ message: string, user: User }>(`${ApiConstants.users}/${updateUserData._id}`, updateUserData);
+        if(response.status !== 200){ 
+            throw new Error(`Failed to update user. Status: ${response.status}`);
         }
-        return response.data;
-    }catch(error){
-        console.error('Error updating user:',error);
-        throw error;
+        return response.data.user; 
+    }catch(error: any){ 
+        console.error('Error updating user:', error.response?.data || error.message || error);
+        throw error.response?.data || error; 
     }
 };
 
