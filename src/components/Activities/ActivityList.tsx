@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 
 interface ActivityListProps {
   activities: Activity[];
+  lastItemRef?: (node: HTMLDivElement | null) => void;
   showAuthorInfo?: boolean; 
 }
 
@@ -22,7 +23,7 @@ const ActivityList: React.FC<ActivityListProps> = ({ activities, showAuthorInfo 
         <ActivityCard 
           key={activity._id} 
           activity={activity} 
-          showAuthorInfo={showAuthorInfo} // Passa la propietat
+          showAuthorInfo={showAuthorInfo} 
         />
       ))}
     </div>
