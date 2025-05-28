@@ -64,14 +64,14 @@
     "selectLabel": "Selecciona el idioma:"
   },
   "homePage": {
-    "welcomeMessage": "¡Bienvenido a SportsTracker!",
+    "welcomeMessage": "¡Bienvenido a TRAZER!",
     "introText": "Realiza un seguimiento de tus carreras, rutas en bicicleta y entrenamientos. ¡Registra dónde entrenas, gana logros y únete a una comunidad de gente activa!",
     "featuresTitle": "Logros y Registro de Actividades",
     "feature1": "Registra tus actividades de correr, ciclismo u otras con seguimiento de ubicación.",
     "feature2": "Gana insignias y logros a medida que alcanzas nuevos hitos.",
     "feature3": "Revisa tus estadísticas y progreso a lo largo del tiempo.",
     "mobileAppTitle": "¡Descarga la aplicación ahora y mejora tu rutina deportiva!",
-    "mobileAppText": "Lleva SportsTracker contigo a todas partes. Descarga nuestra aplicación para:",
+    "mobileAppText": "Lleva Trazer contigo a todas partes. Descarga nuestra aplicación para:",
     "googlePlayAlt": "Disponible en Google Play",
     "appStoreAlt": "Descargar en la App Store"
   },

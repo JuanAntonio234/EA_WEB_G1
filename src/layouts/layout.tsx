@@ -35,7 +35,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <div className="layout-container">
       <Navbar 
-        title="SportsTracker"  
+        title="TRAZER"  
         links={navLinks} 
         className={isNavbarVisible ? 'navbar-visible' : 'navbar-hidden'}
       />

@@ -64,14 +64,14 @@
     "selectLabel": "Select language:"
   },
   "homePage": {
-    "welcomeMessage": "Welcome to SportsTracker!",
+    "welcomeMessage": "Welcome to TRAZER!",
     "introText": "Track your runs, rides, and workouts. Log where you train, earn achievements, and join a community of active people!",
     "featuresTitle": "Achievements & Activity Logging",
     "feature1": "Register your running, cycling, or other activities with location tracking.",
     "feature2": "Earn badges and achievements as you reach new milestones.",
     "feature3": "Review your stats and progress over time.",
     "mobileAppTitle": "Download the app now and improve your sports routine!",
-    "mobileAppText": "Take SportsTracker with you everywhere. Download our app for:",
+    "mobileAppText": "Take Trazer with you everywhere. Download our app for:",
     "googlePlayAlt": "Get it on Google Play",
     "appStoreAlt": "Download on the App Store"
   },
