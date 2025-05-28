@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Achievement } from '../../types/achievementTypes'; 
-import { getUserAchievements } from '../../services/achievementService'; 
+import { getUserById } from '../../services/userService'; // <-- import this
+import { getAchievementById } from '../../services/achievementService'; // <-- import this
 import AchievementList from '../../components/Achievements/AchievementList'; 
 import { useAuth } from '../../hooks/useAuth';
 
@@ -22,27 +23,26 @@ const AchievementsPage: React.FC = () => {
       setIsLoading(true);
       setError(null);
       try {
-        const data = await getUserAchievements(user.id);
-        console.log('Data rebuda del servei:', data);
-        if (Array.isArray(data)) { 
-            setAchievements(data);
+        const userData = await getUserById(user.id);
+        if (userData && userData.achievements && userData.achievements.length > 0) {
+          const achievementPromises = userData.achievements.map((id: string) => getAchievementById(id));
+          const achievementData = await Promise.all(achievementPromises);
+          setAchievements(achievementData);
         } else {
-        console.error('Error: La data rebuda del servei no és un array!', data);
-        setAchievements([]); 
-        setError('S\'ha rebut un format de dades inesperat del servidor.');
+          setAchievements([]);
+          setError('No tens assoliments encara.');
         }
-
       } catch (err: any) {
         const errorMessage = err.response?.data?.message || err.message || 'No s\'han pogut carregar els assoliments.';
         setError(errorMessage);
-        console.error(err);
+        setAchievements([]);
       } finally {
         setIsLoading(false);
       }
     };
 
     fetchAchievements();
-  }, [user]); 
+  }, [user]);
 
   if (isLoading) {
     return <div style={{ textAlign: 'center', padding: '20px' }}>Carregant assoliments...</div>;

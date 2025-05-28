@@ -101,20 +101,26 @@ const ProfilePage: React.FC = () => {
         {achievements.length === 0 && <p>{t('profilePage.noAchievements')}</p>}
         <ul className={styles.achievementsList}>
         {achievements.map(a => (
-          <li key={a._id} className={styles.achievementCard}>
-            <img
-              src={a.icon && a.icon.startsWith('http') ? a.icon : `/achievement-icons/${a.icon}.png`} 
-              alt={a.title}
-              className={styles.achievementIcon}
-              onError={(e) => { (e.target as HTMLImageElement).src = '/default_achievement_icon.png';}}
-            />
-            <div>
-              <strong>{a.title}</strong> - {a.description}
-              <br />
-              <small>{t('profilePage.difficulty')}: {capitalizeFirst(a.difficulty)}, {t('profilePage.points')}: {a.points}</small>
-            </div>
-          </li>
-        ))}
+    <li key={a._id} className={styles.achievementCard}>
+      {a.icon ? (
+        <img
+          src={a.icon.startsWith('http') ? a.icon : `/achievement-icons/${a.icon}.png`}
+          alt={a.title}
+          className={styles.achievementIcon}
+          onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+        />
+      ) : (
+        <span className={styles.achievementIcon} style={{ fontSize: '2rem', display: 'inline-block' }}>🏆</span>
+      )}
+      <div>
+        <strong>{a.title}</strong> - {a.description}
+        <br />
+        <small>
+          {t('profilePage.difficulty')}: {capitalizeFirst(a.difficulty)}, {t('profilePage.points')}: {a.points}
+        </small>
+      </div>
+    </li>
+  ))}
       </ul>
       {isMyProfile && achievements.length === 0 && (
          <Link to="/my-achievements" className={styles.viewAllLink}>{t('profilePage.consultAchievements')}</Link>
