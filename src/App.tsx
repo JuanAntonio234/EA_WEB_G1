@@ -8,6 +8,7 @@ import ActivitiesPage from './pages/Activities/ActivitiesPage';
 import ProfilePage from './pages/Profile/ProfilePage';
 
 import { AuthProvider } from './context/AuthProvider';
+import OauthSuccess from './components/OauthSuccess';
 
 function App() {
   return (
@@ -20,6 +21,8 @@ function App() {
         <Route path="/register" element={<Layout><RegisterPage /></Layout>} />
         <Route path="/activities" element={<Layout><ActivitiesPage /></Layout>} />
         <Route path="/profile/:iduser" element={<Layout><ProfilePage /></Layout>} />
+        <Route path="/oauth-success" element={<Layout><OauthSuccess /></Layout>} />
+        <Route path="*" element={<Layout><h1>404 - Page Not Found</h1></Layout>} />
       </Routes>
     </Router>
     </AuthProvider>
