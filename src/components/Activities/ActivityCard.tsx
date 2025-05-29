@@ -38,7 +38,7 @@ const ActivityCard: React.FC<Props> = ({ activity, showAuthorInfo = true }: Prop
   
   const authorDisplay = typeof activity.author === 'object' 
     ? (activity.author as AuthorInfo).username 
-    : t('activityCard.unknownAuthor', 'Desconegut'); // Afegeix 'activityCard.unknownAuthor' als teus JSONs
+    : t('activityCard.unknownAuthor', 'Desconegut'); 
 
   return (
     <div className={styles.activityCard}>

@@ -5,6 +5,7 @@ import styles from './ActivityList.module.css';
 
 interface ActivityListProps {
   activities: Activity[];
+  showAuthorInfo?: boolean;
 }
 
 const ActivityList: React.FC<ActivityListProps> = ({ activities }) => {
@@ -15,7 +16,7 @@ const ActivityList: React.FC<ActivityListProps> = ({ activities }) => {
   return (
     <div className={styles.activityListContainer}> 
       {activities.map((activity) => (
-        <ActivityCard key={activity._id} activity={activity} />
+        <ActivityCard key={activity._id} activity={activity}  />
       ))}
     </div>
   );

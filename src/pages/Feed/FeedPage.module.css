@@ -1,0 +1,23 @@
+.pageContainer {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.pageTitle {
+  text-align: center;
+  margin-bottom: 30px;
+  color: var(--text-main, #2c3e50);
+}
+
+.messageContainer {
+  text-align: center;
+  padding: 40px 20px;
+  font-size: 1.1em;
+  color: var(--text-secondary, #555);
+}
+
+.messageContainer.error {
+  color: var(--danger-color, #e74c3c);
+  font-weight: bold;
+}

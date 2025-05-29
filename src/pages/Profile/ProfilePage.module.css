@@ -38,9 +38,94 @@
   color: var(--text-main);
 }
 
+.profileActions {
+  margin-top: 1.5rem; 
+  display: flex;
+  flex-direction: row; /* Alinea botons en fila */
+  gap: 1rem; 
+  align-items: flex-start;
+}
+
+.editProfileButton,
+.feedButton {
+  padding: 10px 18px;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+  display: inline-block; 
+}
+
+.editProfileButton {
+  background-color: var(--primary-color, #007bff);
+}
+.editProfileButton:hover {
+  background-color: var(--primary-color-dark, #0056b3);
+}
+
+.feedButton {
+  background-color: var(--info-color, #17a2b8);
+}
+.feedButton:hover {
+  background-color: var(--info-color-dark, #117a8b);
+}
+
+.followStatsContainer {
+  display: flex;
+  gap: 2rem; /* Espai entre la llista de seguidors i la de seguits */
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.followersSection,
+.followingSection {
+  flex: 1; /* Perquè ocupin espai disponible */
+  background-color: var(--card-bg-secondary, #f8f9fa);
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color-light, #eee);
+}
+
+.followersSection h3,
+.followingSection h3 {
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+  font-size: 1.1em;
+  color: var(--text-emphasis, #343a40);
+  border-bottom: 1px solid var(--border-color, #ddd);
+  padding-bottom: 0.5rem;
+}
+
+.followList { /* Estil comú per a ambdues llistes */
+  list-style: none;
+  padding: 0;
+  max-height: 200px; /* Limita l'alçada si hi ha molts */
+  overflow-y: auto;
+}
+
+.followItem {
+  padding: 0.5rem 0;
+  border-bottom: 1px dotted var(--border-color-light, #eee);
+  font-size: 0.95em;
+}
+.followItem:last-child {
+  border-bottom: none;
+}
+
 .achievementsSection,
 .challengesSection {
   margin-top: 2.5rem;
+}
+
+.achievementsSection h3,
+.challengesSection h3 {
+  border-bottom: 1px solid var(--border-color-light, #eee);
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
 }
 
 .achievementsList,
@@ -114,28 +199,6 @@
   text-decoration: underline;
 }
 
-.profileActions {
-  margin-top: 1.5rem; 
-}
-
-.editProfileButton {
-  padding: 10px 18px;
-  background-color: var(--primary-color, #007bff);
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  text-align: center;
-  text-decoration: none;
-  font-weight: 500;
-  transition: background-color 0.2s ease;
-  display: inline-block; 
-}
-
-.editProfileButton:hover {
-  background-color: var(--primary-color-dark, #0056b3);
-}
-
 .feedbackMessage {
   padding: 12px 18px;
   margin-bottom: 20px;
@@ -157,13 +220,29 @@
   border: 1px solid var(--danger-border-light, #f5c6cb);
 }
 
+@media (max-width: 768px) {
+  .profileHeader {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .profileInfo {
+    width: 100%;
+  }
+  .profileActions {
+    align-items: center; 
+    flex-direction: row; /* Manté botons en fila si hi caben */
+    justify-content: center;
+  }
+  .followStatsContainer {
+    flex-direction: column; /* Apila seguidors i seguits en mòbil */
+    gap: 1rem;
+  }
+}
+
 @media (max-width: 600px) {
   .profileContainer {
     padding: 1rem;
-  }
-  .profileHeader {
-    flex-direction: column;
-    gap: 1rem;
   }
   .achievementsList,
   .challengesList {
@@ -174,8 +253,5 @@
   .challengeCard {
     min-width: unset;
     width: 100%;
-  }
-  .profileActions { 
-    align-items: flex-start;
   }
 }
