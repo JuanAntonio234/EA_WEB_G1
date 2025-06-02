@@ -1,22 +1,27 @@
-import ActivityCard from './ActivityCard';
+import React from 'react';
 import { Activity } from '../../types/activityTypes';
-import './ActivityStyles.css';
+import ActivityCard from './ActivityCard';
+import styles from './ActivityList.module.css';
 
-interface Props {
+interface ActivityListProps {
   activities: Activity[];
-  lastItemRef?: (node: HTMLDivElement) => void;
+  lastItemRef?: (node: HTMLDivElement | null) => void;
 }
 
-const ActivityList = ({ activities, lastItemRef }: Props) => {
+const ActivityList: React.FC<ActivityListProps> = ({ activities, lastItemRef }) => {
+  if (!activities || activities.length === 0) {
+    return <p className={styles.noActivitiesMessage}>No s'han trobat rutes o activitats disponibles.</p>;
+  }
+
   return (
-    <div className="activity-list">
+    <div className={styles.activityListContainer}> 
       {activities.map((activity, index) => {
-        const isLast = index === activities.length - 1;
+        const isLastItem = index === activities.length - 1;
         return (
-          <div
+          <div 
             key={activity._id}
-            className="activity-item"
-            ref={isLast ? lastItemRef : null}
+            ref={isLastItem && lastItemRef ? lastItemRef : null}
+            className={styles.activityItem} 
           >
             <ActivityCard activity={activity} />
           </div>

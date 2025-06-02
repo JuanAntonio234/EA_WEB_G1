@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar/Navbar'; 
 import './layout.css'; 
 import Footer from '../components/Footer/Footer';
@@ -11,10 +11,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   const [isNavbarVisible, setNavbarVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
-
   useEffect(() => {
     const handleScroll=()=>{
-      if(window.scrollY>lastScrollY){
+      if(window.scrollY > lastScrollY && window.scrollY > 50){
         setNavbarVisible(false);
       }else{
         setNavbarVisible(true);
@@ -28,16 +27,20 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   },[lastScrollY]);
 
   const navLinks = [
-    { href: '/', label: 'Inici' },
-    { href: '/about', label: 'Sobre nosaltres' }
+    { href: '/', labelKey: 'navbar.home' },
+    { href: '/explore-routes', labelKey: 'navbar.exploreRoutes' },
+    { href: '/about', labelKey: 'navbar.about' }
   ];
 
   return (
     <div className="layout-container">
-      <Navbar title="SportsTracker" links={navLinks} 
-      className={isNavbarVisible?'navbar-visible' : 'navbar-hidden'}/>
+      <Navbar 
+        title="TRAZER"  
+        links={navLinks} 
+        className={isNavbarVisible ? 'navbar-visible' : 'navbar-hidden'}
+      />
       <main className="main-content">
-        {children} {/* Aquí se renderizará el contenido específico de cada página */}
+        {children}
       </main>
       <Footer />
     </div>

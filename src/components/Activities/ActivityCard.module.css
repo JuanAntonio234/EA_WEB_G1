@@ -1,0 +1,66 @@
+.activityCard {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 20px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.activityCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.12);
+}
+
+.activityName {
+  margin-top: 0;
+  margin-bottom: 8px;
+  font-size: 1.4em;
+  color: #333;
+  font-weight: 600;
+}
+
+.activityType {
+  font-size: 0.8em;
+  font-weight: bold;
+  color: #007bff;
+  background-color: #e7f3ff;
+  padding: 3px 8px;
+  border-radius: 4px;
+  display: inline-block;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.activityDetails p {
+  font-size: 0.95em;
+  color: #555;
+  margin: 6px 0;
+  line-height: 1.5;
+}
+
+.activityDetails p strong {
+  color: #333;
+}
+
+.detailsButton {
+  display: block;
+  margin-top: auto; 
+  padding: 10px 15px;
+  background-color: #28a745;
+  color: white;
+  text-align: center;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+.detailsButton:hover {
+  background-color: #218838;
+  text-decoration: none;
+  color: white;
+}

@@ -1,0 +1,59 @@
+.pageContainer {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.pageTitle {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #2c3e50;
+}
+
+.messageContainer {
+  text-align: center;
+  padding: 40px 20px;
+  font-size: 1.1em;
+  color: #555;
+}
+
+.error {
+  color: #e74c3c;
+  font-weight: bold;
+}
+
+.paginationControls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  padding: 10px;
+}
+
+.paginationControls button {
+  padding: 10px 20px;
+  margin: 0 10px;
+  cursor: pointer;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.paginationControls button:hover:not(:disabled) {
+  background-color: #2980b9;
+}
+
+.paginationControls button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+  background-color: #bdc3c7;
+}
+
+.paginationControls span {
+  margin: 0 15px;
+  font-weight: bold;
+  color: #34495e;
+}

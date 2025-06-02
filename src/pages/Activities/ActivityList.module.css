@@ -1,0 +1,13 @@
+.activityListContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 25px;
+  padding: 10px 0;
+}
+
+.noActivitiesMessage {
+  text-align: center;
+  color: #777;
+  margin-top: 40px;
+  font-size: 1.2em;
+}
