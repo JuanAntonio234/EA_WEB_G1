@@ -12,6 +12,9 @@ export class ApiConstants {
   static get refreshToken(): string {
     return `${this.baseUrl}/${this.apiPath}/auth/refresh`;
   }
+  static get googleToken(): string {
+    return `${this.baseUrl}/${this.apiPath}/google/token`;
+  }
   static get logout(): string {
     return `${this.baseUrl}/${this.apiPath}/auth/logout`;
   }
