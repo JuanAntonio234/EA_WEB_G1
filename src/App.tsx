@@ -12,6 +12,7 @@ import ActivityDetailPage from './pages/ActivityDetail/ActivityDetailPage';
 import EditProfilePage from './pages/EditProfile/EditProfilePage';
 
 import { AuthProvider } from './context/AuthProvider';
+import OauthSuccess from './components/OauthSuccess';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path="/activities" element={<Layout><ActivitiesPage /></Layout>} /> 
           <Route path="/profile/:iduser" element={<Layout><ProfilePage /></Layout>} />
           <Route path="/my-achievements" element={<Layout><AchievementsPage /></Layout>} />
+          <Route path="/oauth-success" element={<Layout><OauthSuccess /></Layout>} />
           <Route path="/explore-routes" element={<Layout><ExploreRoutesPage /></Layout>} />
           <Route path="/activities/:activityId" element={<Layout><ActivityDetailPage /></Layout>} />
           <Route path="/profile/edit" element={<Layout><EditProfilePage /></Layout>} />

@@ -7,10 +7,8 @@ import './i18n';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <Suspense fallback={<div>Carregant...</div>}> 
-      <GoogleOAuthProvider clientId={import.meta.env.VITE_API_BASE_URL}> 
-        <App />
-      </GoogleOAuthProvider>
-    </Suspense>
+    <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID!}>
+      <App/>
+    </GoogleOAuthProvider>
   </StrictMode>,
 );
