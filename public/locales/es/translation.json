@@ -3,19 +3,34 @@
     "loading": "Cargando...",
     "error": "Error",
     "noData": "Sin datos disponibles",
-    "cancel": "Cancelar"
+    "cancel": "Cancelar",
+    "previous": "Anterior",
+    "next": "Siguiente"
   },
   "navbar": {
     "home": "Inicio",
     "exploreRoutes": "Explorar Rutas",
     "about": "Sobre nosotros",
+    "feed": "Feed de Actividad",
     "myProfile": "Mi Perfil",
     "myActivities": "Mis Actividades",
     "myAchievements": "Mis Logros",
-    "settings": "Configuración",
+    "settings": "Editar Perfil",
     "logout": "Cerrar Sesión",
     "login": "Iniciar Sesión",
     "signup": "Registrarse"
+  },
+  "homePage": {
+    "welcomeMessage": "¡Bienvenido a SportsTracker!",
+    "introText": "Realiza un seguimiento de tus carreras, rutas en bicicleta y entrenamientos. ¡Registra dónde entrenas, gana logros y únete a una comunidad de gente activa!",
+    "featuresTitle": "Logros y Registro de Actividades",
+    "feature1": "Registra tus actividades de correr, ciclismo u otras con seguimiento de ubicación.",
+    "feature2": "Gana insignias y logros a medida que alcanzas nuevos hitos.",
+    "feature3": "Revisa tus estadísticas y progreso a lo largo del tiempo.",
+    "mobileAppTitle": "¡Descarga la aplicación ahora y mejora tu rutina deportiva!",
+    "mobileAppText": "Lleva SportsTracker contigo a todas partes. Descarga nuestra aplicación para:",
+    "googlePlayAlt": "Disponible en Google Play",
+    "appStoreAlt": "Descargar en la App Store"
   },
   "exploreRoutesPage": {
     "title": "Explora Rutas y Actividades 🗺️",
@@ -28,7 +43,8 @@
     "title": "Mis Logros 🏆",
     "loading": "Cargando logros...",
     "noAchievements": "Aún no has desbloqueado ningún logro. ¡Sigue esforzándote! 💪",
-    "error": "Error: No se pudieron cargar los logros."
+    "error": "Error: No se pudieron cargar los logros.",
+    "errorUserNotAuthenticated": "Debes iniciar sesión para ver tus logros."
   },
   "activityCard": {
     "detailsButton": "Ver Detalles",
@@ -38,7 +54,8 @@
     "avgSpeed": "Vel. media",
     "createdBy": "Creado por",
     "startTime": "Inicio",
-    "endTime": "Fin"
+    "endTime": "Fin",
+    "unknownAuthor": "Desconocido"
   },
   "activityDetailPage": {
     "backButton": "Atrás",
@@ -64,18 +81,6 @@
   "languageSwitcher": {
     "selectLabel": "Selecciona el idioma:"
   },
-  "homePage": {
-    "welcomeMessage": "¡Bienvenido a TRAZER!",
-    "introText": "Realiza un seguimiento de tus carreras, rutas en bicicleta y entrenamientos. ¡Registra dónde entrenas, gana logros y únete a una comunidad de gente activa!",
-    "featuresTitle": "Logros y Registro de Actividades",
-    "feature1": "Registra tus actividades de correr, ciclismo u otras con seguimiento de ubicación.",
-    "feature2": "Gana insignias y logros a medida que alcanzas nuevos hitos.",
-    "feature3": "Revisa tus estadísticas y progreso a lo largo del tiempo.",
-    "mobileAppTitle": "¡Descarga la aplicación ahora y mejora tu rutina deportiva!",
-    "mobileAppText": "Lleva Trazer contigo a todas partes. Descarga nuestra aplicación para:",
-    "googlePlayAlt": "Disponible en Google Play",
-    "appStoreAlt": "Descargar en la App Store"
-  },
   "profilePage": {
     "title": "Perfil de {{username}}",
     "loading": "Cargando perfil...",
@@ -95,13 +100,11 @@
     "goal": "Objetivo",
     "reward": "Recompensa",
     "dateRange": "Desde: {{startDate}} hasta {{endDate}}",
-    "visibilityLabel": "Visibilidad del Perfil:",
-    "publicProfile": "Público",
-    "privateProfile": "Privado",
-    "makePrivate": "Hacer Privado",
-    "makePublic": "Hacer Público",
-    "visibilityUpdatedSuccess": "Visibilidad del perfil actualizada correctamente.",
-    "visibilityUpdatedError": "Error al actualizar la visibilidad del perfil."
+    "followersSectionTitle": "Seguidores",
+    "noFollowers": "Aún no tienes seguidores.",
+    "followingSectionTitle": "Siguiendo",
+    "noFollowing": "No sigues a nadie todavía.",
+    "viewActivityFeedButton": "Ver Feed de Actividad de Seguidos"
   },
   "editProfilePage": {
     "title": "Editar Perfil",
@@ -115,5 +118,18 @@
     "profileUpdatedError": "Error al actualizar el perfil.",
     "errorNoUser": "No se pudieron cargar los datos del usuario para editar.",
     "goBackToProfile": "Volver al Perfil"
+  },
+  "feedPage": {
+    "title": "Actividad de los Usuarios que Sigues",
+    "loading": "Cargando actividades...",
+    "noActivities": "Aún no hay actividad de los usuarios que sigues.",
+    "error": "Error al cargar las actividades del feed.",
+    "notLoggedIn": "Debes iniciar sesión para ver el feed de actividad."
+  },
+  "activitiesPage": {
+    "errorLoading": "Error cargando tus actividades.",
+    "notLoggedIn": "Debes iniciar sesión para ver tus actividades.",
+    "noMoreActivities": "No hay más actividades para mostrar.",
+    "noActivitiesFound": "No tienes ninguna actividad registrada todavía."
   }
 }

@@ -7,8 +7,10 @@ import { getAchievementById } from '../../services/achievementService';
 import { getChallengeById } from '../../services/challengeService';
 import { User as FullUserType } from '../../types/userTypes';
 import { Achievement } from '../../types/achievementTypes';
+import { AuthorInfo } from '../../types/activityTypes';
 import { Challenge } from '../../types/challengeTypes';
 import { useAuth } from '../../hooks/useAuth';
+import { mockFollowers, mockFollowing } from '../../mockdata/mockFollowers';
 
 const ProfilePage: React.FC = () => {
   const { t, i18n } = useTranslation();
@@ -19,6 +21,8 @@ const ProfilePage: React.FC = () => {
   const [profileUser, setProfileUser] = useState<FullUserType | null>(null);
   const [achievements, setAchievements] = useState<Achievement[]>([]);
   const [challenges, setChallenges] = useState<Challenge[]>([]);
+  const [followers, setFollowers] = useState<AuthorInfo[]>([]);
+  const [following, setFollowing] = useState<AuthorInfo[]>([]); // Nou estat per a 'following'
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -57,6 +61,12 @@ const ProfilePage: React.FC = () => {
       } else {
         setChallenges([]);
       }
+      
+      if (loggedInUserFromContext && loggedInUserFromContext.id === iduser) {
+        setFollowers(mockFollowers.slice(0, 5));
+        setFollowing(mockFollowing.slice(0,5)); // Carreguem 'following' mockup
+      }
+
     } catch (err) {
       console.error("Error fetching profile data:", err);
       setProfileUser(null);
@@ -65,7 +75,7 @@ const ProfilePage: React.FC = () => {
       setError(t('profilePage.notFound'));
     }
     setLoading(false);
-  }, [iduser, t]);
+  }, [iduser, t, loggedInUserFromContext]);
 
   useEffect(() => {
     fetchProfile();
@@ -88,18 +98,55 @@ const ProfilePage: React.FC = () => {
         <div className={styles.profileInfo}>
           <p><strong>{t('profilePage.level')}:</strong> {profileUser.level}</p>
           <p><strong>{t('profilePage.bio')}:</strong> {profileUser.bio || '-'}</p>
-          <p><strong>{t('profilePage.totalDistance')}:</strong> {profileUser.totalDistance.toFixed(2) || 0} km</p>
-          <p><strong>{t('profilePage.totalTime')}:</strong> {profileUser.totalTime.toFixed(2) || 0} hrs</p>
+          <p><strong>{t('profilePage.totalDistance')}:</strong> {profileUser.totalDistance || 0} km</p>
+          <p><strong>{t('profilePage.totalTime')}:</strong> {profileUser.totalTime || 0} hrs</p>
           
           {isMyProfile && (
             <div className={styles.profileActions}>
               <button onClick={() => navigate('/profile/edit')} className={styles.editProfileButton}>
                 {t('navbar.settings')} 
               </button>
+              <button onClick={() => navigate('/feed')} className={styles.feedButton}>
+                {t('navbar.feed')}
+              </button>
             </div>
           )}
         </div>
       </div>
+
+      {isMyProfile && (
+        <div className={styles.followStatsContainer}>
+          <section className={styles.followersSection}>
+            <h3>{t('profilePage.followersSectionTitle')}</h3>
+            {followers.length === 0 ? (
+              <p>{t('profilePage.noFollowers')}</p>
+            ) : (
+              <ul className={styles.followList}>
+                {followers.map(follower => (
+                  <li key={follower._id} className={styles.followItem}>
+                    <span>{follower.username}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </section>
+
+          <section className={styles.followingSection}>
+            <h3>{t('profilePage.followingSectionTitle')}</h3>
+            {following.length === 0 ? (
+              <p>{t('profilePage.noFollowing')}</p>
+            ) : (
+              <ul className={styles.followList}>
+                {following.map(follow => (
+                  <li key={follow._id} className={styles.followItem}>
+                    <span>{follow.username}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </section>
+        </div>
+      )}
       
       <section className={styles.achievementsSection}>
         <div className={styles.sectionHeader}>
