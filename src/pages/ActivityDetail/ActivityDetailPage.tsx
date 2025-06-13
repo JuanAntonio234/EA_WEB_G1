@@ -59,6 +59,35 @@ const ActivityDetailPage: React.FC = () => {
     if (!activity) return;
     alert(`Funcionalitat "Començar ruta ${activity.name}" encara no implementada.`);
   };
+
+  const handleShare = async () => {
+  const shareUrl = window.location.href; // Obtenir l'enllaç actual de la pàgina web
+
+  if (navigator.share) {
+    // Comprovar que el Web Share API està suportat
+    try {
+      await navigator.share({
+        title: activity?.name || 'Ruta',
+        text: 'Mira aquesta ruta!',
+        url: shareUrl,
+      });
+    } catch (err) {
+      alert('No s\'ha pogut compartir la ruta.');
+    }
+  } else if (navigator.clipboard) {
+    // Fallback: copiar l'enllaç al porta-retalls
+    try {
+      await navigator.clipboard.writeText(shareUrl);
+      alert('Enllaç copiat al porta-retalls!');
+    } catch (err) {
+      alert('No s\'ha pogut copiar l\'enllaç.');
+    }
+  } else {
+    // Fallback for very old browsers
+    window.prompt('Copia aquest enllaç:', shareUrl);
+  }
+};
+
   
   const authorUsername = activity && typeof activity.author === 'object' ? (activity.author as AuthorInfo).username : 'Desconegut';
 
@@ -101,7 +130,7 @@ const ActivityDetailPage: React.FC = () => {
         <h2>Ruta (Punts GPS)</h2>
         {routePoints && routePoints.length > 0 ? (
           <>
-            <p>Aquesta ruta té {routePoints.length} punts GPS.</p>
+            <div className={styles.mapReferencePointsCounter}>Aquesta ruta té {routePoints.length} punts GPS.</div>
             <div className={styles.mapPlaceholder}>Visualització del Mapa (Pendent d'Implementar)</div>
           </>
         ) : (
@@ -121,7 +150,10 @@ const ActivityDetailPage: React.FC = () => {
       )}
 
       <button onClick={handleStartRoute} className={styles.startRouteButton}>
-        Començar Aquesta Ruta
+        Començar aquesta ruta
+      </button>
+      <button onClick={handleShare} className={styles.startRouteButton}>
+        Compartir
       </button>
     </div>
   );
