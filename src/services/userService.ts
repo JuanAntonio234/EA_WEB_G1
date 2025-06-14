@@ -8,6 +8,13 @@ interface LoginResponse {
   user: User;
 }
 
+interface FollowListResponse {
+  message: string;
+  count: number;
+  followers?: User[]; 
+  following?: User[];
+}
+
 export const fetchUsers = async (): Promise<User[]> => {
     try {
         const response = await api.get<User[]>(ApiConstants.users);
@@ -116,5 +123,25 @@ export const searchUsers = async (query: string) => {
     } else {
       throw new Error('Error al buscar usuarios');
     }
+  }
+};
+
+export const getUserFollowers = async (userId: string): Promise<User[]> => {
+  try {
+    const response = await api.get<FollowListResponse>(`${ApiConstants.users}/${userId}/followers`);
+    return response.data.followers || [];
+  } catch (error) {
+    console.error('Error fetching followers:', error);
+    return []; 
+  }
+};
+
+export const getUserFollowing = async (userId: string): Promise<User[]> => {
+  try {
+    const response = await api.get<FollowListResponse>(`${ApiConstants.users}/${userId}/following`);
+    return response.data.following || [];
+  } catch (error) {
+    console.error('Error fetching following list:', error);
+    return [];
   }
 };

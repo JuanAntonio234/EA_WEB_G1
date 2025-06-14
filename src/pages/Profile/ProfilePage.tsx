@@ -2,27 +2,25 @@ import React, { useEffect, useState, useCallback } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import styles from './ProfilePage.module.css';
-import { getUserById } from '../../services/userService';
+import { getUserById, getUserFollowers, getUserFollowing } from '../../services/userService';
 import { getAchievementById } from '../../services/achievementService';
 import { getChallengeById } from '../../services/challengeService';
-import { User as FullUserType } from '../../types/userTypes';
+import { User } from '../../types/userTypes';
 import { Achievement } from '../../types/achievementTypes';
-import { AuthorInfo } from '../../types/activityTypes';
 import { Challenge } from '../../types/challengeTypes';
 import { useAuth } from '../../hooks/useAuth';
-import { mockFollowers, mockFollowing } from '../../mockdata/mockFollowers';
 
 const ProfilePage: React.FC = () => {
   const { t, i18n } = useTranslation();
   const { iduser } = useParams<{ iduser: string }>();
   const navigate = useNavigate();
-  const { user: loggedInUserFromContext } = useAuth(); 
-  
-  const [profileUser, setProfileUser] = useState<FullUserType | null>(null);
+  const { user: loggedInUserFromContext } = useAuth();
+
+  const [profileUser, setProfileUser] = useState<User | null>(null);
   const [achievements, setAchievements] = useState<Achievement[]>([]);
   const [challenges, setChallenges] = useState<Challenge[]>([]);
-  const [followers, setFollowers] = useState<AuthorInfo[]>([]);
-  const [following, setFollowing] = useState<AuthorInfo[]>([]); // Nou estat per a 'following'
+  const [followers, setFollowers] = useState<User[]>([]);
+  const [following, setFollowing] = useState<User[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -35,7 +33,6 @@ const ProfilePage: React.FC = () => {
 
   const fetchProfile = useCallback(async () => {
     if (!iduser) {
-      setProfileUser(null);
       setError(t('profilePage.notFound'));
       setLoading(false);
       return;
@@ -43,8 +40,15 @@ const ProfilePage: React.FC = () => {
     setLoading(true);
     setError(null);
     try {
-      const userData = await getUserById(iduser);
+      const [userData, followersData, followingData] = await Promise.all([
+        getUserById(iduser),
+        getUserFollowers(iduser),
+        getUserFollowing(iduser)
+      ]);
+
       setProfileUser(userData);
+      setFollowers(followersData);
+      setFollowing(followingData);
 
       if (userData?.achievements?.length) {
         const achievementIds = userData.achievements.slice(0, 3);
@@ -61,11 +65,6 @@ const ProfilePage: React.FC = () => {
       } else {
         setChallenges([]);
       }
-      
-      if (loggedInUserFromContext && loggedInUserFromContext.id === iduser) {
-        setFollowers(mockFollowers.slice(0, 5));
-        setFollowing(mockFollowing.slice(0,5)); // Carreguem 'following' mockup
-      }
 
     } catch (err) {
       console.error("Error fetching profile data:", err);
@@ -75,7 +74,7 @@ const ProfilePage: React.FC = () => {
       setError(t('profilePage.notFound'));
     }
     setLoading(false);
-  }, [iduser, t, loggedInUserFromContext]);
+  }, [iduser, t]);
 
   useEffect(() => {
     fetchProfile();
@@ -117,14 +116,16 @@ const ProfilePage: React.FC = () => {
       {isMyProfile && (
         <div className={styles.followStatsContainer}>
           <section className={styles.followersSection}>
-            <h3>{t('profilePage.followersSectionTitle')}</h3>
+            <h3>{t('profilePage.followersSectionTitle')} ({followers.length})</h3>
             {followers.length === 0 ? (
               <p>{t('profilePage.noFollowers')}</p>
             ) : (
-              <ul className={styles.followList}>
+              <ul style={{ listStyleType: 'none', margin: 0, padding: 0 }}>
                 {followers.map(follower => (
-                  <li key={follower._id} className={styles.followItem}>
-                    <span>{follower.username}</span>
+                  <li key={follower._id} style={{ marginBottom: '8px' }}>
+                    <Link to={`/profile/${follower._id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                      {follower.username}
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -132,14 +133,16 @@ const ProfilePage: React.FC = () => {
           </section>
 
           <section className={styles.followingSection}>
-            <h3>{t('profilePage.followingSectionTitle')}</h3>
+            <h3>{t('profilePage.followingSectionTitle')} ({following.length})</h3>
             {following.length === 0 ? (
               <p>{t('profilePage.noFollowing')}</p>
             ) : (
-              <ul className={styles.followList}>
+              <ul style={{ listStyleType: 'none', margin: 0, padding: 0 }}>
                 {following.map(follow => (
-                  <li key={follow._id} className={styles.followItem}>
-                    <span>{follow.username}</span>
+                  <li key={follow._id} style={{ marginBottom: '8px' }}>
+                    <Link to={`/profile/${follow._id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                      {follow.username}
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -167,10 +170,10 @@ const ProfilePage: React.FC = () => {
           <li key={a._id} className={styles.achievementCard}>
             {a.icon ? (
              <img
-               src={a.icon.startsWith('http') ? a.icon : `/achievement-icons/${a.icon}.png`}
-               alt={a.title}
-               className={styles.achievementIcon}
-               onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+                src={a.icon.startsWith('http') ? a.icon : `/achievement-icons/${a.icon}.png`}
+                alt={a.title}
+                className={styles.achievementIcon}
+                onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
              />
             ) : (
              <span className={styles.achievementIconFallback}>🏆</span>
@@ -182,10 +185,10 @@ const ProfilePage: React.FC = () => {
             </div>
           </li>
         ))}
-      </ul>
-      {isMyProfile && achievements.length === 0 && (
-         <Link to="/my-achievements" className={styles.viewAllLink}>{t('profilePage.consultAchievements')}</Link>
-      )}
+        </ul>
+        {isMyProfile && achievements.length === 0 && (
+          <Link to="/my-achievements" className={styles.viewAllLink}>{t('profilePage.consultAchievements')}</Link>
+        )}
       </section>
       
       <section className={styles.challengesSection}>
