@@ -134,5 +134,9 @@
   },
    "footer": {
     "allRightsReserved": "Tots els drets reservats"
+  },
+  "searchBar": {
+    "placeholder": "Cercar usuaris...",
+    "noUsersFound": "No s'han trobat usuaris"
   }
 }

@@ -134,5 +134,9 @@
   },
    "footer": {
     "allRightsReserved": "All rights reserved."
+  },
+  "searchBar": {
+    "placeholder": "Search users...",
+    "noUsersFound": "No users found"
   }
 }

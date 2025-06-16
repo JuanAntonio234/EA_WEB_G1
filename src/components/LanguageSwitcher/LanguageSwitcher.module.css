@@ -1,28 +1,45 @@
+/* Estilos mejorados para LanguageSwitcher.module.css */
+/* Reemplaza el contenido de tu archivo LanguageSwitcher.module.css con esto: */
+
 .languageSwitcherContainer {
   display: inline-flex;
   align-items: center;
-  margin-left: 10px; 
 }
 
 .selectElement {
-  padding: 6px 10px;
-  border-radius: 4px;
-  border: 1px solid #ccc; 
-  background-color: #fff; 
-  color: #333; 
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--button-light-border);
+  background-color: var(--button-light-bg);
+  color: var(--button-light-text);
   cursor: pointer;
   font-size: 0.9em;
-  min-width: 100px; 
+  min-width: 120px;
+  height: 40px;
+  transition: all 0.3s ease;
+  font-family: inherit;
 }
 
 .selectElement:hover {
-  border-color: #888; 
+  background-color: var(--button-light-hover);
+  border-color: var(--primary-color);
 }
 
 .selectElement:focus {
-  outline: none;
-  border-color: #007bff; 
-  box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25); 
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+  border-color: var(--primary-color);
+}
+
+/* Para modo oscuro */
+:global(body.dark) .selectElement {
+  background-color: var(--button-light-bg);
+  color: var(--button-light-text);
+  border-color: var(--button-light-border);
+}
+
+:global(body.dark) .selectElement:hover {
+  background-color: var(--button-light-hover);
 }
 
 .visuallyHidden {

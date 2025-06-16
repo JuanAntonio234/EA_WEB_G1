@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import styles from './SearchBar.module.css';
 import { Search } from 'lucide-react';
 import { searchUsers } from '../../services/userService';
@@ -12,6 +13,7 @@ interface User {
 }
 
 const SearchBar = () => {
+  const { t } = useTranslation();
   const [isExpanded, setIsExpanded] = useState(false);
   const [query, setQuery] = useState('');
   const [results, setResults] = useState<User[]>([]);
@@ -53,13 +55,12 @@ const SearchBar = () => {
       } catch {
         setResults([]);
         setNoResults(false);
-        setError('No hay usuarios con ese nombre');
       }
     };
 
     const timeoutId = setTimeout(fetchResults, 300);
     return () => clearTimeout(timeoutId);
-  }, [query]);
+  }, [query, t]);
 
   const handleNavigate = (id: string) => {
     setQuery('');
@@ -80,7 +81,7 @@ const SearchBar = () => {
             type="text"
             value={query}
             onChange={e => setQuery(e.target.value)}
-            placeholder="Buscar..."
+            placeholder={t('searchBar.placeholder')}
             className={styles.searchInput}
             autoFocus
           />
@@ -92,7 +93,7 @@ const SearchBar = () => {
                   <span>{user.username} (lvl {user.level})</span>
                 </li>
               ))}
-              {noResults && <li className={styles.resultMessage}>No se encontraron usuarios.</li>}
+              {noResults && <li className={styles.resultMessage}>{t('searchBar.noUsersFound')}</li>}
               {error && <li className={styles.resultError}>{error}</li>}
             </ul>
           )}
