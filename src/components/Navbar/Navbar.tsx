@@ -73,7 +73,7 @@ const Navbar: React.FC<NavbarProps> = ({ title, links, className }) => {
         <SearchBar />
         </div>
         <div className='navbar-controls-right'>
-            <div className='navbar-darmode-toggle'>
+            <div className='navbar-darkmode-toggle'>
             <button
                 className="darkmode-toggle"
                 onClick={toggleDark}
