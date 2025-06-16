@@ -1,66 +1,168 @@
 .activityCard {
-  border: 1px solid #e0e0e0;
+  border: 1px solid var(--border);
   border-radius: 8px;
   padding: 20px;
-  background-color: #ffffff;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+  background-color: var(--card-bg);
+  box-shadow: var(--card-shadow);
   display: flex;
   flex-direction: column;
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, background-color 0.3s ease, border-color 0.3s ease;
+  height: 100%;
+  min-height: 300px;
 }
 
 .activityCard:hover {
   transform: translateY(-5px);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.12);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* Modo oscuro - hover con sombra más intensa */
+:global(body.dark) .activityCard:hover {
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
 }
 
 .activityName {
   margin-top: 0;
   margin-bottom: 8px;
   font-size: 1.4em;
-  color: #333;
+  color: var(--text-main);
   font-weight: 600;
+  transition: color 0.3s ease;
+  line-height: 1.3;
 }
 
 .activityType {
   font-size: 0.8em;
   font-weight: bold;
-  color: #007bff;
-  background-color: #e7f3ff;
-  padding: 3px 8px;
+  color: var(--primary-color);
+  background-color: var(--card-bg-secondary);
+  padding: 4px 8px;
   border-radius: 4px;
   display: inline-block;
   margin-bottom: 12px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  border: 1px solid var(--border);
+  transition: all 0.3s ease;
+  max-width: fit-content;
+}
+
+.activityDetails {
+  flex-grow: 1;
+  margin-bottom: 15px;
 }
 
 .activityDetails p {
   font-size: 0.95em;
-  color: #555;
+  color: var(--text-light);
   margin: 6px 0;
   line-height: 1.5;
+  transition: color 0.3s ease;
 }
 
 .activityDetails p strong {
-  color: #333;
+  color: var(--text-main);
+  transition: color 0.3s ease;
+}
+
+.activityMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+  align-items: center;
+}
+
+.metaItem {
+  font-size: 0.85em;
+  color: var(--text-secondary);
+  transition: color 0.3s ease;
+}
+
+.authorInfo {
+  font-weight: 500;
+  color: var(--primary-color);
 }
 
 .detailsButton {
   display: block;
   margin-top: auto; 
-  padding: 10px 15px;
-  background-color: #28a745;
+  padding: 12px 16px;
+  background-color: var(--primary);
   color: white;
   text-align: center;
-  border-radius: 5px;
+  border-radius: 6px;
   text-decoration: none;
   font-weight: 500;
-  transition: background-color 0.2s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  border: none;
+  cursor: pointer;
+  font-size: 0.95em;
 }
 
 .detailsButton:hover {
-  background-color: #218838;
+  background-color: var(--primary-hover);
   text-decoration: none;
   color: white;
+  transform: translateY(-1px);
+}
+
+.detailsButton:active {
+  transform: translateY(0);
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+  .activityCard {
+    padding: 16px;
+    min-height: 250px;
+  }
+  
+  .activityName {
+    font-size: 1.2em;
+  }
+  
+  .activityType {
+    font-size: 0.75em;
+    padding: 3px 6px;
+  }
+  
+  .activityDetails p {
+    font-size: 0.9em;
+  }
+  
+  .detailsButton {
+    padding: 10px 14px;
+    font-size: 0.9em;
+  }
+  
+  .activityMeta {
+    gap: 6px;
+  }
+  
+  .metaItem {
+    font-size: 0.8em;
+  }
+}
+
+/* Estados adicionales para mejor UX */
+.activityCard:focus-within {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* Animación de entrada suave */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.activityCard {
+  animation: fadeInUp 0.4s ease-out;
 }
