@@ -90,14 +90,14 @@
   border: 1px solid var(--border-color-light, #eee);
 }
 
-.followersSection h3,
-.followingSection h3 {
-  margin-top: 0;
-  margin-bottom: 0.75rem;
-  font-size: 1.1em;
-  color: var(--text-emphasis, #343a40);
-  border-bottom: 1px solid var(--border-color, #ddd);
-  padding-bottom: 0.5rem;
+.followersSection h3, 
+.followingSection h3 {   
+  margin-top: 0;   
+  margin-bottom: 0.75rem;   
+  font-size: 1.1em;   
+  color: var(--text-main);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.5rem; 
 }
 
 .followList { /* Estil comú per a ambdues llistes */

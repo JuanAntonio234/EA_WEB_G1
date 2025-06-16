@@ -1,28 +1,59 @@
 .layout-container {
   background-image: url('/background.png');
-  background-size: cover; 
-  background-position: center;
-  background-repeat: no-repeat;
   min-height: 100vh; 
   display: flex;
   flex-direction: column; 
-  background-attachment: fixed; 
+  transition: background-color 0.3s ease; /* Transición suave para cambio de modo */
 }
+
 .hidden {
   transform: translateY(-100%); 
-  transition: transform 0.3s ease-in-out;  /* Añade una animación suave */
+  transition: transform 0.3s ease-in-out;
 }
+
 .main-content {
   flex-grow: 1;
   padding: 20px;
   width: 100%;         
   box-sizing: border-box; 
-  padding-top: 50px; 
+  padding-top: 50px;
+  background-color: transparent; /* Permitir que el fondo del layout se muestre */
 }
 
 .footer-content {
-  background-color: #f1f1f1;
+  background-color: var(--footer-bg);
+  color: var(--footer-text);
   text-align: center;
   padding: 1rem;
-  border-top: 1px solid #ddd;
+  border-top: 1px solid var(--footer-border);
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Alternativa: Si quieres mantener una imagen de fondo que funcione bien */
+.layout-container-with-image {
+  /* Fondo degradado que funciona bien en ambos modos */
+  background: linear-gradient(135deg, var(--background) 0%, var(--card-bg) 100%);
+  min-height: 100vh; 
+  display: flex;
+  flex-direction: column; 
+  transition: background 0.3s ease;
+}
+
+/* Para modo oscuro, un gradiente más sutil */
+body.dark .layout-container-with-image {
+  background: linear-gradient(135deg, var(--background) 0%, var(--card-bg) 100%);
+}
+
+/* Si decides usar una imagen decorativa, que sea sutil */
+.layout-container-subtle-pattern {
+  background-color: var(--background);
+  /* Patrón sutil que funciona en ambos modos */
+  background-image: 
+    radial-gradient(circle at 25% 25%, var(--card-bg) 2px, transparent 0),
+    radial-gradient(circle at 75% 75%, var(--card-bg) 2px, transparent 0);
+  background-size: 50px 50px;
+  min-height: 100vh; 
+  display: flex;
+  flex-direction: column; 
+  transition: background-color 0.3s ease;
 }
