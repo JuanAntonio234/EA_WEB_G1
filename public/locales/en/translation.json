@@ -33,7 +33,7 @@
     "appStoreAlt": "Download on the App Store"
   },
   "exploreRoutesPage": {
-    "title": "Explore routes & activities 🗺️",
+    "title": "Explore routes and activities 🗺️",
     "loading": "Loading available routes...",
     "noRoutes": "No routes or activities found at this time.",
     "error": "Error: Could not load routes.",
