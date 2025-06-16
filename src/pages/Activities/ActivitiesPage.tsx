@@ -20,23 +20,32 @@ const ActivitiesPage = () => {
         const data = await getActivitiesByUserId(userId, page, 4);
         console.log('Respuesta del backend:', data);
 
-        setActivities(prev => {
-          const existingIds = new Set(prev.map(a => a._id));
-          const newActivities = data.activities.filter(a => !existingIds.has(a._id));
-          return [...prev, ...newActivities];
-        });
+        if (data && Array.isArray(data.activities)) {
+          setActivities(prev => {
+            const existingIds = new Set(prev.map(a => a._id));
+            const newActivities = data.activities.filter(a => !existingIds.has(a._id));
+            return [...prev, ...newActivities];
+          });
 
-        setHasMore(data.currentPage < data.totalPages);
+          setHasMore(data.currentPage < data.totalPages);
+        } else {
+          setHasMore(false);
+          console.warn("La respuesta de la API no contiene un array de actividades en el formato esperado.", data);
+        }
+
       } catch (error) {
         console.error('Error fetching activities:', error);
+        setHasMore(false); 
       }
     },
     [userId, hasMore]
   );
 
   useEffect(() => {
-    fetchActivities(currentPage);
-  }, [fetchActivities, currentPage]);
+    if (userId) {
+      fetchActivities(currentPage);
+    }
+  }, [fetchActivities, currentPage, userId]);
 
   const lastItemRef = useCallback(
     (node: HTMLDivElement | null) => {
@@ -53,10 +62,21 @@ const ActivitiesPage = () => {
     [hasMore]
   );
 
+  if (!userId) {
+    return (
+      <div className={styles.container}>
+        <h1 className={styles.title}>Mis Actividades</h1>
+        <p>Por favor, inicia sesión para ver tus actividades.</p>
+      </div>
+    );
+  }
+
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>Mis Actividades</h1>
       <ActivityList activities={activities} lastItemRef={lastItemRef} showAuthorInfo={false}/>
+      {hasMore && <p>Cargando más...</p>}
+      {!hasMore && activities.length > 0 && <p>No hay más actividades para mostrar.</p>}
     </div>
   );
 };
