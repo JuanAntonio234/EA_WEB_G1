@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import './Navbar.css';
 import { useAuth } from '../../hooks/useAuth';
 import { useTranslation } from 'react-i18next';
+import SearchBar from '../SearchBar/SearchBar';
 import LanguageSwitcher from '../LanguageSwitcher/LanguageSwitcher';
 
 interface NavLink {
@@ -67,6 +68,9 @@ const Navbar: React.FC<NavbarProps> = ({ title, links, className }) => {
               {t(link.labelKey)}
             </Link>
           ))}
+        </div>
+        <div className="navbar-search">
+        <SearchBar />
         </div>
         <div className='navbar-controls-right'>
             <div className='navbar-darmode-toggle'>

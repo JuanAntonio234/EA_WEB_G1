@@ -9,45 +9,45 @@
   },
   "navbar": {
     "home": "Inici",
-    "exploreRoutes": "Explorar Rutes",
+    "exploreRoutes": "Explorar rutes",
     "about": "Sobre nosaltres",
-    "feed": "Feed d'Activitat",
-    "myProfile": "El Meu Perfil",
-    "myActivities": "Les Meves Activitats",
-    "myAchievements": "Els Meus Assoliments",
-    "settings": "Editar Perfil",
-    "logout": "Tancar Sessió",
-    "login": "Iniciar Sessió",
+    "feed": "Feed d'activitat",
+    "myProfile": "El meu perfil",
+    "myActivities": "Les meves activitats",
+    "myAchievements": "Els meus assoliments",
+    "settings": "Editar perfil",
+    "logout": "Tancar sessió",
+    "login": "Iniciar sessió",
     "signup": "Registrar-se"
   },
   "homePage": {
-    "welcomeMessage": "Benvingut a SportsTracker!",
+    "welcomeMessage": "Benvingut a TRAZER!",
     "introText": "Fes el seguiment de les teves curses, rutes en bicicleta i entrenaments. Registra on entrenes, guanya assoliments i uneix-te a una comunitat de gent activa!",
-    "featuresTitle": "Assoliments i Registre d'Activitats",
+    "featuresTitle": "Assoliments i registre d'activitats",
     "feature1": "Registra les teves activitats de córrer, ciclisme o altres amb seguiment de localització.",
     "feature2": "Guanya insígnies i assoliments a mesura que assoleixes noves fites.",
     "feature3": "Revisa les teves estadístiques i progrés al llarg del temps.",
     "mobileAppTitle": "Descarrega't l'aplicació ara i millora la teva rutina esportiva!",
-    "mobileAppText": "Porta SportsTracker amb tu a tot arreu. Descarrega la nostra aplicació per a:",
+    "mobileAppText": "Porta TRAZER amb tu a tot arreu. Descarrega la nostra aplicació per a:",
     "googlePlayAlt": "Disponible a Google Play",
     "appStoreAlt": "Descarregar a l'App Store"
   },
   "exploreRoutesPage": {
-    "title": "Explora Rutes i Activitats 🗺️",
+    "title": "Explora rutes i activitats 🗺️",
     "loading": "Carregant rutes disponibles...",
     "noRoutes": "No s'han trobat rutes o activitats disponibles.",
     "error": "Error: No s'han pogut carregar les rutes.",
     "pagination": "Pàgina {{currentPage}} de {{totalPages}}"
   },
   "achievementsPage": {
-    "title": "Els Meus Assoliments 🏆",
+    "title": "Els teus assoliments 🏆",
     "loading": "Carregant assoliments...",
     "noAchievements": "Encara no has desbloquejat cap assoliment. Continua esforçant-te! 💪",
     "error": "Error: No s'han pogut carregar els assoliments.",
     "errorUserNotAuthenticated": "Has d'iniciar sessió per veure els teus assoliments."
   },
   "activityCard": {
-    "detailsButton": "Veure Detalls",
+    "detailsButton": "Veure detalls",
     "distance": "Distància",
     "duration": "Durada",
     "elevation": "Desnivell",
@@ -59,7 +59,7 @@
   },
   "activityDetailPage": {
     "backButton": "Enrere",
-    "startRouteButton": "Començar Aquesta Ruta",
+    "startRouteButton": "Començar aquesta ruta",
     "loading": "Carregant detalls de la ruta...",
     "errorDefault": "No s'han pogut carregar els detalls de l'activitat.",
     "notFound": "No s'han trobat detalls per a aquesta ruta.",
@@ -67,13 +67,13 @@
     "routeInfoTitle": "Ruta (Punts GPS)",
     "routePointsInfo": "Aquesta ruta té {{count}} punts GPS.",
     "noRoutePoints": "No hi ha informació detallada de punts GPS per a aquesta ruta.",
-    "playlistTitle": "Playlist de Música",
-    "mapPlaceholder": "Visualització del Mapa (Pendent d'Implementar)",
+    "playlistTitle": "Llista de música",
+    "mapPlaceholder": "Visualització del mapa (Pendent d'implementar)",
     "distance": "Distància",
     "duration": "Durada",
-    "elevationGain": "Desnivell Positiu",
-    "avgSpeed": "Velocitat Mitja",
-    "caloriesBurned": "Calories Cremades",
+    "elevationGain": "Desnivell positiu",
+    "avgSpeed": "Velocitat mitja",
+    "caloriesBurned": "Calories cremades",
     "startTime": "Inici",
     "endTime": "Fi",
     "createdBy": "Creat per"
@@ -104,23 +104,23 @@
     "noFollowers": "Encara no tens seguidors.",
     "followingSectionTitle": "Seguint",
     "noFollowing": "No segueixes a ningú encara.",
-    "viewActivityFeedButton": "Veure Feed d'Activitat"
+    "viewActivityFeedButton": "Veure feed d'activitats"
   },
   "editProfilePage": {
-    "title": "Editar Perfil",
+    "title": "Editar perfil",
     "loadingUser": "Carregant dades de l'usuari...",
     "usernameLabel": "Nom d'usuari",
     "emailLabel": "Correu Electrònic (no editable)",
     "bioLabel": "Biografia",
-    "saveChangesButton": "Desar Canvis",
+    "saveChangesButton": "Desar canvis",
     "savingChanges": "Desant canvis...",
     "profileUpdatedSuccess": "Perfil actualitzat correctament!",
     "profileUpdatedError": "Error en actualitzar el perfil.",
     "errorNoUser": "No s'han pogut carregar les dades de l'usuari per editar.",
-    "goBackToProfile": "Tornar al Perfil"
+    "goBackToProfile": "Tornar al perfil"
   },
   "feedPage": {
-    "title": "Activitat dels Usuaris que Segueixes",
+    "title": "Activitat dels usuaris que segueixes",
     "loading": "Carregant activitats...",
     "noActivities": "Encara no hi ha activitat dels usuaris que segueixes.",
     "error": "Error en carregar les activitats del feed.",
@@ -131,5 +131,8 @@
     "notLoggedIn": "Has d'iniciar sessió per veure les teves activitats.",
     "noMoreActivities": "No hi ha més activitats per mostrar.",
     "noActivitiesFound": "No tens cap activitat registrada encara."
+  },
+   "footer": {
+    "allRightsReserved": "Tots els drets reservats"
   }
 }

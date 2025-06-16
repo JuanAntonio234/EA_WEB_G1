@@ -9,49 +9,49 @@
   },
   "navbar": {
     "home": "Home",
-    "exploreRoutes": "Explore Routes",
-    "about": "About Us",
-    "feed": "Activity Feed",
-    "myProfile": "My Profile",
-    "myActivities": "My Activities",
-    "myAchievements": "My Achievements",
-    "settings": "Edit Profile",
-    "logout": "Log Out",
-    "login": "Log In",
-    "signup": "Sign Up"
+    "exploreRoutes": "Explore routes",
+    "about": "About us",
+    "feed": "Activity feed",
+    "myProfile": "My profile",
+    "myActivities": "My activities",
+    "myAchievements": "My achievements",
+    "settings": "Edit profile",
+    "logout": "Log out",
+    "login": "Log in",
+    "signup": "Sign up"
   },
   "homePage": {
-    "welcomeMessage": "Welcome to SportsTracker!",
+    "welcomeMessage": "Welcome to TRAZER!",
     "introText": "Track your runs, rides, and workouts. Log where you train, earn achievements, and join a community of active people!",
-    "featuresTitle": "Achievements & Activity Logging",
+    "featuresTitle": "Achievements & activity logging",
     "feature1": "Register your running, cycling, or other activities with location tracking.",
     "feature2": "Earn badges and achievements as you reach new milestones.",
     "feature3": "Review your stats and progress over time.",
     "mobileAppTitle": "Download the app now and improve your sports routine!",
-    "mobileAppText": "Take SportsTracker with you everywhere. Download our app for:",
+    "mobileAppText": "Take TRAZER with you everywhere. Download our app for:",
     "googlePlayAlt": "Get it on Google Play",
     "appStoreAlt": "Download on the App Store"
   },
   "exploreRoutesPage": {
-    "title": "Explore Routes & Activities 🗺️",
+    "title": "Explore routes & activities 🗺️",
     "loading": "Loading available routes...",
     "noRoutes": "No routes or activities found at this time.",
     "error": "Error: Could not load routes.",
     "pagination": "Page {{currentPage}} of {{totalPages}}"
   },
   "achievementsPage": {
-    "title": "My Achievements 🏆",
+    "title": "Your achievements 🏆",
     "loading": "Loading achievements...",
     "noAchievements": "You haven't unlocked any achievements yet. Keep pushing! 💪",
     "error": "Error: Could not load achievements.",
     "errorUserNotAuthenticated": "You must be logged in to view your achievements."
   },
   "activityCard": {
-    "detailsButton": "View Details",
+    "detailsButton": "View details",
     "distance": "Distance",
     "duration": "Duration",
     "elevation": "Elevation",
-    "avgSpeed": "Avg. Speed",
+    "avgSpeed": "Avg. speed",
     "createdBy": "Created by",
     "startTime": "Start",
     "endTime": "End",
@@ -59,7 +59,7 @@
   },
   "activityDetailPage": {
     "backButton": "Back",
-    "startRouteButton": "Start This Route",
+    "startRouteButton": "Start this route",
     "loading": "Loading route details...",
     "errorDefault": "Could not load activity details.",
     "notFound": "Details for this route were not found.",
@@ -67,13 +67,13 @@
     "routeInfoTitle": "Route (GPS Points)",
     "routePointsInfo": "This route has {{count}} GPS points.",
     "noRoutePoints": "No detailed GPS point information for this route.",
-    "playlistTitle": "Music Playlist",
-    "mapPlaceholder": "Map View (Implementation Pending)",
+    "playlistTitle": "Music playlist",
+    "mapPlaceholder": "Map view (Implementation pending)",
     "distance": "Distance",
     "duration": "Duration",
-    "elevationGain": "Elevation Gain",
-    "avgSpeed": "Average Speed",
-    "caloriesBurned": "Calories Burned",
+    "elevationGain": "Elevation gain",
+    "avgSpeed": "Average speed",
+    "caloriesBurned": "Calories burned",
     "startTime": "Start",
     "endTime": "End",
     "createdBy": "Created by"
@@ -104,23 +104,23 @@
     "noFollowers": "You have no followers yet.",
     "followingSectionTitle": "Following",
     "noFollowing": "You are not following anyone yet.",
-    "viewActivityFeedButton": "View Followed Activity Feed"
+    "viewActivityFeedButton": "View followed activity feed"
   },
   "editProfilePage": {
-    "title": "Edit Profile",
+    "title": "Edit profile",
     "loadingUser": "Loading user data...",
     "usernameLabel": "Username",
     "emailLabel": "Email (not editable)",
     "bioLabel": "Biography",
-    "saveChangesButton": "Save Changes",
+    "saveChangesButton": "Save changes",
     "savingChanges": "Saving changes...",
     "profileUpdatedSuccess": "Profile updated successfully!",
     "profileUpdatedError": "Error updating profile.",
     "errorNoUser": "Could not load user data for editing.",
-    "goBackToProfile": "Back to Profile"
+    "goBackToProfile": "Back to profile"
   },
   "feedPage": {
-    "title": "Activity from Users You Follow",
+    "title": "Activity from uers you follow",
     "loading": "Loading activities...",
     "noActivities": "No activity from users you follow yet.",
     "error": "Error loading feed activities.",
@@ -131,5 +131,8 @@
     "notLoggedIn": "You must be logged in to view your activities.",
     "noMoreActivities": "No more activities to show.",
     "noActivitiesFound": "You have no activities recorded yet."
+  },
+   "footer": {
+    "allRightsReserved": "All rights reserved."
   }
 }
