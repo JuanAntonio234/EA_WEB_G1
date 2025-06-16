@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { Activity, ReferencePoint, AuthorInfo, Song } from '../../types/activityTypes';
 import { getActivityDetailsById } from '../../services/activityService';
 import styles from './ActivityDetailPage.module.css';
 
 const ActivityDetailPage: React.FC = () => {
+  const { t } = useTranslation();
   const { activityId } = useParams<{ activityId: string }>();
   const navigate = useNavigate();
   const [activity, setActivity] = useState<Activity | null>(null);
@@ -13,7 +15,7 @@ const ActivityDetailPage: React.FC = () => {
 
   useEffect(() => {
     if (!activityId) {
-      setError('No s\'ha proporcionat un ID d\'activitat vàlid.');
+      setError(t('activityDetailPage.errorDefault'));
       setIsLoading(false);
       return;
     }
@@ -25,7 +27,7 @@ const ActivityDetailPage: React.FC = () => {
         const data = await getActivityDetailsById(activityId);
         setActivity(data);
       } catch (err: any) {
-        const errorMessage = err.response?.data?.message || err.message || 'No s\'ha pogut carregar els detalls de l\'activitat.';
+        const errorMessage = err.response?.data?.message || err.message || t('activityDetailPage.errorDefault');
         setError(errorMessage);
       } finally {
         setIsLoading(false);
@@ -33,7 +35,7 @@ const ActivityDetailPage: React.FC = () => {
     };
 
     fetchActivityDetail();
-  }, [activityId]);
+  }, [activityId, t]);
 
   const formatDuration = (minutes: number): string => {
     if (isNaN(minutes) || minutes === null || minutes === undefined) return '-';
@@ -50,57 +52,82 @@ const ActivityDetailPage: React.FC = () => {
     return `${(meters / 1000).toFixed(2)} km`;
   };
 
-   const formatSpeed = (speedKmh: number): string => {
+  const formatSpeed = (speedKmh: number): string => {
     if (isNaN(speedKmh) || speedKmh === null || speedKmh === undefined) return '-';
     return `${speedKmh.toFixed(1)} km/h`;
-  }
+  };
 
   const handleStartRoute = () => {
     if (!activity) return;
-    alert(`Funcionalitat "Començar ruta ${activity.name}" encara no implementada.`);
+    // TODO: Implementar funcionalidad de iniciar ruta
+    alert(t('activityDetailPage.startRouteButton') + `: ${activity.name}`);
   };
 
   const handleShare = async () => {
-  const shareUrl = window.location.href; // Obtenir l'enllaç actual de la pàgina web
+    const shareUrl = window.location.href;
 
-  if (navigator.share) {
-    // Comprovar que el Web Share API està suportat
-    try {
-      await navigator.share({
-        title: activity?.name || 'Ruta',
-        text: 'Mira aquesta ruta!',
-        url: shareUrl,
-      });
-    } catch (err) {
-      alert('No s\'ha pogut compartir la ruta.');
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: activity?.name || t('activityDetailPage.routeInfoTitle'),
+          text: t('activityDetailPage.routeInfoTitle'),
+          url: shareUrl,
+        });
+      } catch (err) {
+        alert(t('activityDetailPage.errorDefault'));
+      }
+    } else if (navigator.clipboard) {
+      try {
+        await navigator.clipboard.writeText(shareUrl);
+        alert(t('general.linkCopied', 'Link copied to clipboard!'));
+      } catch (err) {
+        alert(t('activityDetailPage.errorDefault'));
+      }
+    } else {
+      window.prompt(t('general.copyLink', 'Copy this link:'), shareUrl);
     }
-  } else if (navigator.clipboard) {
-    // Fallback: copiar l'enllaç al porta-retalls
-    try {
-      await navigator.clipboard.writeText(shareUrl);
-      alert('Enllaç copiat al porta-retalls!');
-    } catch (err) {
-      alert('No s\'ha pogut copiar l\'enllaç.');
-    }
-  } else {
-    // Fallback for very old browsers
-    window.prompt('Copia aquest enllaç:', shareUrl);
-  }
-};
+  };
 
-  
-  const authorUsername = activity && typeof activity.author === 'object' ? (activity.author as AuthorInfo).username : 'Desconegut';
+  const authorUsername = activity && typeof activity.author === 'object' 
+    ? (activity.author as AuthorInfo).username 
+    : t('activityCard.unknownAuthor');
 
   if (isLoading) {
-    return <div className={styles.messageContainer}>Carregant detalls de la ruta...</div>;
+    return (
+      <div className={styles.pageContainer}>
+        <div className={styles.messageContainer}>
+          {t('activityDetailPage.loading')}
+        </div>
+      </div>
+    );
   }
 
   if (error) {
-    return <div className={`${styles.messageContainer} ${styles.error}`}>Error: {error} <Link to="/explore-routes">Tornar a explorar</Link></div>;
+    return (
+      <div className={styles.pageContainer}>
+        <div className={`${styles.messageContainer} ${styles.error}`}>
+          {error}
+          <br />
+          <Link to="/explore-routes" className={styles.linkButton}>
+            {t('activityDetailPage.returnToExplore')}
+          </Link>
+        </div>
+      </div>
+    );
   }
 
   if (!activity) {
-    return <div className={styles.messageContainer}>No s'han trobat detalls per a aquesta ruta. <Link to="/explore-routes">Tornar a explorar</Link></div>;
+    return (
+      <div className={styles.pageContainer}>
+        <div className={styles.messageContainer}>
+          {t('activityDetailPage.notFound')}
+          <br />
+          <Link to="/explore-routes" className={styles.linkButton}>
+            {t('activityDetailPage.returnToExplore')}
+          </Link>
+        </div>
+      </div>
+    );
   }
 
   const startDate = activity.startTime ? new Date(activity.startTime) : null;
@@ -109,52 +136,92 @@ const ActivityDetailPage: React.FC = () => {
 
   return (
     <div className={styles.pageContainer}>
-      <button onClick={() => navigate(-1)} className={styles.backButton}>&larr; Enrere</button>
-      <h1 className={styles.activityTitle}>{activity.name}</h1>
-      <div className={styles.activityMeta}>
-        <span className={`${styles.metaItem} ${styles.activityType}`}>{activity.type.toUpperCase()}</span>
-        <span className={styles.metaItem}>Creat per: <strong>{authorUsername}</strong></span>
-        {startDate && <span className={styles.metaItem}><strong>Inici:</strong> {startDate.toLocaleString()}</span>}
-        {endDate && <span className={styles.metaItem}><strong>Fi:</strong> {endDate.toLocaleString()}</span>}
-      </div>
-
-      <div className={styles.detailsGrid}>
-        <div className={styles.detailItem}><strong>Distància:</strong> {formatDistance(activity.distance)}</div>
-        <div className={styles.detailItem}><strong>Durada:</strong> {formatDuration(activity.duration)}</div>
-        <div className={styles.detailItem}><strong>Desnivell Positiu:</strong> {activity.elevationGain?.toFixed(0) || '-'} m</div>
-        <div className={styles.detailItem}><strong>Velocitat Mitja:</strong> {formatSpeed(activity.averageSpeed)}</div>
-        {activity.caloriesBurned !== undefined && <div className={styles.detailItem}><strong>Calories Cremades:</strong> {activity.caloriesBurned.toFixed(0)} kcal</div>}
-      </div>
+      <button onClick={() => navigate(-1)} className={styles.backButton}>
+        &larr; {t('activityDetailPage.backButton')}
+      </button>
       
-      <div className={styles.section}>
-        <h2>Ruta (Punts GPS)</h2>
-        {routePoints && routePoints.length > 0 ? (
-          <>
-            <div className={styles.mapReferencePointsCounter}>Aquesta ruta té {routePoints.length} punts GPS.</div>
-            <div className={styles.mapPlaceholder}>Visualització del Mapa (Pendent d'Implementar)</div>
-          </>
-        ) : (
-          <p>No hi ha informació detallada de punts GPS per a aquesta ruta.</p>
+      <h1 className={styles.activityTitle}>{activity.name}</h1>
+      
+      <div className={styles.activityMeta}>
+        <span className={`${styles.metaItem} ${styles.activityType}`}>
+          {activity.type.toUpperCase()}
+        </span>
+        <span className={styles.metaItem}>
+          {t('activityDetailPage.createdBy')}: <strong>{authorUsername}</strong>
+        </span>
+        {startDate && (
+          <span className={styles.metaItem}>
+            <strong>{t('activityDetailPage.startTime')}:</strong> {startDate.toLocaleString()}
+          </span>
+        )}
+        {endDate && (
+          <span className={styles.metaItem}>
+            <strong>{t('activityDetailPage.endTime')}:</strong> {endDate.toLocaleString()}
+          </span>
         )}
       </div>
 
-      {activity.musicPlaylist && Array.isArray(activity.musicPlaylist) && (activity.musicPlaylist as Song[]).length > 0 && (
+      <div className={styles.detailsGrid}>
+        <div className={styles.detailItem}>
+          <strong>{t('activityDetailPage.distance')}:</strong> {formatDistance(activity.distance)}
+        </div>
+        <div className={styles.detailItem}>
+          <strong>{t('activityDetailPage.duration')}:</strong> {formatDuration(activity.duration)}
+        </div>
+        <div className={styles.detailItem}>
+          <strong>{t('activityDetailPage.elevationGain')}:</strong> {activity.elevationGain?.toFixed(0) || '-'} m
+        </div>
+        <div className={styles.detailItem}>
+          <strong>{t('activityDetailPage.avgSpeed')}:</strong> {formatSpeed(activity.averageSpeed)}
+        </div>
+        {activity.caloriesBurned !== undefined && (
+          <div className={styles.detailItem}>
+            <strong>{t('activityDetailPage.caloriesBurned')}:</strong> {activity.caloriesBurned.toFixed(0)} kcal
+          </div>
+        )}
+      </div>
+      
+      <div className={styles.section}>
+        <h2>{t('activityDetailPage.routeInfoTitle')}</h2>
+        {routePoints && routePoints.length > 0 ? (
+          <>
+            <div className={styles.mapReferencePointsCounter}>
+              {t('activityDetailPage.routePointsInfo', { count: routePoints.length })}
+            </div>
+            <div className={styles.mapPlaceholder}>
+              {t('activityDetailPage.mapPlaceholder')}
+            </div>
+          </>
+        ) : (
+          <p>{t('activityDetailPage.noRoutePoints')}</p>
+        )}
+      </div>
+
+      {activity.musicPlaylist && 
+       Array.isArray(activity.musicPlaylist) && 
+       (activity.musicPlaylist as Song[]).length > 0 && (
         <div className={styles.section}>
-          <h2>Playlist de Música</h2>
-          <ul>
-            {(activity.musicPlaylist as Song[]).filter(song => typeof song === 'object' && song._id && song.title).map(song => (
-              <li key={song._id}>{song.title} {song.artist && `- ${song.artist}`}</li>
-            ))}
+          <h2>{t('activityDetailPage.playlistTitle')}</h2>
+          <ul className={styles.playlistList}>
+            {(activity.musicPlaylist as Song[])
+              .filter(song => typeof song === 'object' && song._id && song.title)
+              .map(song => (
+                <li key={song._id} className={styles.playlistItem}>
+                  {song.title} {song.artist && `- ${song.artist}`}
+                </li>
+              ))}
           </ul>
         </div>
       )}
 
-      <button onClick={handleStartRoute} className={styles.startRouteButton}>
-        Començar aquesta ruta
-      </button>
-      <button onClick={handleShare} className={styles.startRouteButton}>
-        Compartir
-      </button>
+      <div className={styles.actionButtons}>
+        <button onClick={handleStartRoute} className={styles.startRouteButton}>
+          {t('activityDetailPage.startRouteButton')}
+        </button>
+        <button onClick={handleShare} className={styles.shareButton}>
+          {t('general.share', 'Share')}
+        </button>
+      </div>
     </div>
   );
 };
