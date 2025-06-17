@@ -1,0 +1,54 @@
+/* Estilos mejorados para LanguageSwitcher.module.css */
+/* Reemplaza el contenido de tu archivo LanguageSwitcher.module.css con esto: */
+
+.languageSwitcherContainer {
+  display: inline-flex;
+  align-items: center;
+}
+
+.selectElement {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--button-light-border);
+  background-color: var(--button-light-bg);
+  color: var(--button-light-text);
+  cursor: pointer;
+  font-size: 0.9em;
+  min-width: 120px;
+  height: 40px;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.selectElement:hover {
+  background-color: var(--button-light-hover);
+  border-color: var(--primary-color);
+}
+
+.selectElement:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+  border-color: var(--primary-color);
+}
+
+/* Para modo oscuro */
+:global(body.dark) .selectElement {
+  background-color: var(--button-light-bg);
+  color: var(--button-light-text);
+  border-color: var(--button-light-border);
+}
+
+:global(body.dark) .selectElement:hover {
+  background-color: var(--button-light-hover);
+}
+
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}

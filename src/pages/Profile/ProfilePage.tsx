@@ -1,103 +1,257 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useEffect, useState, useCallback } from 'react';
+import { Link, useParams, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import styles from './ProfilePage.module.css';
-import { getUserById } from '../../services/userService';
+import { 
+  getUserById, 
+  getUserFollowers, 
+  getUserFollowing,
+  checkFollowStatus,
+  followUser,
+  unfollowUser 
+} from '../../services/userService';
 import { getAchievementById } from '../../services/achievementService';
 import { getChallengeById } from '../../services/challengeService';
 import { User } from '../../types/userTypes';
 import { Achievement } from '../../types/achievementTypes';
 import { Challenge } from '../../types/challengeTypes';
+import { useAuth } from '../../hooks/useAuth';
 
 const ProfilePage: React.FC = () => {
-  function capitalizeFirst(str: string) {
-    return str.charAt(0).toUpperCase() + str.slice(1);
-}
+  const { t, i18n } = useTranslation();
   const { iduser } = useParams<{ iduser: string }>();
-  const [user, setUser] = useState<User | null>(null);
+  const navigate = useNavigate();
+  const { user: loggedInUser } = useAuth();
+
+  const [profileUser, setProfileUser] = useState<User | null>(null);
   const [achievements, setAchievements] = useState<Achievement[]>([]);
   const [challenges, setChallenges] = useState<Challenge[]>([]);
+  const [followers, setFollowers] = useState<User[]>([]);
+  const [following, setFollowing] = useState<User[]>([]);
+  const [isFollowing, setIsFollowing] = useState(false);
+  const [followerCount, setFollowerCount] = useState(0);
+  const [isFollowLoading, setIsFollowLoading] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    const fetchProfile = async () => {
-      setLoading(true);
-      try {
-        const userData = await getUserById(iduser!);
-        setUser(userData);
+  const isMyProfile = loggedInUser && loggedInUser.id === iduser;
 
-        // Only fetch first 3 achievements
+  const capitalizeFirst = (str: string | undefined) => {
+    if (!str) return '';
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  };
+
+  const fetchProfile = useCallback(async () => {
+    if (!iduser) {
+      setError(t('profilePage.notFound'));
+      setLoading(false);
+      return;
+    }
+
+    setLoading(true);
+    setError(null);
+
+    try {
+      const userData = await getUserById(iduser);
+      setProfileUser(userData);
+      setFollowerCount(userData.followersCount || 0);
+
+      if (loggedInUser && loggedInUser.id !== iduser) {
+        const followStatus = await checkFollowStatus(loggedInUser.id, iduser);
+        setIsFollowing(followStatus.isFollowing);
+      }
+      
+      if (isMyProfile) {
+        const [followersData, followingData] = await Promise.all([
+          getUserFollowers(iduser),
+          getUserFollowing(iduser),
+        ]);
+        setFollowers(followersData);
+        setFollowing(followingData);
+      }
+
+      if (userData?.achievements?.length) {
         const achievementIds = userData.achievements.slice(0, 3);
         const achievementPromises = achievementIds.map(id => getAchievementById(id));
-        const achievementData = await Promise.all(achievementPromises);
-
-        // Only fetch first 3 challenges
+        setAchievements(await Promise.all(achievementPromises));
+      } else {
+        setAchievements([]);
+      }
+      
+      if (userData?.challengesCompleted?.length) {
         const challengeIds = userData.challengesCompleted.slice(0, 3);
         const challengePromises = challengeIds.map(id => getChallengeById(id));
-        const challengeData = await Promise.all(challengePromises);
-
-        setAchievements(achievementData);
-        setChallenges(challengeData);
-      } catch (err) {
-        setUser(null);
+        setChallenges(await Promise.all(challengePromises));
+      } else {
+        setChallenges([]);
       }
-      setLoading(false);
-    };
-    if (iduser) fetchProfile();
-  }, [iduser]);
 
-  if (loading) return <div className={styles.profileContainer}>Loading...</div>;
-  if (!user) return <div className={styles.profileContainer}>User not found</div>;
+    } catch (err) {
+      setError(t('profilePage.notFound'));
+    } finally {
+      setLoading(false);
+    }
+  }, [iduser, t, loggedInUser, isMyProfile]);
+
+  useEffect(() => {
+    fetchProfile();
+  }, [fetchProfile]);
+  
+  const handleFollowToggle = async () => {
+    if (!loggedInUser || !profileUser || isMyProfile || isFollowLoading) return;
+
+    setIsFollowLoading(true);
+    try {
+      if (isFollowing) {
+        await unfollowUser(loggedInUser.id, profileUser._id);
+        setIsFollowing(false);
+        setFollowerCount(prev => prev - 1);
+      } else {
+        await followUser(loggedInUser.id, profileUser._id);
+        setIsFollowing(true);
+        setFollowerCount(prev => prev + 1);
+      }
+    } catch (err) {
+    } finally {
+      setIsFollowLoading(false);
+    }
+  };
+
+  if (loading) return <div className={styles.profileContainer}><p>{t('profilePage.loading')}</p></div>;
+  if (error || !profileUser) return <div className={styles.profileContainer}><p>{error || t('profilePage.notFound')}</p></div>;
 
   return (
     <div className={styles.profileContainer}>
-      <h1 className={styles.profileTitle}>Perfil de {user.username}</h1>
+      <h1 className={styles.profileTitle}>{t('profilePage.title', { username: profileUser.username })}</h1>
+      
       <div className={styles.profileHeader}>
         <img
-          src={user.profilePicture || '/default-profile.png'}
-          alt="Profile"
+          src={profileUser.profilePicture || '/default-profile.png'}
+          alt={profileUser.username}
           className={styles.profileIcon}
         />
         <div className={styles.profileInfo}>
-          <p><strong>Nivell:</strong> {user.level}</p>
-          <p><strong>Biografia:</strong> {user.bio || '-'}</p>
-          <p><strong>Distància total:</strong> {user.totalDistance} km</p>
-          <p><strong>Temps total:</strong> {user.totalTime} hrs</p>
+          <p><strong>{t('profilePage.level')}:</strong> {profileUser.level}</p>
+          <p><strong>{t('profilePage.bio')}:</strong> {profileUser.bio || '-'}</p>
+          <p><strong>{followerCount}</strong> {t('profilePage.followers')} | <strong>{profileUser.followingCount || 0}</strong> {t('profilePage.following')}</p>
+          
+          <div className={styles.profileActions}>
+            {isMyProfile ? (
+              <>
+                <button onClick={() => navigate('/profile/edit')} className={styles.editProfileButton}>
+                  {t('navbar.settings')} 
+                </button>
+                <button onClick={() => navigate('/feed')} className={styles.feedButton}>
+                  {t('navbar.feed')}
+                </button>
+              </>
+            ) : (
+              loggedInUser && (
+                <button 
+                  onClick={handleFollowToggle} 
+                  className={isFollowing ? styles.unfollowButton : styles.followButton}
+                  disabled={isFollowLoading}
+                >
+                  {isFollowLoading ? t('general.loading') : (isFollowing ? t('profilePage.unfollow') : t('profilePage.follow'))}
+                </button>
+              )
+            )}
+          </div>
         </div>
       </div>
+
+      {isMyProfile && (
+        <div className={styles.followStatsContainer}>
+          <section className={styles.followersSection}>
+            <h3>{t('profilePage.followersSectionTitle')} ({followers.length})</h3>
+            {followers.length === 0 ? (
+              <p>{t('profilePage.noFollowers')}</p>
+            ) : (
+              <ul style={{ listStyleType: 'none', margin: 0, padding: 0 }}>
+                {followers.map(follower => (
+                  <li key={follower._id} style={{ marginBottom: '8px' }}>
+                    <Link to={`/profile/${follower._id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                      {follower.username}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </section>
+
+          <section className={styles.followingSection}>
+            <h3>{t('profilePage.followingSectionTitle')} ({following.length})</h3>
+            {following.length === 0 ? (
+              <p>{t('profilePage.noFollowing')}</p>
+            ) : (
+              <ul style={{ listStyleType: 'none', margin: 0, padding: 0 }}>
+                {following.map(follow => (
+                  <li key={follow._id} style={{ marginBottom: '8px' }}>
+                    <Link to={`/profile/${follow._id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                      {follow.username}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </section>
+        </div>
+      )}
+      
       <section className={styles.achievementsSection}>
-        <h3>Assoliments</h3>
-        {achievements.length === 0 && <p>Cap assoliment encara.</p>}
+        <div className={styles.sectionHeader}>
+          <h3>
+            <Link to="/my-achievements" className={styles.sectionTitleLink}>
+              {t('profilePage.achievementsSectionTitle')}
+            </Link>
+          </h3>
+          {isMyProfile && achievements.length > 0 && (
+            <Link to="/my-achievements" className={styles.viewAllLink}>
+              {t('profilePage.viewAllAchievements')}
+            </Link>
+          )}
+        </div>
+        {achievements.length === 0 && <p>{t('profilePage.noAchievements')}</p>}
         <ul className={styles.achievementsList}>
         {achievements.map(a => (
           <li key={a._id} className={styles.achievementCard}>
-            <img
-              src={`/achievement-icons/${a.icon}`}
-              alt={a.title}
-              className={styles.achievementIcon}
-            />
+            {a.icon ? (
+             <img
+                src={a.icon.startsWith('http') ? a.icon : `/achievement-icons/${a.icon}.png`}
+                alt={a.title}
+                className={styles.achievementIcon}
+                onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+             />
+            ) : (
+             <span className={styles.achievementIconFallback}>🏆</span>
+            )}
             <div>
               <strong>{a.title}</strong> - {a.description}
               <br />
-              <small>Dificultat: {capitalizeFirst(a.difficulty)}, Punts: {a.points}</small>
+              <small>{t('profilePage.difficulty')}: {capitalizeFirst(a.difficulty)}, {t('profilePage.points')}: {a.points}</small>
             </div>
           </li>
         ))}
-      </ul>
+        </ul>
+        {isMyProfile && achievements.length === 0 && (
+          <Link to="/my-achievements" className={styles.viewAllLink}>{t('profilePage.consultAchievements')}</Link>
+        )}
       </section>
+      
       <section className={styles.challengesSection}>
-        <h3>Reptes completats</h3>
-        {challenges.length === 0 && <p>Cap repte completat.</p>}
+        <h3>{t('profilePage.challengesSectionTitle')}</h3>
+        {challenges.length === 0 && <p>{t('profilePage.noChallenges')}</p>}
         <ul className={styles.challengesList}>
           {challenges.map(c => (
             <li key={c._id} className={styles.challengeCard}>
               <strong>{c.title}</strong> - {c.description}
               <br />
               <small>
-                Objectiu: {c.goalType} - {c.goalValue}, Recompensa: {c.reward}
+                {t('profilePage.goal')}: {c.goalType} - {c.goalValue}, {t('profilePage.reward')}: {c.reward}
                 <br />
                 {c.startDate && c.endDate && (
                   <>
-                    Des de: {new Date(c.startDate).toLocaleDateString()} fins {new Date(c.endDate).toLocaleDateString()}
+                    {t('profilePage.dateRange', { startDate: new Date(c.startDate).toLocaleDateString(i18n.language), endDate: new Date(c.endDate).toLocaleDateString(i18n.language) })}
                   </>
                 )}
               </small>

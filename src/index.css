@@ -1,71 +1,345 @@
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap');
+
 :root {
+  /* Colores base para modo claro */
   --background: #eaf1ec;
   --card-bg: #fff;
+  --card-bg-secondary: #f8f9fa;
   --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   --primary: #1a6d3d;
   --primary-hover: #14512e;
+  --primary-color: #007bff;
+  --primary-color-dark: #0056b3;
   --text-main: #222;
   --text-light: #444;
+  --text-secondary: #6c757d;
   --border: #e0e0e0;
+  --border-color: #ccc;
 
+  /* Navbar */
   --navbar-bg: #f1f1f1;
   --navbar-text: #444;
-  --navbar-link-hover: #000000;
+  --navbar-link-hover: #989898;
 
+  /* Botones */
   --button-primary-bg: #00d1b2;
   --button-primary-bg-hover: #00b89c;
   --button-light-bg: #f5f5f5;
   --button-light-text: #363636;
   --button-light-border: #dbdbdb;
   --button-light-hover: #e8e8e8;
+  --secondary-button-bg: #6c757d;
+  --secondary-button-text: white;
+  --secondary-button-hover-bg: #5a6268;
 
+  /* Dropdown */
   --dropdown-bg: #fff;
   --dropdown-text: #000;
   --dropdown-hover: #f5f5f5;
   --avatar-bg: #666;
   --avatar-text: #fff;
 
+  /* Footer */
   --footer-bg: #f1f1f1;
   --footer-text: #444;
   --footer-border: #ddd;
 
+  /* Actividades */
   --activity-card-bg: #fff;
   --activity-card-text: #222;
   --activity-type-color: #4b5563;
+
+  /* Búsqueda */
+  --search-bg: #fff;
+  --search-text: #000;
+  --search-border: #ccc;
+  --search-result-hover: #f0f0f0;
+
+  /* Input/Forms */
+  --input-bg: #fff;
+  --input-text: #333;
+  --input-disabled-bg: #e9ecef;
+  --input-disabled-text: #6c757d;
+
+  /* Perfiles */
+  --profile-border: #e0e0e0;
+  --profile-bg: #f8f9fa;
+
+  /* Estados */
+  --success-bg-light: #d4edda;
+  --success-text-dark: #155724;
+  --success-border-light: #c3e6cb;
+  --danger-bg-light: #f8d7da;
+  --danger-text-dark: #721c24;
+  --danger-border-light: #f5c6cb;
+  --info-color: #17a2b8;
+  --info-color-dark: #117a8b;
+
+  /* Listas de seguidores */
+  --follower-card-bg: #ffffff;
+  --follower-card-border: #e9ecef;
+  --follower-card-hover: #f8f9fa;
+  --follower-text-primary: #212529;
+  --follower-text-secondary: #6c757d;
+  --follower-button-bg: #007bff;
+  --follower-button-hover: #0056b3;
+  --follower-count-bg: #f8f9fa;
+  --follower-count-text: #495057;
 }
 
+/* MODO OSCURO */
 body.dark {
+  /* Colores base para modo oscuro */
   --background: #151a19;
   --card-bg: #1e2423;
+  --card-bg-secondary: #232a29;
   --card-shadow: 0 2px 12px rgba(0,0,0,0.28);
   --primary: #4fd18b;
   --primary-hover: #2a7c4e;
+  --primary-color: #4dabf7;
+  --primary-color-dark: #339af0;
   --text-main: #f3f3f3;
   --text-light: #bdbdbd;
+  --text-secondary: #adb5bd;
   --border: #333;
+  --border-color: #495057;
 
+  /* Navbar */
   --navbar-bg: #181c1b;
   --navbar-text: #eaf1ec;
-  --navbar-link-hover: #222;
+  --navbar-link-hover: #686868;
 
+  /* Botones */
   --button-primary-bg: #1f7547;
   --button-primary-bg-hover: #114427;
   --button-light-bg: #232a29;
   --button-light-text: #eaf1ec;
   --button-light-border: #333;
-  --button-light-hover: #222;
+  --button-light-hover: #2c3e50;
+  --secondary-button-bg: #495057;
+  --secondary-button-text: #f8f9fa;
+  --secondary-button-hover-bg: #6c757d;
 
+  /* Dropdown */
   --dropdown-bg: #232a29;
   --dropdown-text: #eaf1ec;
-  --dropdown-hover: #222;
-  --avatar-bg: #222;
+  --dropdown-hover: #2c3e50;
+  --avatar-bg: #495057;
   --avatar-text: #eaf1ec;
 
+  /* Footer */
   --footer-bg: #232a29;
   --footer-text: #bdbdbd;
-  --footer-border: #333;
+  --footer-border: #495057;
 
-   --activity-card-bg: #1e2423;
+  /* Actividades */
+  --activity-card-bg: #1e2423;
   --activity-card-text: #f3f3f3;
   --activity-type-color: #bdbdbd;
+
+  /* Búsqueda */
+  --search-bg: #2c3e50;
+  --search-text: #f8f9fa;
+  --search-border: #495057;
+  --search-result-hover: #34495e;
+
+  /* Input/Forms */
+  --input-bg: #2c3e50;
+  --input-text: #f8f9fa;
+  --input-disabled-bg: #34495e;
+  --input-disabled-text: #adb5bd;
+
+  /* Perfiles */
+  --profile-border: #495057;
+  --profile-bg: #2c3e50;
+
+  /* Estados */
+  --success-bg-light: #155724;
+  --success-text-dark: #d4edda;
+  --success-border-light: #1e7e34;
+  --danger-bg-light: #721c24;
+  --danger-text-dark: #f8d7da;
+  --danger-border-light: #a71e2a;
+  --info-color: #5bc0de;
+  --info-color-dark: #31b0d5;
+
+  /* Listas de seguidores */
+  --follower-card-bg: #2c3e50;
+  --follower-card-border: #495057;
+  --follower-card-hover: #34495e;
+  --follower-text-primary: #f8f9fa;
+  --follower-text-secondary: #adb5bd;
+  --follower-button-bg: #4dabf7;
+  --follower-button-hover: #339af0;
+  --follower-count-bg: #34495e;
+  --follower-count-text: #adb5bd;
+}
+
+/* Aplicar variables globalmente */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--text-main);
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Estilos para listas de seguidores */
+.followers-list,
+.following-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-height: 400px;
+  overflow-y: auto;
+  padding: 1rem;
+  background-color: var(--follower-card-bg);
+  border-radius: 8px;
+  border: 1px solid var(--follower-card-border);
+}
+
+.follower-item,
+.following-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem;
+  background-color: var(--follower-card-bg);
+  border: 1px solid var(--follower-card-border);
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+}
+
+.follower-item:hover,
+.following-item:hover {
+  background-color: var(--follower-card-hover);
+}
+
+.follower-info {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex: 1;
+}
+
+.follower-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: var(--avatar-bg);
+  color: var(--avatar-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.follower-details h4 {
+  margin: 0;
+  color: var(--follower-text-primary);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.follower-details p {
+  margin: 0;
+  color: var(--follower-text-secondary);
+  font-size: 0.8rem;
+}
+
+.follower-stats {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.75rem;
+  color: var(--follower-text-secondary);
+}
+
+.follower-count {
+  background-color: var(--follower-count-bg);
+  color: var(--follower-count-text);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+}
+
+.follow-button {
+  background-color: var(--follower-button-bg);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+.follow-button:hover {
+  background-color: var(--follower-button-hover);
+}
+
+.follow-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Scrollbar para modo oscuro */
+.followers-list::-webkit-scrollbar,
+.following-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.followers-list::-webkit-scrollbar-track,
+.following-list::-webkit-scrollbar-track {
+  background: var(--card-bg);
+}
+
+.followers-list::-webkit-scrollbar-thumb,
+.following-list::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 3px;
+}
+
+.followers-list::-webkit-scrollbar-thumb:hover,
+.following-list::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}
+
+.dyslexia-font {
+  font-family: 'Atkinson Hyperlegible', sans-serif !important;
+}
+
+.highlight-links a {
+  text-decoration: underline !important;
+  background-color: rgba(255, 255, 0, 0.2); 
+  color: var(--text-main) !important;
+}
+
+.reading-mode .navbar-brand,
+.reading-mode .navbar-start,
+.reading-mode .navbar-search,
+.reading-mode .navbar-end,
+.reading-mode .footer {
+  opacity: 0.1;
+  pointer-events: none; 
+  transition: opacity 0.4s ease;
+}
+
+.reading-mode .navbar-controls-right {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+.reading-mode .main-content {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
 }

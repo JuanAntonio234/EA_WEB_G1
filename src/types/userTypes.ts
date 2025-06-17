@@ -8,6 +8,8 @@ export interface User {
   level: number;
   totalDistance: number;
   totalTime: number;
+  followersCount?: number;
+  followingCount?: number;
   activities: string[]; 
   achievements: string[];
   challengesCompleted: string[];

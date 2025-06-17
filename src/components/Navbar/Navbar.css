@@ -24,16 +24,37 @@
 }
 
 .navbar-brand .navbar-item {
-  color: var(--navbar-text);
+   color: var(--navbar-text);
   text-decoration: none;
   font-size: 1.5rem;
   font-weight: bold;
+  display: inline-flex;
+  align-items: center;
+}
+
+.navbar-logo {
+  height: 32px; 
+  width: auto;  
+  margin-right: 0.75rem; 
 }
 
 .navbar-menu {
   display: flex;
   align-items: center;
   padding-right: 40px; 
+}
+
+.navbar-search {
+  margin-left: 2px;
+  margin-right: 5px;
+}
+
+/* Responsive para la búsqueda */
+@media (max-width: 768px) {
+  .navbar-search {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
 }
 
 .navbar-start {
@@ -102,8 +123,8 @@
 
 .dropdown-menu a,
 .dropdown-menu button {
-  display: block;           /* Ensure both are block elements */
-  width: 100%;              /* Make them fill the menu width */
+  display: block;
+  width: 100%;
   text-align: left;
   padding: 0.5rem;
   text-decoration: none;
@@ -111,20 +132,16 @@
   border: none;
   color: var(--dropdown-text);
   cursor: pointer;
-  font: inherit;            /* Inherit font-family, size, weight, etc. */
-  font-size: 1rem;          /* Explicitly set font size */
-  line-height: 1.3;         /* Consistent line height */
-  box-sizing: border-box;   /* Consistent sizing */
-  outline: none;            /* Remove default outline (optional) */
+  font: inherit;
+  font-size: 1rem;
+  line-height: 1.3;
+  box-sizing: border-box;
+  outline: none;
 }
 
 .dropdown-menu a:hover,
 .dropdown-menu button:hover {
   background-color: var(--dropdown-hover);
-}
-
-.navbar-darmode-toggle {
-  padding-right: 15px;
 }
 
 .user-avatar-container {
@@ -156,4 +173,102 @@
 .username {
   font-size: 14px;
   font-weight: 500;
+}
+
+/* Contenedor principal de controles de la derecha */
+.navbar-controls-right {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* Separación entre el botón de modo nocturno y el selector de idioma */
+  margin-right: 15px; /* Separación del menú de usuario */
+}
+
+/* Contenedor del botón de modo nocturno */
+.navbar-darkmode-toggle {
+  padding-right: 0; /* Eliminar el padding anterior */
+}
+
+/* Estilos mejorados para el botón de modo nocturno */
+.darkmode-toggle {
+  background: var(--button-light-bg);
+  color: var(--button-light-text);
+  border: 1px solid var(--button-light-border);
+  border-radius: 6px;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  height: 40px;
+}
+
+.darkmode-toggle:hover {
+  background-color: var(--button-light-hover);
+  transform: scale(1.05);
+}
+
+.darkmode-toggle:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* Mejoras para el selector de idioma */
+.languageSwitcherContainer {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 0; /* Eliminar el margin anterior */
+}
+
+.selectElement {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--button-light-border);
+  background-color: var(--button-light-bg);
+  color: var(--button-light-text);
+  cursor: pointer;
+  font-size: 0.9em;
+  min-width: 120px;
+  height: 40px; /* Misma altura que el botón de modo nocturno */
+  transition: all 0.3s ease;
+}
+
+.selectElement:hover {
+  background-color: var(--button-light-hover);
+  border-color: var(--primary-color);
+}
+
+.selectElement:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+  border-color: var(--primary-color);
+}
+
+/* Responsive - En pantallas pequeñas, ajustar la separación */
+@media (max-width: 768px) {
+  .navbar-controls-right {
+    gap: 10px; /* Menor separación en móviles */
+    margin-right: 10px;
+  }
+  
+  .darkmode-toggle,
+  .selectElement {
+    min-width: 35px;
+    height: 35px;
+    padding: 6px 8px;
+    font-size: 0.8rem;
+  }
+  
+  .selectElement {
+    min-width: 100px;
+  }
+}
+
+/* Asegurar que ambos elementos estén alineados verticalmente */
+.navbar-darkmode-toggle,
+.languageSwitcherContainer {
+  display: flex;
+  align-items: center;
 }

@@ -1,0 +1,231 @@
+{
+  "general": {
+    "loading": "Loading...",
+    "error": "Error",
+    "noData": "No data available",
+    "cancel": "Cancel",
+    "previous": "Previous",
+    "next": "Next",
+    "close": "Close",
+    "share": "Share",
+    "linkCopied": "Link copied to clipboard"
+  },
+  "navbar": {
+    "home": "Home",
+    "exploreRoutes": "Explore routes",
+    "feed": "Activity feed",
+    "myProfile": "My profile",
+    "myActivities": "My activities",
+    "myAchievements": "My achievements",
+    "settings": "Edit profile",
+    "changePassword": "Change password",
+    "logout": "Log out",
+    "login": "Log in",
+    "signup": "Sign up"
+  },
+  "homePage": {
+    "welcomeMessage": "Welcome to TRAZER!",
+    "introText": "Track your runs, rides, and workouts. Log where you train, earn achievements, and join a community of active people!",
+    "featuresTitle": "Achievements & activity logging",
+    "feature1": "Register your running, cycling, or other activities with location tracking.",
+    "feature2": "Earn badges and achievements as you reach new milestones.",
+    "feature3": "Review your stats and progress over time.",
+    "mobileAppTitle": "Download the app now and improve your sports routine!",
+    "mobileAppText": "Take TRAZER with you everywhere. Download our app for:",
+    "googlePlayAlt": "Get it on Google Play",
+    "appStoreAlt": "Download on the App Store"
+  },
+  "loginPage": {
+    "title": "Sign in",
+    "subtitle": "Access your account",
+    "emailLabel": "Email:",
+    "emailPlaceholder": "Enter your email",
+    "passwordLabel": "Password:",
+    "passwordPlaceholder": "Enter your password",
+    "loginButton": "Sign in",
+    "requiredFields": "Email and password are required",
+    "loginFailed": "Login failed",
+    "showPassword": "Show password",
+    "hidePassword": "Hide password",
+    "orContinueWith": "Or continue with",
+    "noAccount": "Don't have an account?",
+    "registerHere": "Register here",
+    "continueWithGoogle": "Continue with Google",
+    "serverError": "The user/password combination is incorrect."
+  },
+  "registerPage": {
+    "title": "Create account",
+    "subtitle": "Join our community",
+    "usernameLabel": "Username:",
+    "usernamePlaceholder": "Choose a username",
+    "emailLabel": "Email:",
+    "emailPlaceholder": "Enter your email",
+    "passwordLabel": "Password:",
+    "passwordPlaceholder": "Create a secure password",
+    "confirmPasswordLabel": "Confirm password:",
+    "confirmPasswordPlaceholder": "Repeat your password",
+    "registerButton": "Create account",
+    "registering": "Creating account...",
+    "requiredFields": "All fields are required",
+    "invalidEmail": "Enter a valid email address",
+    "passwordTooShort": "Password must be at least 6 characters",
+    "passwordsMatch": "Passwords match",
+    "passwordsNoMatch": "Passwords don't match",
+    "userExists": "A user with this email already exists",
+    "invalidData": "Invalid data. Check the fields",
+    "networkError": "Connection error. Check your internet connection",
+    "registerFailed": "Registration error",
+    "showPassword": "Show password",
+    "hidePassword": "Hide password",
+    "hasAccount": "Already have an account?",
+    "loginHere": "Sign in here"
+  },
+  "exploreRoutesPage": {
+    "title": "Explore routes and activities 🗺️",
+    "loading": "Loading available routes...",
+    "noRoutes": "No routes or activities found at this time.",
+    "error": "Error: Could not load routes.",
+    "pagination": "Page {{currentPage}} of {{totalPages}}"
+  },
+  "achievementsPage": {
+    "title": "My achievements 🏆",
+    "loading": "Loading achievements...",
+    "noAchievements": "You haven't unlocked any achievements yet. Keep pushing! 💪",
+    "error": "Error: Could not load achievements.",
+    "errorUserNotAuthenticated": "You must be logged in to view your achievements."
+  },
+  "achievements": {
+    "difficulty": "Difficulty",
+    "points": "Points", 
+    "condition": "Condition",
+    "definedOn": "Defined on"
+  },
+  "activityCard": {
+    "detailsButton": "View details",
+    "distance": "Distance",
+    "duration": "Duration",
+    "elevation": "Elevation",
+    "avgSpeed": "Avg. speed",
+    "createdBy": "Created by",
+    "startTime": "Start",
+    "endTime": "End",
+    "unknownAuthor": "Unknown"
+  },
+  "activityDetailPage": {
+    "backButton": "Back",
+    "startRouteButton": "Start this route",
+    "loading": "Loading route details...",
+    "errorDefault": "Could not load activity details.",
+    "notFound": "Details for this route were not found.",
+    "returnToExplore": "Back to explore",
+    "routeInfoTitle": "Route (GPS Points)",
+    "routePointsInfo": "This route has {{count}} GPS points.",
+    "noRoutePoints": "No detailed GPS point information for this route.",
+    "playlistTitle": "Music playlist",
+    "mapPlaceholder": "Map view (Implementation pending)",
+    "distance": "Distance",
+    "duration": "Duration",
+    "elevationGain": "Elevation gain",
+    "avgSpeed": "Average speed",
+    "caloriesBurned": "Calories burned",
+    "startTime": "Start",
+    "endTime": "End",
+    "createdBy": "Created by"
+  },
+  "languageSwitcher": {
+    "selectLabel": "Select language:"
+  },
+  "profilePage": {
+    "title": "Profile of {{username}}",
+    "loading": "Loading profile...",
+    "notFound": "User not found",
+    "level": "Level",
+    "bio": "Biography",
+    "totalDistance": "Total distance",
+    "totalTime": "Total time",
+    "achievementsSectionTitle": "Achievements",
+    "noAchievements": "No achievements yet.",
+    "viewAllAchievements": "View all achievements",
+    "consultAchievements": "Consult my achievements",
+    "challengesSectionTitle": "Completed Challenges",
+    "noChallenges": "No challenges completed.",
+    "difficulty": "Difficulty",
+    "points": "Points",
+    "goal": "Goal",
+    "reward": "Reward",
+    "dateRange": "From: {{startDate}} to {{endDate}}",
+    "followers": "followers",
+    "following": "following",
+    "follow": "Follow",
+    "unfollow": "Unfollow",
+    "followersSectionTitle": "Followers",
+    "noFollowers": "You have no followers yet.",
+    "followingSectionTitle": "Following",
+    "noFollowing": "You are not following anyone yet.",
+    "viewActivityFeedButton": "View followed activity feed"
+  },
+  "editProfilePage": {
+    "title": "Edit profile",
+    "loadingUser": "Loading user data...",
+    "usernameLabel": "Username",
+    "emailLabel": "Email (not editable)",
+    "bioLabel": "Biography",
+    "saveChangesButton": "Save changes",
+    "savingChanges": "Saving changes...",
+    "profileUpdatedSuccess": "Profile updated successfully!",
+    "profileUpdatedError": "Error updating profile.",
+    "errorNoUser": "Could not load user data for editing.",
+    "goBackToProfile": "Back to profile"
+  },
+  "changePassword": {
+    "title": "Change password",
+    "subtitle": "Enter your current password and choose a new one",
+
+    "currentPassword": "Current password",
+    "currentPasswordHint": "Enter your current password",
+    "currentPasswordRequired": "Current password is required",
+    
+    "newPassword": "New password",
+    "newPasswordHint": "Enter your new password",
+    "newPasswordRequired": "New password is required",
+    "passwordTooShort": "Password must be at least 6 characters long",
+    "samePassword": "New password must be different from the current one",
+    
+    "confirmNewPassword": "Confirm new password",
+    "confirmNewPasswordHint": "Confirm your new password",
+    "confirmPasswordRequired": "Please confirm your new password",
+    "passwordsDoNotMatch": "Passwords do not match",
+    
+    "weakPassword": "Weak password",
+    "mediumPassword": "Medium password",
+    "strongPassword": "Strong password",
+    
+    "changePasswordButton": "Change password",
+    "changing": "Changing...",
+    
+    "passwordChangedSuccess": "Password changed successfully",
+    "changePasswordError": "Error changing password",
+    "incorrectCurrentPassword": "Current password is incorrect",
+    "notAuthenticated": "User not authenticated"
+  },
+  "feedPage": {
+    "title": "Activities from uers you follow",
+    "loading": "Loading activities...",
+    "noActivities": "No activity from users you follow yet.",
+    "error": "Error loading feed activities.",
+    "notLoggedIn": "You must be logged in to view the activity feed."
+  },
+  "activitiesPage": {
+    "errorLoading": "Error loading your activities.",
+    "notLoggedIn": "You must be logged in to view your activities.",
+    "noMoreActivities": "No more activities to show.",
+    "noActivitiesFound": "You have no activities recorded yet."
+  },
+   "footer": {
+    "allRightsReserved": "All rights reserved."
+  },
+  "searchBar": {
+    "placeholder": "Search users...",
+    "noUsersFound": "No users found"
+  }
+}

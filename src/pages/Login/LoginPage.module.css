@@ -1,3 +1,209 @@
+.pageContainer {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s ease;
+}
+
+.pageContainer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>') repeat;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  max-width: 450px;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+.titleContainer {
+  text-align: center;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  transition: all 0.3s ease;
+}
+
+.pageTitle {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var --text-main;
+  margin: 0 0 0.5rem 0;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  letter-spacing: -0.5px;
+  transition: all 0.3s ease;
+}
+
+.pageSubtitle {
+  font-size: 1.2rem;
+  color: var --text-secondary;
+  margin: 0;
+  font-weight: 300;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.errorMessage {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  background: rgba(220, 38, 38, 0.1);
+  border: 1px solid rgba(220, 38, 38, 0.3);
+  border-radius: 12px;
+  color: #dc2626;
+  font-size: 0.95rem;
+  font-weight: 500;
+  width: 100%;
+  box-sizing: border-box;
+  backdrop-filter: blur(10px);
+  animation: errorSlideIn 0.3s ease-out;
+}
+
+.errorIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #dc2626;
+}
+
+.errorClose {
+  background: none;
+  border: none;
+  color: #dc2626;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.errorClose:hover {
+  background: rgba(220, 38, 38, 0.1);
+}
+
+/* Modo oscuro para el mensaje de error */
+:global(body.dark) .errorMessage {
+  background: rgba(239, 68, 68, 0.15);
+  border-color: rgba(239, 68, 68, 0.4);
+  color: #ef4444;
+}
+
+:global(body.dark) .errorIcon {
+  color: #ef4444;
+}
+
+:global(body.dark) .errorClose {
+  color: #ef4444;
+}
+
+:global(body.dark) .errorClose:hover {
+  background: rgba(239, 68, 68, 0.2);
+}
+
+@keyframes errorSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.googleLoginContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.divider {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0.5rem 0;
+}
+
+.divider::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.dividerText {
+  background: linear-gradient(135deg, var(--primary) 0%, #2d8a4f 50%, #40a65f 100%);
+  padding: 0 1rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+:global(body.dark) .dividerText {
+  background: linear-gradient(135deg, #0a0f0d 0%, #1a2d23 50%, #243a2f 100%);
+}
+
+.registerLink {
+  text-align: center;
+  margin-top: 1rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.registerLink p {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1rem;
+  margin: 0;
+  font-weight: 400;
+}
+
+.link {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border-bottom: 2px solid transparent;
+  padding-bottom: 2px;
+}
+
+.link:hover {
+  color: #f0f0f0;
+  border-bottom-color: rgba(255, 255, 255, 0.6);
+  transform: translateY(-1px);
+}
+
+/* Mantener compatibilidad con componente de Google */
 .google-icon-button {
   width: 40px;
   height: 40px;
@@ -18,8 +224,90 @@
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
 
-.googleLoginContainer {
-  margin-top: 1rem;
-  display: flex;
-  justify-content: center;
+/* Responsive design */
+@media (max-width: 768px) {
+  .pageContainer {
+    padding: 1.5rem;
+  }
+  
+  .pageTitle {
+    font-size: 2.5rem;
+  }
+  
+  .pageSubtitle {
+    font-size: 1.1rem;
+  }
+  
+  .formContainer {
+    max-width: 100%;
+  }
+  
+  .titleContainer {
+    padding: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
 }
+
+@media (max-width: 480px) {
+  .pageContainer {
+    padding: 1rem;
+  }
+  
+  .pageTitle {
+    font-size: 2rem;
+    letter-spacing: -0.3px;
+  }
+  
+  .pageSubtitle {
+    font-size: 1rem;
+  }
+  
+  .registerLink {
+    padding: 0.75rem;
+  }
+  
+  .registerLink p {
+    font-size: 0.95rem;
+  }
+  
+  .titleContainer {
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+  }
+}
+
+/* Mejoras específicas para modo oscuro en responsive */
+@media (max-width: 768px) {
+  :global(body.dark) .pageTitle {
+    text-shadow: 
+      0 3px 10px rgba(79, 209, 139, 0.4),
+      0 1px 4px rgba(0, 0, 0, 0.7);
+  }
+  
+  :global(body.dark) .pageSubtitle {
+    text-shadow: 
+      0 2px 6px rgba(79, 209, 139, 0.3),
+      0 1px 3px rgba(0, 0, 0, 0.6);
+  }
+}
+
+/* Animaciones suaves */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.formContainer > * {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.formContainer > *:nth-child(1) { animation-delay: 0.1s; }
+.formContainer > *:nth-child(2) { animation-delay: 0.2s; }
+.formContainer > *:nth-child(3) { animation-delay: 0.3s; }
+.formContainer > *:nth-child(4) { animation-delay: 0.4s; }

@@ -12,3 +12,15 @@ export interface Achievement {
     points: number;
     createdAt?: Date;
 }
+
+export interface UserAchievementsDetails {
+  locked: Achievement[];
+  totalCount: number;
+  unlocked: Achievement[];
+  unlockedCount: number;
+}
+
+export interface UserAchievementsApiResponse { 
+  message: string;
+  data: UserAchievementsDetails; 
+}

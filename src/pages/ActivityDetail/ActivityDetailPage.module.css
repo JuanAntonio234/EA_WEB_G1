@@ -1,0 +1,170 @@
+.pageContainer {
+  padding: 20px;
+  max-width: 900px;
+  margin: 20px auto;
+  background-color: var(--background);
+  border-radius: 8px;
+  box-shadow: var(--card-shadow);
+}
+
+.backButton {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text-main);
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.backButton:hover {
+  background-color: var(--button-light-hover);
+}
+
+.activityTitle {
+  text-align: center;
+  margin-bottom: 10px;
+  color: var(--text-main);
+  font-size: 2em;
+}
+
+.activityMeta {
+  text-align: center;
+  margin-bottom: 25px;
+  color: var(--text-light);
+  font-size: 0.9em;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px 20px;
+}
+
+.metaItem {
+  display: inline-block;
+}
+
+.activityType {
+  font-weight: bold;
+  color: var(--activity-type-color);
+  background-color: var(--button-light-hover);
+  padding: 4px 10px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.detailsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 15px;
+  margin-bottom: 30px;
+  padding: 20px;
+  background-color: var(--card-bg);
+  border-radius: 5px;
+  border: 1px solid var(--border);
+}
+
+.detailItem {
+  font-size: 1em;
+  padding: 10px;
+  border-bottom: 1px dotted var(--border);
+  color: var(--text-main);
+}
+.detailItem:last-child {
+  border-bottom: none;
+}
+.detailItem strong {
+  color: var(--text-main);
+  margin-right: 5px;
+}
+
+.section {
+  margin-top: 20px;
+  margin-bottom: 30px;
+  padding: 20px;
+  background-color: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+}
+
+.section h2 {
+  margin-top: 0;
+  color: var(--text-light);
+  font-size: 1.4em;
+  margin-bottom: 15px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 10px;
+}
+
+.mapReferencePointsCounter {
+  font-size: 1em;
+  padding: 10px;
+  color: var(--text-main);
+}
+
+.pointList {
+  list-style-type: decimal;
+  padding-left: 20px;
+  max-height: 150px;
+  overflow-y: auto;
+  background-color: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 10px;
+}
+.pointList li {
+  font-size: 0.85em;
+  padding: 3px 0;
+}
+
+.startRouteButton {
+  display: block;
+  width: 100%;
+  padding: 15px;
+  font-size: 1.2em;
+  font-weight: bold;
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.startRouteButton:hover {
+  background-color: var(--primary-hover);
+}
+
+.shareButton {
+  display: block;
+  width: 100%;
+  padding: 15px;
+  font-size: 1.2em;
+  font-weight: bold;
+  background-color: var(--button-primary-bg);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-align: center;
+  margin-top: 15px;
+}
+
+.shareButton:hover {
+  background-color: var(--button-primary-bg-hover);
+}
+
+.messageContainer {
+  text-align: center;
+  padding: 40px 20px;
+  font-size: 1.1em;
+  color: var(--text-light);
+}
+
+.messageContainer.error {
+  color: #e74c3c;
+  font-weight: bold;
+}

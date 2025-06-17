@@ -38,9 +38,94 @@
   color: var(--text-main);
 }
 
+.profileActions {
+  margin-top: 1.5rem; 
+  display: flex;
+  flex-direction: row;
+  gap: 1rem; 
+  align-items: flex-start;
+}
+
+.editProfileButton,
+.feedButton {
+  padding: 10px 18px;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+  display: inline-block; 
+}
+
+.editProfileButton {
+  background-color: var(--primary-color, #007bff);
+}
+.editProfileButton:hover {
+  background-color: var(--primary-color-dark, #0056b3);
+}
+
+.feedButton {
+  background-color: var(--info-color, #17a2b8);
+}
+.feedButton:hover {
+  background-color: var(--info-color-dark, #117a8b);
+}
+
+.followStatsContainer {
+  display: flex;
+  gap: 2rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.followersSection,
+.followingSection {
+  flex: 1;
+  background-color: var(--card-bg-secondary, #f8f9fa);
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color-light, #eee);
+}
+
+.followersSection h3, 
+.followingSection h3 {  
+  margin-top: 0;  
+  margin-bottom: 0.75rem;  
+  font-size: 1.1em;  
+  color: var(--text-main);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.5rem; 
+}
+
+.followList {
+  list-style: none;
+  padding: 0;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.followItem {
+  padding: 0.5rem 0;
+  border-bottom: 1px dotted var(--border-color-light, #eee);
+  font-size: 0.95em;
+}
+.followItem:last-child {
+  border-bottom: none;
+}
+
 .achievementsSection,
 .challengesSection {
   margin-top: 2.5rem;
+}
+
+.achievementsSection h3,
+.challengesSection h3 {
+  border-bottom: 1px solid var(--border-color-light, #eee);
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
 }
 
 .achievementsList,
@@ -78,14 +163,123 @@
   display: inline-block;
   vertical-align: middle;
 }
+.achievementIconFallback {
+  width: 48px;
+  height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  margin-right: 0.7rem;
+  background-color: var(--profile-bg, #f0f0f0);
+  border-radius: 8px;
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.sectionTitleLink {
+  color: inherit;
+  text-decoration: none;
+}
+.sectionTitleLink:hover {
+  text-decoration: underline;
+}
+
+.viewAllLink {
+  font-size: 0.9em;
+  color: var(--link-color, #007bff);
+  text-decoration: none;
+}
+.viewAllLink:hover {
+  text-decoration: underline;
+}
+
+.feedbackMessage {
+  padding: 12px 18px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  text-align: center;
+  font-weight: 500;
+  font-size: 0.95em;
+}
+
+.feedbackMessage.success {
+  background-color: var(--success-bg-light, #d4edda);
+  color: var(--success-text-dark, #155724);
+  border: 1px solid var(--success-border-light, #c3e6cb);
+}
+
+.feedbackMessage.error {
+  background-color: var(--danger-bg-light, #f8d7da);
+  color: var(--danger-text-dark, #721c24);
+  border: 1px solid var(--danger-border-light, #f5c6cb);
+}
+
+.followButton {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: background-color 0.2s ease;
+}
+
+.followButton:hover {
+  background-color: #2980b9;
+}
+
+.unfollowButton {
+  background-color: #e0e0e0;
+  color: #333;
+  border: 1px solid #ccc;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: background-color 0.2s ease;
+}
+
+.unfollowButton:hover {
+  background-color: #d1d1d1;
+}
+
+.followButton:disabled, .unfollowButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+@media (max-width: 768px) {
+  .profileHeader {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .profileInfo {
+    width: 100%;
+  }
+  .profileActions {
+    align-items: center; 
+    flex-direction: row;
+    justify-content: center;
+  }
+  .followStatsContainer {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
 
 @media (max-width: 600px) {
   .profileContainer {
     padding: 1rem;
-  }
-  .profileHeader {
-    flex-direction: column;
-    gap: 1rem;
   }
   .achievementsList,
   .challengesList {

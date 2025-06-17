@@ -1,19 +1,30 @@
+import React from 'react';
 import { Activity } from '../../types/activityTypes';
 import ActivityCard from './ActivityCard';
-import './ActivityStyles.css';
-import '../../index.css';
+import styles from './ActivityList.module.css';
+import { useTranslation } from 'react-i18next';
 
-interface Props {
+interface ActivityListProps {
   activities: Activity[];
+  lastItemRef?: (node: HTMLDivElement | null) => void;
+  showAuthorInfo?: boolean; 
 }
 
-const ActivityList = ({ activities }: Props) => {
+const ActivityList: React.FC<ActivityListProps> = ({ activities, showAuthorInfo }) => {
+  const { t } = useTranslation();
+
+  if (!activities || activities.length === 0) {
+    return <p className={styles.noActivitiesMessage}>{t('exploreRoutesPage.noRoutes', "No s'han trobat activitats.")}</p>;
+  }
+
   return (
-    <div className="activity-list">
-      {activities.map(activity => (
-        <div key={activity._id} className="activity-item">
-          <ActivityCard activity={activity} />
-        </div>
+    <div className={styles.activityListContainer}> 
+      {activities.map((activity) => (
+        <ActivityCard 
+          key={activity._id} 
+          activity={activity} 
+          showAuthorInfo={showAuthorInfo} 
+        />
       ))}
     </div>
   );

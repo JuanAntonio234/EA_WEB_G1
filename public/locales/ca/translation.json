@@ -1,0 +1,231 @@
+{
+  "general": {
+    "loading": "Carregant...",
+    "error": "Error",
+    "noData": "Sense dades disponibles",
+    "cancel": "Cancel·lar",
+    "previous": "Anterior",
+    "next": "Següent",
+    "close": "Tancar",
+    "share": "Compartir",
+    "linkCopied": "Enllaç copiat al portaretalls"
+  },
+  "navbar": {
+    "home": "Inici",
+    "exploreRoutes": "Explorar rutes",
+    "feed": "Feed d'activitat",
+    "myProfile": "El meu perfil",
+    "myActivities": "Les meves activitats",
+    "myAchievements": "Els meus assoliments",
+    "settings": "Editar perfil",
+    "changePassword": "Canviar contraseña",
+    "logout": "Tancar sessió",
+    "login": "Iniciar sessió",
+    "signup": "Registrar-se"
+  },
+  "homePage": {
+    "welcomeMessage": "Benvingut a TRAZER!",
+    "introText": "Fes el seguiment de les teves curses, rutes en bicicleta i entrenaments. Registra on entrenes, guanya assoliments i uneix-te a una comunitat de gent activa!",
+    "featuresTitle": "Assoliments i registre d'activitats",
+    "feature1": "Registra les teves activitats de córrer, ciclisme o altres amb seguiment de localització.",
+    "feature2": "Guanya insígnies i assoliments a mesura que assoleixes noves fites.",
+    "feature3": "Revisa les teves estadístiques i progrés al llarg del temps.",
+    "mobileAppTitle": "Descarrega't l'aplicació ara i millora la teva rutina esportiva!",
+    "mobileAppText": "Porta TRAZER amb tu a tot arreu. Descarrega la nostra aplicació per a:",
+    "googlePlayAlt": "Disponible a Google Play",
+    "appStoreAlt": "Descarregar a l'App Store"
+  },
+  "loginPage": {
+    "title": "Iniciar sessió",
+    "subtitle": "Accedeix al teu compte",
+    "emailLabel": "Correu electrònic:",
+    "emailPlaceholder": "Introdueix el teu correu",
+    "passwordLabel": "Contrasenya:",
+    "passwordPlaceholder": "Introdueix la teva contrasenya",
+    "loginButton": "Entrar",
+    "requiredFields": "Correu electrònic i contrasenya són obligatoris",
+    "loginFailed": "Inici de sessió fallit",
+    "showPassword": "Mostrar contrasenya",
+    "hidePassword": "Amagar contrasenya",
+    "orContinueWith": "O continua amb",
+    "noAccount": "No tens compte?",
+    "registerHere": "Registra't aquí",
+    "continueWithGoogle": "Continua amb Google",
+    "serverError": "La combinació usuari/contrasenya és incorrecta."
+  },
+  "registerPage": {
+    "title": "Crear compte",
+    "subtitle": "Uneix-te a la nostra comunitat",
+    "usernameLabel": "Nom d'usuari:",
+    "usernamePlaceholder": "Escull un nom d'usuari",
+    "emailLabel": "Correu electrònic:",
+    "emailPlaceholder": "Introdueix el teu correu",
+    "passwordLabel": "Contrasenya:",
+    "passwordPlaceholder": "Crea una contrasenya segura",
+    "confirmPasswordLabel": "Confirmar contrasenya:",
+    "confirmPasswordPlaceholder": "Repeteix la teva contrasenya",
+    "registerButton": "Crear compte",
+    "registering": "Creant compte...",
+    "requiredFields": "Tots els camps són obligatoris",
+    "invalidEmail": "Introdueix un correu electrònic vàlid",
+    "passwordTooShort": "La contrasenya ha de tenir almenys 6 caràcters",
+    "passwordsMatch": "Les contrasenyes coincideixen",
+    "passwordsNoMatch": "Les contrasenyes no coincideixen",
+    "userExists": "Ja existeix un usuari amb aquest correu electrònic",
+    "invalidData": "Dades no vàlides. Comprova els camps",
+    "networkError": "Error de connexió. Comprova la teva connexió a internet",
+    "registerFailed": "Error en el registre",
+    "showPassword": "Mostrar contrasenya",
+    "hidePassword": "Amagar contrasenya",
+    "hasAccount": "Ja tens compte?",
+    "loginHere": "Inicia sessió aquí"
+  },
+  "exploreRoutesPage": {
+    "title": "Explora rutes i activitats 🗺️",
+    "loading": "Carregant rutes disponibles...",
+    "noRoutes": "No s'han trobat rutes o activitats disponibles.",
+    "error": "Error: No s'han pogut carregar les rutes.",
+    "pagination": "Pàgina {{currentPage}} de {{totalPages}}"
+  },
+  "achievementsPage": {
+    "title": "Els meus assoliments 🏆",
+    "loading": "Carregant assoliments...",
+    "noAchievements": "Encara no has desbloquejat cap assoliment. Continua esforçant-te! 💪",
+    "error": "Error: No s'han pogut carregar els assoliments.",
+    "errorUserNotAuthenticated": "Has d'iniciar sessió per veure els teus assoliments."
+  },
+  "achievements": {
+    "difficulty": "Dificultat",
+    "points": "Punts", 
+    "condition": "Condició",
+    "definedOn": "Definit el"
+  },
+  "activityCard": {
+    "detailsButton": "Veure detalls",
+    "distance": "Distància",
+    "duration": "Durada",
+    "elevation": "Desnivell",
+    "avgSpeed": "Vel. mitja",
+    "createdBy": "Creat per",
+    "startTime": "Inici",
+    "endTime": "Fi",
+    "unknownAuthor": "Desconegut"
+  },
+  "activityDetailPage": {
+    "backButton": "Enrere",
+    "startRouteButton": "Començar aquesta ruta",
+    "loading": "Carregant detalls de la ruta...",
+    "errorDefault": "No s'han pogut carregar els detalls de l'activitat.",
+    "notFound": "No s'han trobat detalls per a aquesta ruta.",
+    "returnToExplore": "Tornar a explorar",
+    "routeInfoTitle": "Ruta (Punts GPS)",
+    "routePointsInfo": "Aquesta ruta té {{count}} punts GPS.",
+    "noRoutePoints": "No hi ha informació detallada de punts GPS per a aquesta ruta.",
+    "playlistTitle": "Llista de música",
+    "mapPlaceholder": "Visualització del mapa (Pendent d'implementar)",
+    "distance": "Distància",
+    "duration": "Durada",
+    "elevationGain": "Desnivell positiu",
+    "avgSpeed": "Velocitat mitja",
+    "caloriesBurned": "Calories cremades",
+    "startTime": "Inici",
+    "endTime": "Fi",
+    "createdBy": "Creat per"
+  },
+  "languageSwitcher": {
+    "selectLabel": "Selecciona l'idioma:"
+  },
+  "profilePage": {
+    "title": "Perfil de {{username}}",
+    "loading": "Carregant perfil...",
+    "notFound": "Usuari no trobat",
+    "level": "Nivell",
+    "bio": "Biografia",
+    "totalDistance": "Distància total",
+    "totalTime": "Temps total",
+    "achievementsSectionTitle": "Assoliments",
+    "noAchievements": "Cap assoliment encara.",
+    "viewAllAchievements": "Veure tots els assoliments",
+    "consultAchievements": "Consultar els meus assoliments",
+    "challengesSectionTitle": "Reptes completats",
+    "noChallenges": "Cap repte completat.",
+    "difficulty": "Dificultat",
+    "points": "Punts",
+    "goal": "Objectiu",
+    "reward": "Recompensa",
+    "dateRange": "Des de: {{startDate}} fins {{endDate}}",
+    "followers": "seguidors",
+    "following": "seguint",
+    "follow": "Seguir",
+    "unfollow": "Deixar de seguir",
+    "followersSectionTitle": "Seguidors",
+    "noFollowers": "Encara no tens seguidors.",
+    "followingSectionTitle": "Seguint",
+    "noFollowing": "No segueixes a ningú encara.",
+    "viewActivityFeedButton": "Veure feed d'activitats"
+  },
+  "editProfilePage": {
+    "title": "Editar perfil",
+    "loadingUser": "Carregant dades de l'usuari...",
+    "usernameLabel": "Nom d'usuari",
+    "emailLabel": "Correu electrònic (no editable)",
+    "bioLabel": "Biografia",
+    "saveChangesButton": "Desar canvis",
+    "savingChanges": "Desant canvis...",
+    "profileUpdatedSuccess": "Perfil actualitzat correctament!",
+    "profileUpdatedError": "Error en actualitzar el perfil.",
+    "errorNoUser": "No s'han pogut carregar les dades de l'usuari per editar.",
+    "goBackToProfile": "Tornar al perfil"
+  },
+  "changePassword": {
+    "title": "Canviar contrasenya",
+    "subtitle": "Introdueix la teva contrasenya actual i tria una de nova",
+    
+    "currentPassword": "Contrasenya actual",
+    "currentPasswordHint": "Introdueix la teva contrasenya actual",
+    "currentPasswordRequired": "La contrasenya actual és obligatòria",
+    
+    "newPassword": "Nova contrasenya",
+    "newPasswordHint": "Introdueix la teva nova contrasenya",
+    "newPasswordRequired": "La nova contrasenya és obligatòria",
+    "passwordTooShort": "La contrasenya ha de tenir almenys 6 caràcters",
+    "samePassword": "La nova contrasenya ha de ser diferent de l'actual",
+    
+    "confirmNewPassword": "Confirmar nova contrasenya",
+    "confirmNewPasswordHint": "Confirma la teva nova contrasenya",
+    "confirmPasswordRequired": "Si us plau confirma la teva nova contrasenya",
+    "passwordsDoNotMatch": "Les contrasenyes no coincideixen",
+    
+    "weakPassword": "Contrasenya feble",
+    "mediumPassword": "Contrasenya mitjana",
+    "strongPassword": "Contrasenya forta",
+    
+    "changePasswordButton": "Canviar contrasenya",
+    "changing": "Canviant...",
+    
+    "passwordChangedSuccess": "Contrasenya canviada amb èxit",
+    "changePasswordError": "Error en canviar la contrasenya",
+    "incorrectCurrentPassword": "La contrasenya actual és incorrecta",
+    "notAuthenticated": "Usuari no autenticat"
+  },
+  "feedPage": {
+    "title": "Activitats dels usuaris que segueixes",
+    "loading": "Carregant activitats...",
+    "noActivities": "Encara no hi ha activitat dels usuaris que segueixes.",
+    "error": "Error en carregar les activitats del feed.",
+    "notLoggedIn": "Has d'iniciar sessió per veure el feed d'activitat."
+  },
+   "activitiesPage": {
+    "errorLoading": "Error carregant les teves activitats.",
+    "notLoggedIn": "Has d'iniciar sessió per veure les teves activitats.",
+    "noMoreActivities": "No hi ha més activitats per mostrar.",
+    "noActivitiesFound": "No tens cap activitat registrada encara."
+  },
+   "footer": {
+    "allRightsReserved": "Tots els drets reservats"
+  },
+  "searchBar": {
+    "placeholder": "Cercar usuaris...",
+    "noUsersFound": "No s'han trobat usuaris"
+  }
+}

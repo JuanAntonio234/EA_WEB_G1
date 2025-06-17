@@ -1,0 +1,40 @@
+.activityListContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 25px;
+  padding: 10px 0;
+  transition: all 0.3s ease;
+}
+
+.noActivitiesMessage {
+  text-align: center;
+  color: var(--text-secondary);
+  margin-top: 40px;
+  font-size: 1.2em;
+  padding: 20px;
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  box-shadow: var(--card-shadow);
+  transition: all 0.3s ease;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .activityListContainer {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 5px 0;
+  }
+  
+  .noActivitiesMessage {
+    font-size: 1.1em;
+    margin-top: 30px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .activityListContainer {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+  }
+}
