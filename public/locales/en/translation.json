@@ -32,6 +32,22 @@
     "googlePlayAlt": "Get it on Google Play",
     "appStoreAlt": "Download on the App Store"
   },
+  "loginPage": {
+    "title": "Sign in",
+    "subtitle": "Access your account",
+    "emailLabel": "Email:",
+    "emailPlaceholder": "Enter your email",
+    "passwordLabel": "Password:",
+    "passwordPlaceholder": "Enter your password",
+    "loginButton": "Sign in",
+    "requiredFields": "Email and password are required",
+    "loginFailed": "Login failed",
+    "showPassword": "Show password",
+    "hidePassword": "Hide password",
+    "orContinueWith": "Or continue with",
+    "noAccount": "Don't have an account?",
+    "registerHere": "Register here"
+  },
   "exploreRoutesPage": {
     "title": "Explore routes and activities 🗺️",
     "loading": "Loading available routes...",

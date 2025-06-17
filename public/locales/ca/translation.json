@@ -32,6 +32,22 @@
     "googlePlayAlt": "Disponible a Google Play",
     "appStoreAlt": "Descarregar a l'App Store"
   },
+  "loginPage": {
+    "title": "Iniciar sessió",
+    "subtitle": "Accedeix al teu compte",
+    "emailLabel": "Correu electrònic:",
+    "emailPlaceholder": "Introdueix el teu correu",
+    "passwordLabel": "Contrasenya:",
+    "passwordPlaceholder": "Introdueix la teva contrasenya",
+    "loginButton": "Entrar",
+    "requiredFields": "Correu electrònic i contrasenya són obligatoris",
+    "loginFailed": "Inici de sessió fallit",
+    "showPassword": "Mostrar contrasenya",
+    "hidePassword": "Amagar contrasenya",
+    "orContinueWith": "O continua amb",
+    "noAccount": "No tens compte?",
+    "registerHere": "Registra't aquí"
+  },
   "exploreRoutesPage": {
     "title": "Explora rutes i activitats 🗺️",
     "loading": "Carregant rutes disponibles...",

@@ -1,13 +1,15 @@
-import Login from '../../components/Login/Login';
-import styles from './LoginPage.module.css';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { jwtDecode } from 'jwt-decode';
+import Login from '../../components/Login/Login';
+import GoogleLoginButton from '../../components/Login/GoogleLoginButtton';
 import { loginUser } from '../../services/userService';
 import { useAuth } from '../../hooks/useAuth';
-import GoogleLoginButton from '../../components/Login/GoogleLoginButtton';
-import { jwtDecode } from 'jwt-decode';
 import { User } from '../../context/AuthContext';
+import styles from './LoginPage.module.css';
 
 function LoginPage() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const { login } = useAuth();
 
@@ -20,15 +22,35 @@ function LoginPage() {
       console.log('Inici de sessió vàlid:', user);
     } catch (error) {
       console.error('Inici de sessió fallit:', error);
-      alert('Inici de sessió fallit');
+      alert(t('loginPage.loginFailed'));
     }
   };
 
   return (
     <div className={styles.pageContainer}>
-      <Login onLogin={({ username, password }) => handleLogin(username, password)} />
-      <div className={styles.googleLoginContainer}>
-        <GoogleLoginButton />
+      <div className={styles.formContainer}>
+        <div className={styles.titleContainer}>
+          <h1 className={styles.pageTitle}>{t('loginPage.title')}</h1>
+          <p className={styles.pageSubtitle}>{t('loginPage.subtitle')}</p>
+        </div>
+        
+        <Login onLogin={({ username, password }) => handleLogin(username, password)} />
+        
+        <div className={styles.googleLoginContainer}>
+          <div className={styles.divider}>
+            <span className={styles.dividerText}>{t('loginPage.orContinueWith')}</span>
+          </div>
+          <GoogleLoginButton />
+        </div>
+        
+        <div className={styles.registerLink}>
+          <p>
+            {t('loginPage.noAccount')}{' '}
+            <a href="/register" className={styles.link}>
+              {t('loginPage.registerHere')}
+            </a>
+          </p>
+        </div>
       </div>
     </div>
   );
