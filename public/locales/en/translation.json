@@ -46,6 +46,12 @@
     "error": "Error: Could not load achievements.",
     "errorUserNotAuthenticated": "You must be logged in to view your achievements."
   },
+  "achievements": {
+    "difficulty": "Difficulty",
+    "points": "Points", 
+    "condition": "Condition",
+    "definedOn": "Defined on"
+  },
   "activityCard": {
     "detailsButton": "View details",
     "distance": "Distance",

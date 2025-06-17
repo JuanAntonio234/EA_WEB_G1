@@ -1,0 +1,77 @@
+.achievementsTitle {
+  text-align: center;
+  margin-bottom: 30px;
+  color: var(--text-main);
+  font-size: 2.2rem;
+  font-weight: 600;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: color 0.3s ease;
+}
+
+.loadingMessage {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  margin: 20px auto;
+  max-width: 500px;
+  box-shadow: var(--card-shadow);
+  transition: all 0.3s ease;
+}
+
+.errorMessage {
+  color: var(--danger-text-dark);
+  background-color: var(--danger-bg-light);
+  border: 1px solid var(--danger-border-light);
+  text-align: center;
+  padding: 20px;
+  border-radius: 12px;
+  margin: 20px auto;
+  max-width: 600px;
+  font-weight: 500;
+  box-shadow: var(--card-shadow);
+  transition: all 0.3s ease;
+}
+
+/* Modo oscuro para mensajes */
+:global(body.dark) .loadingMessage {
+  background-color: var(--card-bg);
+  color: var(--text-secondary);
+}
+
+:global(body.dark) .errorMessage {
+  background-color: var(--danger-bg-light);
+  color: var(--danger-text-dark);
+  border-color: var(--danger-border-light);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .achievementsContainer {
+    padding: 15px;
+  }
+  
+  .achievementsTitle {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+  }
+  
+  .loadingMessage,
+  .errorMessage {
+    margin: 15px;
+    padding: 15px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .achievementsContainer {
+    padding: 10px;
+  }
+  
+  .achievementsTitle {
+    font-size: 1.6rem;
+  }
+}

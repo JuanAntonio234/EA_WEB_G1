@@ -46,6 +46,13 @@
     "error": "Error: No se pudieron cargar los logros.",
     "errorUserNotAuthenticated": "Debes iniciar sesión para ver tus logros."
   },
+  
+  "achievements": {
+    "difficulty": "Dificultad",
+    "points": "Puntos", 
+    "condition": "Condición",
+    "definedOn": "Definido el"
+  },
   "activityCard": {
     "detailsButton": "Ver detalles",
     "distance": "Distancia",
