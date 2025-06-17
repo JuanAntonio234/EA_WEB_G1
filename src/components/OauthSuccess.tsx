@@ -29,7 +29,7 @@ const OauthSuccess = () => {
     }
   }, [login, navigate]);
 
-  return;
+  return <></>;
 };
 
 export default OauthSuccess;
