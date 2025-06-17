@@ -56,6 +56,13 @@
   font-style: italic;
 }
 
+.input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background: var(--input-disabled-bg);
+  color: var(--input-disabled-text);
+}
+
 .inputIcon {
   position: absolute;
   left: 1rem;
@@ -90,6 +97,11 @@
   outline: 2px solid var(--primary);
   outline-offset: 2px;
   border-radius: 4px;
+}
+
+.passwordToggle:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 .button {

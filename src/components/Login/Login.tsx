@@ -15,9 +15,6 @@ const Login: React.FC<LoginProps> = ({ onLogin, isLoading = false }) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!username || !password) {
-      return; // El error se maneja ahora en LoginPage
-    }
     if (!isLoading) {
       onLogin({ username, password });
     }
@@ -38,6 +35,7 @@ const Login: React.FC<LoginProps> = ({ onLogin, isLoading = false }) => {
             required
             className={styles.input}
             placeholder={t('loginPage.emailPlaceholder')}
+            disabled={isLoading}
           />
           <div className={styles.inputIcon}>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -61,6 +59,7 @@ const Login: React.FC<LoginProps> = ({ onLogin, isLoading = false }) => {
             required
             className={styles.input}
             placeholder={t('loginPage.passwordPlaceholder')}
+            disabled={isLoading}
           />
           <div className={styles.inputIcon}>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -74,6 +73,7 @@ const Login: React.FC<LoginProps> = ({ onLogin, isLoading = false }) => {
             className={styles.passwordToggle}
             onClick={() => setShowPassword(!showPassword)}
             aria-label={showPassword ? t('loginPage.hidePassword') : t('loginPage.showPassword')}
+            disabled={isLoading}
           >
             {showPassword ? (
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -6,6 +6,7 @@
   padding: 2rem;
   position: relative;
   overflow: hidden;
+  transition: background 0.3s ease;
 }
 
 .pageContainer::before {
@@ -29,6 +30,32 @@
   width: 100%;
   position: relative;
   z-index: 1;
+}
+
+.titleContainer {
+  text-align: center;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  transition: all 0.3s ease;
+}
+
+.pageTitle {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var --text-main;
+  margin: 0 0 0.5rem 0;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  letter-spacing: -0.5px;
+  transition: all 0.3s ease;
+}
+
+.pageSubtitle {
+  font-size: 1.2rem;
+  color: var --text-secondary;
+  margin: 0;
+  font-weight: 300;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
 }
 
 .errorMessage {
@@ -105,32 +132,6 @@
   }
 }
 
-.titleContainer {
-  text-align: center;
-  margin-bottom: 1rem;
-  padding: 1rem;
-  transition: all 0.3s ease;
-}
-
-.pageTitle {
-  font-size: 3rem;
-  font-weight: 700;
-  color: var(--text-main);
-  margin: 0 0 0.5rem 0;
-  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  letter-spacing: -0.5px;
-  transition: all 0.3s ease;
-}
-
-.pageSubtitle {
-  font-size: 1.2rem;
-  color: var(--text-main);
-  margin: 0;
-  font-weight: 300;
-  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  transition: all 0.3s ease;
-}
-
 .googleLoginContainer {
   width: 100%;
   display: flex;
@@ -159,11 +160,15 @@
 }
 
 .dividerText {
-  background: linear-gradient(135deg, #1a6d3d 0%, #2d8a4f 50%, #40a65f 100%);
+  background: linear-gradient(135deg, var(--primary) 0%, #2d8a4f 50%, #40a65f 100%);
   padding: 0 1rem;
   color: rgba(255, 255, 255, 0.8);
   font-size: 0.9rem;
   font-weight: 500;
+}
+
+:global(body.dark) .dividerText {
+  background: linear-gradient(135deg, #0a0f0d 0%, #1a2d23 50%, #243a2f 100%);
 }
 
 .registerLink {
