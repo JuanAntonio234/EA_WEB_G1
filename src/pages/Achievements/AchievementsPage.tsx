@@ -5,6 +5,7 @@ import { getUserById } from '../../services/userService';
 import { getAchievementById } from '../../services/achievementService';
 import AchievementList from '../../components/Achievements/AchievementList'; 
 import { useAuth } from '../../hooks/useAuth';
+import styles from './AchievementsPage.module.css';
 
 const AchievementsPage: React.FC = () => {
   const [achievements, setAchievements] = useState<Achievement[]>([]);
@@ -46,16 +47,16 @@ const AchievementsPage: React.FC = () => {
   }, [user, t]);
 
   if (isLoading) {
-    return <div style={{ textAlign: 'center', padding: '20px' }}>{t('achievementsPage.loading')}</div>;
+    return <div className={styles.loadingMessage}>{t('achievementsPage.loading')}</div>;
   }
 
   if (error) {
-    return <div style={{ color: 'red', textAlign: 'center', padding: '20px' }}>{t('general.error')}: {error}</div>;
+    return <div className={styles.errorMessage}>{t('general.error')}: {error}</div>;
   }
 
   return (
-    <div style={{ padding: '20px' }}>
-      <h2 style={{ textAlign: 'center', marginBottom: '30px', color: '#2c3e50' }}>
+    <div className={styles.achievementsContainer}>
+      <h2 className={styles.achievementsTitle}>
         {t('achievementsPage.title')}
       </h2>
       <AchievementList achievements={achievements} />
