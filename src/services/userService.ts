@@ -1,6 +1,7 @@
 import api from '../config/axios_instance.ts';
 import { ApiConstants } from '../config/api_constants';
 import { RegisterData, User } from '../types/userTypes.ts';
+import { jwtDecode } from 'jwt-decode';
 
 interface LoginResponse {
   token: string;
@@ -177,4 +178,43 @@ export const unfollowUser = async (currentUserId: string, targetUserId: string):
     console.error(`Error trying to unfollow user ${targetUserId}:`, error);
     throw error;
   }
+};
+
+export const changePassword = async (currentPassword: string, newPassword: string): Promise<void> => {
+    try {
+        // Obtener userId del localStorage o del token
+        let userId = localStorage.getItem('userId');
+        
+        if (!userId) {
+            // Intentar obtener del token si no está en localStorage
+            const token = localStorage.getItem('accessToken');
+            if (token) {
+                try {
+                    const decoded: any = jwtDecode(token);
+                    userId = decoded.id || decoded.userId;
+                } catch (error) {
+                    console.error('Error decodificando token:', error);
+                }
+            }
+        }
+        
+        if (!userId) {
+            throw new Error('Usuario no autenticado');
+        }
+
+        const response = await api.put(`${ApiConstants.users}/${userId}`, {
+            currentPassword,
+            password: newPassword,
+        });
+
+        if (response.status !== 200) {
+            throw new Error('Failed to change password');
+        }
+    } catch (error: any) {
+        console.error('Error changing password:', error);
+        if (error.response?.status === 401) {
+            throw new Error('La contraseña actual es incorrecta');
+        }
+        throw error;
+    }
 };

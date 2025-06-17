@@ -100,10 +100,21 @@ const Navbar: React.FC<NavbarProps> = ({ title, links, className }) => {
                 </div>
                 {menuOpen && (
                   <div className="dropdown-menu">
-                    <Link to={`/profile/${user.id}`} onClick={() => setMenuOpen(false)}>{t('navbar.myProfile')}</Link>
-                    <Link to="/activities" onClick={() => setMenuOpen(false)}>{t('navbar.myActivities')}</Link>
-                    <Link to="/my-achievements" onClick={() => setMenuOpen(false)}>{t('navbar.myAchievements')}</Link>
-                    <Link to="/profile/edit" onClick={() => setMenuOpen(false)}>{t('navbar.settings')}</Link>
+                    <Link to={`/profile/${user.id}`} onClick={() => setMenuOpen(false)}>
+                      {t('navbar.myProfile')}
+                    </Link>
+                    <Link to="/activities" onClick={() => setMenuOpen(false)}>
+                      {t('navbar.myActivities')}
+                    </Link>
+                    <Link to="/my-achievements" onClick={() => setMenuOpen(false)}>
+                      {t('navbar.myAchievements')}
+                    </Link>
+                    <Link to="/profile/edit" onClick={() => setMenuOpen(false)}>
+                      {t('navbar.settings')}
+                    </Link>
+                    <Link to="/change-password" onClick={() => setMenuOpen(false)}>
+                      {t('navbar.changePassword')}
+                    </Link>
                     <button onClick={() => { logout(); setMenuOpen(false); navigate('/');}}>
                       {t('navbar.logout')}
                     </button>
