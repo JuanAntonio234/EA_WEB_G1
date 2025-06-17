@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap');
+
 :root {
   /* Colores base para modo claro */
   --background: #eaf1ec;
@@ -309,4 +311,35 @@ body {
 .followers-list::-webkit-scrollbar-thumb:hover,
 .following-list::-webkit-scrollbar-thumb:hover {
   background: var(--text-secondary);
+}
+
+.dyslexia-font {
+  font-family: 'Atkinson Hyperlegible', sans-serif !important;
+}
+
+.highlight-links a {
+  text-decoration: underline !important;
+  background-color: rgba(255, 255, 0, 0.2); 
+  color: var(--text-main) !important;
+}
+
+.reading-mode .navbar-brand,
+.reading-mode .navbar-start,
+.reading-mode .navbar-search,
+.reading-mode .navbar-end,
+.reading-mode .footer {
+  opacity: 0.1;
+  pointer-events: none; 
+  transition: opacity 0.4s ease;
+}
+
+.reading-mode .navbar-controls-right {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+.reading-mode .main-content {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
 }

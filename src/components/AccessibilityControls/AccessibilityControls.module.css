@@ -25,3 +25,15 @@
   background-color: var(--button-light-hover);
   color: var(--primary);
 }
+
+.separator {
+  width: 1px;
+  height: 20px;
+  background-color: var(--border-color);
+  margin: 0 4px;
+}
+
+.controlsContainer button[aria-pressed='true'] {
+  background-color: var(--primary);
+  color: white;
+}
