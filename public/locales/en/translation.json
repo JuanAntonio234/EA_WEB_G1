@@ -5,7 +5,8 @@
     "noData": "No data available",
     "cancel": "Cancel",
     "previous": "Previous",
-    "next": "Next"
+    "next": "Next",
+    "close": "Close"
   },
   "navbar": {
     "home": "Home",
@@ -46,7 +47,8 @@
     "hidePassword": "Hide password",
     "orContinueWith": "Or continue with",
     "noAccount": "Don't have an account?",
-    "registerHere": "Register here"
+    "registerHere": "Register here",
+    "continueWithGoogle": "Continue with Google"
   },
   "exploreRoutesPage": {
     "title": "Explore routes and activities 🗺️",

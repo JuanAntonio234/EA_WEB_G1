@@ -6,6 +6,9 @@ export class ApiConstants {
   static get login(): string {
     return `${this.baseUrl}/${this.apiPath}/auth/login`;
   }
+  static get loginGoogle(): string {
+    return `${this.baseUrl}/${this.apiPath}/auth/google`;
+  }
   static get register(): string {
     return `${this.baseUrl}/${this.apiPath}/auth/register`;
   }

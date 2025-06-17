@@ -5,7 +5,8 @@
     "noData": "Sense dades disponibles",
     "cancel": "Cancel·lar",
     "previous": "Anterior",
-    "next": "Següent"
+    "next": "Següent",
+    "close": "Tancar"
   },
   "navbar": {
     "home": "Inici",
@@ -46,7 +47,8 @@
     "hidePassword": "Amagar contrasenya",
     "orContinueWith": "O continua amb",
     "noAccount": "No tens compte?",
-    "registerHere": "Registra't aquí"
+    "registerHere": "Registra't aquí",
+    "continueWithGoogle": "Continua amb Google"
   },
   "exploreRoutesPage": {
     "title": "Explora rutes i activitats 🗺️",
