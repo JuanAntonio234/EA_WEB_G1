@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Achievement } from '../../types/achievementTypes'; 
 import AchievementItem from './AchievementItem';
 
@@ -7,8 +8,14 @@ interface AchievementListProps {
 }
 
 const AchievementList: React.FC<AchievementListProps> = ({ achievements }) => {
+  const { t } = useTranslation();
+
   if (!achievements || achievements.length === 0) {
-    return <p style={{ textAlign: 'center', color: '#777', marginTop: '20px' }}>Encara no has desbloquejat cap assoliment. Continua esforçant-te! 💪</p>;
+    return (
+      <p style={{ textAlign: 'center', color: '#777', marginTop: '20px' }}>
+        {t('achievementsPage.noAchievements')}
+      </p>
+    );
   }
 
   return (
