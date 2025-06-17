@@ -5,6 +5,7 @@ import { useAuth } from '../../hooks/useAuth';
 import { useTranslation } from 'react-i18next';
 import SearchBar from '../SearchBar/SearchBar';
 import LanguageSwitcher from '../LanguageSwitcher/LanguageSwitcher';
+import AccessibilityControls from '../AccessibilityControls/AccessibilityControls';
 
 interface NavLink {
   href: string;
@@ -84,6 +85,7 @@ const Navbar: React.FC<NavbarProps> = ({ title, links, className }) => {
             </button>
             </div>
             <LanguageSwitcher />
+            <AccessibilityControls />
         </div>
         <div className="navbar-end">
           <div className="navbar-item">

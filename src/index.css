@@ -17,7 +17,7 @@
   /* Navbar */
   --navbar-bg: #f1f1f1;
   --navbar-text: #444;
-  --navbar-link-hover: #000000;
+  --navbar-link-hover: #989898;
 
   /* Botones */
   --button-primary-bg: #00d1b2;
@@ -105,7 +105,7 @@ body.dark {
   /* Navbar */
   --navbar-bg: #181c1b;
   --navbar-text: #eaf1ec;
-  --navbar-link-hover: #ffffff;
+  --navbar-link-hover: #686868;
 
   /* Botones */
   --button-primary-bg: #1f7547;

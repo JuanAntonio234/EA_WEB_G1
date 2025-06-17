@@ -1,0 +1,27 @@
+.controlsContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid var(--button-light-border);
+  border-radius: 6px;
+  padding: 4px;
+  background-color: var(--button-light-bg);
+}
+
+.controlsContainer button {
+  background-color: transparent;
+  border: none;
+  color: var(--button-light-text);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  border-radius: 4px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.controlsContainer button:hover {
+  background-color: var(--button-light-hover);
+  color: var(--primary);
+}
