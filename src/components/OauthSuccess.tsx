@@ -25,11 +25,11 @@ const OauthSuccess = () => {
         navigate('/login');
       }
     } else {
-      navigate('/login');
+      navigate('/');
     }
   }, [login, navigate]);
 
-  return <p>Procesando autenticación con Google...</p>;
+  return;
 };
 
 export default OauthSuccess;

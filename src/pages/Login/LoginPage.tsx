@@ -7,6 +7,7 @@ import { loginUser } from '../../services/userService';
 import { useAuth } from '../../hooks/useAuth';
 import Login from '../../components/Login/Login';
 import { User } from '../../context/AuthContext';
+import GoogleLoginButton from '../../components/Login/GoogleLoginButtton';
 
 function LoginPage() {
   const { t } = useTranslation();
@@ -119,6 +120,22 @@ function LoginPage() {
           onLogin={handleLogin}
           isLoading={isLoading}
         />
+
+        <div className={styles.googleLoginContainer}>
+          <div className={styles.divider}>
+            <span className={styles.dividerText}>{t('loginPage.orContinueWith')}</span>
+          </div>
+          <GoogleLoginButton />
+        </div>
+        
+        <div className={styles.registerLink}>
+          <p>
+            {t('loginPage.noAccount')}{' '}
+            <a href="/register" className={styles.link}>
+              {t('loginPage.registerHere')}
+            </a>
+          </p>
+        </div>
       </div>
     </div>
   );

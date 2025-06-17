@@ -1,4 +1,3 @@
-// src/components/Login/GoogleLoginButtton.tsx - Versión mejorada con ApiConstants
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { ApiConstants } from '../../config/api_constants';

@@ -51,7 +51,7 @@
     "noAccount": "¿No tienes cuenta?",
     "registerHere": "Regístrate aquí",
     "continueWithGoogle": "Continúa con Google",
-    "servererror": "La combinación usuario/contraseña es incorrecta."
+    "serverError": "La combinación usuario/contraseña es incorrecta."
   },
   "registerPage": {
     "title": "Crear cuenta",

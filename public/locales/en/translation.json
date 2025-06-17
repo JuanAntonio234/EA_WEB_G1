@@ -51,7 +51,7 @@
     "noAccount": "Don't have an account?",
     "registerHere": "Register here",
     "continueWithGoogle": "Continue with Google",
-    "servererror": "The user/password combination is incorrect."
+    "serverError": "The user/password combination is incorrect."
   },
   "registerPage": {
     "title": "Create account",

@@ -51,7 +51,7 @@
     "noAccount": "No tens compte?",
     "registerHere": "Registra't aquí",
     "continueWithGoogle": "Continua amb Google",
-    "servererror": "La combinació usuari/contrasenya és incorrecta."
+    "serverError": "La combinació usuari/contrasenya és incorrecta."
   },
   "registerPage": {
     "title": "Crear compte",
