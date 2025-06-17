@@ -57,12 +57,6 @@ const ActivityDetailPage: React.FC = () => {
     return `${speedKmh.toFixed(1)} km/h`;
   };
 
-  const handleStartRoute = () => {
-    if (!activity) return;
-    // TODO: Implementar funcionalidad de iniciar ruta
-    alert(t('activityDetailPage.startRouteButton') + `: ${activity.name}`);
-  };
-
   const handleShare = async () => {
     const shareUrl = window.location.href;
 
@@ -79,7 +73,7 @@ const ActivityDetailPage: React.FC = () => {
     } else if (navigator.clipboard) {
       try {
         await navigator.clipboard.writeText(shareUrl);
-        alert(t('general.linkCopied', 'Link copied to clipboard!'));
+        alert(t('general.linkCopied'));
       } catch (err) {
         alert(t('activityDetailPage.errorDefault'));
       }
@@ -188,9 +182,6 @@ const ActivityDetailPage: React.FC = () => {
             <div className={styles.mapReferencePointsCounter}>
               {t('activityDetailPage.routePointsInfo', { count: routePoints.length })}
             </div>
-            <div className={styles.mapPlaceholder}>
-              {t('activityDetailPage.mapPlaceholder')}
-            </div>
           </>
         ) : (
           <p>{t('activityDetailPage.noRoutePoints')}</p>
@@ -215,11 +206,8 @@ const ActivityDetailPage: React.FC = () => {
       )}
 
       <div className={styles.actionButtons}>
-        <button onClick={handleStartRoute} className={styles.startRouteButton}>
-          {t('activityDetailPage.startRouteButton')}
-        </button>
         <button onClick={handleShare} className={styles.shareButton}>
-          {t('general.share', 'Share')}
+          {t('general.share')}
         </button>
       </div>
     </div>

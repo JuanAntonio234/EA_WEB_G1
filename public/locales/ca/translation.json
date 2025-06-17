@@ -6,7 +6,9 @@
     "cancel": "Cancel·lar",
     "previous": "Anterior",
     "next": "Següent",
-    "close": "Tancar"
+    "close": "Tancar",
+    "share": "Compartir",
+    "linkCopied": "Enllaç copiat al portaretalls"
   },
   "navbar": {
     "home": "Inici",

@@ -6,7 +6,9 @@
     "cancel": "Cancelar",
     "previous": "Anterior",
     "next": "Siguiente",
-    "close": "Cerrar"
+    "close": "Cerrar",
+    "share": "Compartir",
+    "linkCopied": "Enlace copiado al portapapeles"
   },
   "navbar": {
     "home": "Inicio",
