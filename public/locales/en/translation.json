@@ -48,7 +48,8 @@
     "orContinueWith": "Or continue with",
     "noAccount": "Don't have an account?",
     "registerHere": "Register here",
-    "continueWithGoogle": "Continue with Google"
+    "continueWithGoogle": "Continue with Google",
+    "servererror": "The user/password combination is incorrect."
   },
   "registerPage": {
     "title": "Create account",
@@ -151,6 +152,10 @@
     "goal": "Goal",
     "reward": "Reward",
     "dateRange": "From: {{startDate}} to {{endDate}}",
+    "followers": "followers",
+    "following": "following",
+    "follow": "Follow",
+    "unfollow": "Unfollow",
     "followersSectionTitle": "Followers",
     "noFollowers": "You have no followers yet.",
     "followingSectionTitle": "Following",

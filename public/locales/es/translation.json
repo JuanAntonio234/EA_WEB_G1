@@ -48,7 +48,8 @@
     "orContinueWith": "O continúa con",
     "noAccount": "¿No tienes cuenta?",
     "registerHere": "Regístrate aquí",
-    "continueWithGoogle": "Continúa con Google"
+    "continueWithGoogle": "Continúa con Google",
+    "servererror": "La combinación usuario/contraseña es incorrecta."
   },
   "registerPage": {
     "title": "Crear cuenta",
@@ -152,6 +153,10 @@
     "goal": "Objetivo",
     "reward": "Recompensa",
     "dateRange": "Desde: {{startDate}} hasta {{endDate}}",
+    "followers": "seguidores",
+    "following": "siguiendo",
+    "follow": "Seguir",
+    "unfollow": "Dejar de seguir",
     "followersSectionTitle": "Seguidores",
     "noFollowers": "Aún no tienes seguidores.",
     "followingSectionTitle": "Siguiendo",

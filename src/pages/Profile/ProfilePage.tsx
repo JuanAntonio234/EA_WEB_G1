@@ -87,7 +87,6 @@ const ProfilePage: React.FC = () => {
       }
 
     } catch (err) {
-      console.error("Error fetching profile data:", err);
       setError(t('profilePage.notFound'));
     } finally {
       setLoading(false);
@@ -113,7 +112,6 @@ const ProfilePage: React.FC = () => {
         setFollowerCount(prev => prev + 1);
       }
     } catch (err) {
-      console.error('Error in follow/unfollow action:', err);
     } finally {
       setIsFollowLoading(false);
     }
@@ -135,7 +133,7 @@ const ProfilePage: React.FC = () => {
         <div className={styles.profileInfo}>
           <p><strong>{t('profilePage.level')}:</strong> {profileUser.level}</p>
           <p><strong>{t('profilePage.bio')}:</strong> {profileUser.bio || '-'}</p>
-          <p><strong>{followerCount}</strong> Seguidores | <strong>{profileUser.followingCount || 0}</strong> Siguiendo</p>
+          <p><strong>{followerCount}</strong> {t('profilePage.followers')} | <strong>{profileUser.followingCount || 0}</strong> {t('profilePage.following')}</p>
           
           <div className={styles.profileActions}>
             {isMyProfile ? (
@@ -154,7 +152,7 @@ const ProfilePage: React.FC = () => {
                   className={isFollowing ? styles.unfollowButton : styles.followButton}
                   disabled={isFollowLoading}
                 >
-                  {isFollowLoading ? 'Cargando...' : (isFollowing ? 'Dejar de seguir' : 'Seguir')}
+                  {isFollowLoading ? t('general.loading') : (isFollowing ? t('profilePage.unfollow') : t('profilePage.follow'))}
                 </button>
               )
             )}

@@ -48,7 +48,8 @@
     "orContinueWith": "O continua amb",
     "noAccount": "No tens compte?",
     "registerHere": "Registra't aquí",
-    "continueWithGoogle": "Continua amb Google"
+    "continueWithGoogle": "Continua amb Google",
+    "servererror": "La combinació usuari/contrasenya és incorrecta."
   },
   "registerPage": {
     "title": "Crear compte",
@@ -151,6 +152,10 @@
     "goal": "Objectiu",
     "reward": "Recompensa",
     "dateRange": "Des de: {{startDate}} fins {{endDate}}",
+    "followers": "seguidors",
+    "following": "seguint",
+    "follow": "Seguir",
+    "unfollow": "Deixar de seguir",
     "followersSectionTitle": "Seguidors",
     "noFollowers": "Encara no tens seguidors.",
     "followingSectionTitle": "Seguint",
