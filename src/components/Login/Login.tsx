@@ -4,9 +4,10 @@ import styles from './Login.module.css';
 
 interface LoginProps {
   onLogin: (credentials: { username: string; password: string }) => void;
+  isLoading?: boolean;
 }
 
-const Login: React.FC<LoginProps> = ({ onLogin }) => {
+const Login: React.FC<LoginProps> = ({ onLogin, isLoading = false }) => {
   const { t } = useTranslation();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -15,9 +16,11 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!username || !password) {
-      return alert(t('loginPage.requiredFields'));
+      return; // El error se maneja ahora en LoginPage
     }
-    onLogin({ username, password });
+    if (!isLoading) {
+      onLogin({ username, password });
+    }
   };
 
   return (
@@ -89,13 +92,22 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
         </div>
       </div>
 
-      <button type="submit" className={styles.button}>
-        <span>{t('loginPage.loginButton')}</span>
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M9 21H5A2 2 0 0 1 3 19V5A2 2 0 0 1 5 3H9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-          <polyline points="16,17 21,12 16,7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-          <line x1="21" y1="12" x2="9" y2="12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-        </svg>
+      <button type="submit" className={styles.button} disabled={isLoading}>
+        {isLoading ? (
+          <>
+            <div className={styles.spinner}></div>
+            <span>{t('loginPage.loggingIn')}</span>
+          </>
+        ) : (
+          <>
+            <span>{t('loginPage.loginButton')}</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 21H5A2 2 0 0 1 3 19V5A2 2 0 0 1 5 3H9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              <polyline points="16,17 21,12 16,7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              <line x1="21" y1="12" x2="9" y2="12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </>
+        )}
       </button>
     </form>
   );

@@ -19,9 +19,7 @@ function LoginPage() {
       const user: User = jwtDecode(token);
       login(user);
       navigate('/');
-      console.log('Inici de sessió vàlid:', user);
     } catch (error) {
-      console.error('Inici de sessió fallit:', error);
       alert(t('loginPage.loginFailed'));
     }
   };

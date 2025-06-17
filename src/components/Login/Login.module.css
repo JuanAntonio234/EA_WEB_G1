@@ -125,6 +125,31 @@
   outline-offset: 2px;
 }
 
+.button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.button:disabled:hover {
+  transform: none;
+  background: var(--primary);
+}
+
+.spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid transparent;
+  border-top: 2px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
 /* Dark mode support - usando :global() para el modo oscuro */
 :global(body.dark) .form {
   background: var(--card-bg);
