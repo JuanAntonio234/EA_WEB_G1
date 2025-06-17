@@ -24,10 +24,18 @@
 }
 
 .navbar-brand .navbar-item {
-  color: var(--navbar-text);
+   color: var(--navbar-text);
   text-decoration: none;
   font-size: 1.5rem;
   font-weight: bold;
+  display: inline-flex;
+  align-items: center;
+}
+
+.navbar-logo {
+  height: 32px; 
+  width: auto;  
+  margin-right: 0.75rem; 
 }
 
 .navbar-menu {

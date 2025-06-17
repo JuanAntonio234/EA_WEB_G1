@@ -7,6 +7,7 @@ import SearchBar from '../SearchBar/SearchBar';
 import LanguageSwitcher from '../LanguageSwitcher/LanguageSwitcher';
 import AccessibilityControls from '../AccessibilityControls/AccessibilityControls';
 
+
 interface NavLink {
   href: string;
   labelKey: string;
@@ -60,7 +61,15 @@ const Navbar: React.FC<NavbarProps> = ({ title, links, className }) => {
   return (
     <nav className={`navbar ${className || ''}`}>
       <div className="navbar-brand">
-        <Link to="/" className="navbar-item">{t(title)}</Link>
+        <Link to="/" className="navbar-item">
+        <img
+            src="/trazer.png"
+            alt="" 
+            className="navbar-logo"
+            aria-hidden="true" 
+          />
+          {t(title)}
+        </Link>
       </div>
       <div className="navbar-menu">
         <div className="navbar-start">
