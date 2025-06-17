@@ -2,7 +2,14 @@ import React, { useEffect, useState, useCallback } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import styles from './ProfilePage.module.css';
-import { getUserById, getUserFollowers, getUserFollowing } from '../../services/userService';
+import { 
+  getUserById, 
+  getUserFollowers, 
+  getUserFollowing,
+  checkFollowStatus,
+  followUser,
+  unfollowUser 
+} from '../../services/userService';
 import { getAchievementById } from '../../services/achievementService';
 import { getChallengeById } from '../../services/challengeService';
 import { User } from '../../types/userTypes';
@@ -14,17 +21,20 @@ const ProfilePage: React.FC = () => {
   const { t, i18n } = useTranslation();
   const { iduser } = useParams<{ iduser: string }>();
   const navigate = useNavigate();
-  const { user: loggedInUserFromContext } = useAuth();
+  const { user: loggedInUser } = useAuth();
 
   const [profileUser, setProfileUser] = useState<User | null>(null);
   const [achievements, setAchievements] = useState<Achievement[]>([]);
   const [challenges, setChallenges] = useState<Challenge[]>([]);
   const [followers, setFollowers] = useState<User[]>([]);
   const [following, setFollowing] = useState<User[]>([]);
+  const [isFollowing, setIsFollowing] = useState(false);
+  const [followerCount, setFollowerCount] = useState(0);
+  const [isFollowLoading, setIsFollowLoading] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const isMyProfile = loggedInUserFromContext && loggedInUserFromContext.id === iduser;
+  const isMyProfile = loggedInUser && loggedInUser.id === iduser;
 
   const capitalizeFirst = (str: string | undefined) => {
     if (!str) return '';
@@ -37,18 +47,28 @@ const ProfilePage: React.FC = () => {
       setLoading(false);
       return;
     }
+
     setLoading(true);
     setError(null);
-    try {
-      const [userData, followersData, followingData] = await Promise.all([
-        getUserById(iduser),
-        getUserFollowers(iduser),
-        getUserFollowing(iduser)
-      ]);
 
+    try {
+      const userData = await getUserById(iduser);
       setProfileUser(userData);
-      setFollowers(followersData);
-      setFollowing(followingData);
+      setFollowerCount(userData.followersCount || 0);
+
+      if (loggedInUser && loggedInUser.id !== iduser) {
+        const followStatus = await checkFollowStatus(loggedInUser.id, iduser);
+        setIsFollowing(followStatus.isFollowing);
+      }
+      
+      if (isMyProfile) {
+        const [followersData, followingData] = await Promise.all([
+          getUserFollowers(iduser),
+          getUserFollowing(iduser),
+        ]);
+        setFollowers(followersData);
+        setFollowing(followingData);
+      }
 
       if (userData?.achievements?.length) {
         const achievementIds = userData.achievements.slice(0, 3);
@@ -68,21 +88,39 @@ const ProfilePage: React.FC = () => {
 
     } catch (err) {
       console.error("Error fetching profile data:", err);
-      setProfileUser(null);
-      setAchievements([]);
-      setChallenges([]);
       setError(t('profilePage.notFound'));
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
-  }, [iduser, t]);
+  }, [iduser, t, loggedInUser, isMyProfile]);
 
   useEffect(() => {
     fetchProfile();
   }, [fetchProfile]);
+  
+  const handleFollowToggle = async () => {
+    if (!loggedInUser || !profileUser || isMyProfile || isFollowLoading) return;
+
+    setIsFollowLoading(true);
+    try {
+      if (isFollowing) {
+        await unfollowUser(loggedInUser.id, profileUser._id);
+        setIsFollowing(false);
+        setFollowerCount(prev => prev - 1);
+      } else {
+        await followUser(loggedInUser.id, profileUser._id);
+        setIsFollowing(true);
+        setFollowerCount(prev => prev + 1);
+      }
+    } catch (err) {
+      console.error('Error in follow/unfollow action:', err);
+    } finally {
+      setIsFollowLoading(false);
+    }
+  };
 
   if (loading) return <div className={styles.profileContainer}><p>{t('profilePage.loading')}</p></div>;
-  if (error && !profileUser) return <div className={styles.profileContainer}><p>{error}</p></div>;
-  if (!profileUser) return <div className={styles.profileContainer}><p>{t('profilePage.notFound')}</p></div>;
+  if (error || !profileUser) return <div className={styles.profileContainer}><p>{error || t('profilePage.notFound')}</p></div>;
 
   return (
     <div className={styles.profileContainer}>
@@ -97,19 +135,30 @@ const ProfilePage: React.FC = () => {
         <div className={styles.profileInfo}>
           <p><strong>{t('profilePage.level')}:</strong> {profileUser.level}</p>
           <p><strong>{t('profilePage.bio')}:</strong> {profileUser.bio || '-'}</p>
-          <p><strong>{t('profilePage.totalDistance')}:</strong> {profileUser.totalDistance || 0} km</p>
-          <p><strong>{t('profilePage.totalTime')}:</strong> {profileUser.totalTime || 0} hrs</p>
+          <p><strong>{followerCount}</strong> Seguidores | <strong>{profileUser.followingCount || 0}</strong> Siguiendo</p>
           
-          {isMyProfile && (
-            <div className={styles.profileActions}>
-              <button onClick={() => navigate('/profile/edit')} className={styles.editProfileButton}>
-                {t('navbar.settings')} 
-              </button>
-              <button onClick={() => navigate('/feed')} className={styles.feedButton}>
-                {t('navbar.feed')}
-              </button>
-            </div>
-          )}
+          <div className={styles.profileActions}>
+            {isMyProfile ? (
+              <>
+                <button onClick={() => navigate('/profile/edit')} className={styles.editProfileButton}>
+                  {t('navbar.settings')} 
+                </button>
+                <button onClick={() => navigate('/feed')} className={styles.feedButton}>
+                  {t('navbar.feed')}
+                </button>
+              </>
+            ) : (
+              loggedInUser && (
+                <button 
+                  onClick={handleFollowToggle} 
+                  className={isFollowing ? styles.unfollowButton : styles.followButton}
+                  disabled={isFollowLoading}
+                >
+                  {isFollowLoading ? 'Cargando...' : (isFollowing ? 'Dejar de seguir' : 'Seguir')}
+                </button>
+              )
+            )}
+          </div>
         </div>
       </div>
 

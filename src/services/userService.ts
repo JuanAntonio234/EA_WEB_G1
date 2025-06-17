@@ -15,6 +15,11 @@ interface FollowListResponse {
   following?: User[];
 }
 
+interface FollowStatusResponse {
+  isFollowing: boolean;
+  isFollowedBy: boolean;
+}
+
 export const fetchUsers = async (): Promise<User[]> => {
     try {
         const response = await api.get<User[]>(ApiConstants.users);
@@ -143,5 +148,33 @@ export const getUserFollowing = async (userId: string): Promise<User[]> => {
   } catch (error) {
     console.error('Error fetching following list:', error);
     return [];
+  }
+};
+
+export const checkFollowStatus = async (currentUserId: string, targetUserId: string): Promise<FollowStatusResponse> => {
+  try {
+    const response = await api.get<FollowStatusResponse>(`/api/users/${currentUserId}/follow-status/${targetUserId}`);
+    return response.data;
+  } catch (error) {
+    console.error('Error checking follow status:', error);
+    return { isFollowing: false, isFollowedBy: false };
+  }
+};
+
+export const followUser = async (currentUserId: string, targetUserId: string): Promise<void> => {
+  try {
+    await api.post(`${ApiConstants.users}/${currentUserId}/follow/${targetUserId}`);
+  } catch(error) {
+    console.error(`Error trying to follow user ${targetUserId}:`, error);
+    throw error;
+  }
+};
+
+export const unfollowUser = async (currentUserId: string, targetUserId: string): Promise<void> => {
+  try {
+    await api.post(`${ApiConstants.users}/${currentUserId}/unfollow/${targetUserId}`);
+  } catch(error) {
+    console.error(`Error trying to unfollow user ${targetUserId}:`, error);
+    throw error;
   }
 };

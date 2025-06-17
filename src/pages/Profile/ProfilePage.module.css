@@ -41,7 +41,7 @@
 .profileActions {
   margin-top: 1.5rem; 
   display: flex;
-  flex-direction: row; /* Alinea botons en fila */
+  flex-direction: row;
   gap: 1rem; 
   align-items: flex-start;
 }
@@ -76,14 +76,14 @@
 
 .followStatsContainer {
   display: flex;
-  gap: 2rem; /* Espai entre la llista de seguidors i la de seguits */
+  gap: 2rem;
   margin-top: 2rem;
   margin-bottom: 1rem;
 }
 
 .followersSection,
 .followingSection {
-  flex: 1; /* Perquè ocupin espai disponible */
+  flex: 1;
   background-color: var(--card-bg-secondary, #f8f9fa);
   padding: 1rem;
   border-radius: 8px;
@@ -91,19 +91,19 @@
 }
 
 .followersSection h3, 
-.followingSection h3 {   
-  margin-top: 0;   
-  margin-bottom: 0.75rem;   
-  font-size: 1.1em;   
+.followingSection h3 {  
+  margin-top: 0;  
+  margin-bottom: 0.75rem;  
+  font-size: 1.1em;  
   color: var(--text-main);
   border-bottom: 1px solid var(--border);
   padding-bottom: 0.5rem; 
 }
 
-.followList { /* Estil comú per a ambdues llistes */
+.followList {
   list-style: none;
   padding: 0;
-  max-height: 200px; /* Limita l'alçada si hi ha molts */
+  max-height: 200px;
   overflow-y: auto;
 }
 
@@ -220,6 +220,43 @@
   border: 1px solid var(--danger-border-light, #f5c6cb);
 }
 
+.followButton {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: background-color 0.2s ease;
+}
+
+.followButton:hover {
+  background-color: #2980b9;
+}
+
+.unfollowButton {
+  background-color: #e0e0e0;
+  color: #333;
+  border: 1px solid #ccc;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: background-color 0.2s ease;
+}
+
+.unfollowButton:hover {
+  background-color: #d1d1d1;
+}
+
+.followButton:disabled, .unfollowButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
 @media (max-width: 768px) {
   .profileHeader {
     flex-direction: column;
@@ -231,11 +268,11 @@
   }
   .profileActions {
     align-items: center; 
-    flex-direction: row; /* Manté botons en fila si hi caben */
+    flex-direction: row;
     justify-content: center;
   }
   .followStatsContainer {
-    flex-direction: column; /* Apila seguidors i seguits en mòbil */
+    flex-direction: column;
     gap: 1rem;
   }
 }
