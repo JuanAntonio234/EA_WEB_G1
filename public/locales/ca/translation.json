@@ -46,6 +46,12 @@
     "error": "Error: No s'han pogut carregar els assoliments.",
     "errorUserNotAuthenticated": "Has d'iniciar sessió per veure els teus assoliments."
   },
+  "achievements": {
+    "difficulty": "Dificultat",
+    "points": "Punts", 
+    "condition": "Condició",
+    "definedOn": "Definit el"
+  },
   "activityCard": {
     "detailsButton": "Veure detalls",
     "distance": "Distància",

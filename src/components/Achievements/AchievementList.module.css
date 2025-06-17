@@ -1,0 +1,60 @@
+.achievementsList {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.noAchievementsMessage {
+  text-align: center;
+  color: var(--text-secondary);
+  margin-top: 40px;
+  padding: 30px 20px;
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  font-size: 1.1rem;
+  box-shadow: var(--card-shadow);
+  border: 2px dashed var(--border);
+  transition: all 0.3s ease;
+}
+
+.noAchievementsMessage:hover {
+  border-color: var(--primary);
+  transform: translateY(-2px);
+}
+
+/* Modo oscuro */
+:global(body.dark) .noAchievementsMessage {
+  background-color: var(--card-bg);
+  color: var(--text-secondary);
+  border-color: var(--border);
+}
+
+:global(body.dark) .noAchievementsMessage:hover {
+  border-color: var(--primary);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .achievementsList {
+    max-width: 100%;
+    margin: 0 10px;
+  }
+  
+  .noAchievementsMessage {
+    margin-top: 30px;
+    padding: 20px 15px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .achievementsList {
+    margin: 0 5px;
+  }
+  
+  .noAchievementsMessage {
+    margin-top: 20px;
+    padding: 15px 10px;
+    font-size: 0.95rem;
+  }
+}

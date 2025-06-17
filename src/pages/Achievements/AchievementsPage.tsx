@@ -1,20 +1,22 @@
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Achievement } from '../../types/achievementTypes'; 
-import { getUserById } from '../../services/userService'; // <-- import this
-import { getAchievementById } from '../../services/achievementService'; // <-- import this
+import { getUserById } from '../../services/userService';
+import { getAchievementById } from '../../services/achievementService';
 import AchievementList from '../../components/Achievements/AchievementList'; 
 import { useAuth } from '../../hooks/useAuth';
+import styles from './AchievementsPage.module.css';
 
 const AchievementsPage: React.FC = () => {
   const [achievements, setAchievements] = useState<Achievement[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-
+  const { t } = useTranslation();
   const { user } = useAuth(); 
 
   useEffect(() => {
     if (!user || !user.id) {
-      setError("Informació d'usuari no disponible. Assegura't d'haver iniciat sessió.");
+      setError(t('achievementsPage.errorUserNotAuthenticated'));
       setIsLoading(false);
       return;
     }
@@ -30,10 +32,10 @@ const AchievementsPage: React.FC = () => {
           setAchievements(achievementData);
         } else {
           setAchievements([]);
-          setError('No tens assoliments encara.');
+          setError(t('achievementsPage.noAchievements'));
         }
       } catch (err: any) {
-        const errorMessage = err.response?.data?.message || err.message || 'No s\'han pogut carregar els assoliments.';
+        const errorMessage = err.response?.data?.message || err.message || t('achievementsPage.error');
         setError(errorMessage);
         setAchievements([]);
       } finally {
@@ -42,19 +44,21 @@ const AchievementsPage: React.FC = () => {
     };
 
     fetchAchievements();
-  }, [user]);
+  }, [user, t]);
 
   if (isLoading) {
-    return <div style={{ textAlign: 'center', padding: '20px' }}>Carregant assoliments...</div>;
+    return <div className={styles.loadingMessage}>{t('achievementsPage.loading')}</div>;
   }
 
   if (error) {
-    return <div style={{ color: 'red', textAlign: 'center', padding: '20px' }}>Error: {error}</div>;
+    return <div className={styles.errorMessage}>{t('general.error')}: {error}</div>;
   }
 
   return (
-    <div style={{ padding: '20px' }}>
-      <h2 style={{ textAlign: 'center', marginBottom: '30px', color: '#2c3e50' }}>Els Meus Assoliments 🏆</h2>
+    <div className={styles.achievementsContainer}>
+      <h2 className={styles.achievementsTitle}>
+        {t('achievementsPage.title')}
+      </h2>
       <AchievementList achievements={achievements} />
     </div>
   );
