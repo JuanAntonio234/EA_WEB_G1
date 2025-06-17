@@ -17,6 +17,7 @@
     "myActivities": "Les meves activitats",
     "myAchievements": "Els meus assoliments",
     "settings": "Editar perfil",
+    "changePassword": "Canviar contraseña",
     "logout": "Tancar sessió",
     "login": "Iniciar sessió",
     "signup": "Registrar-se"
@@ -169,6 +170,37 @@
     "profileUpdatedError": "Error en actualitzar el perfil.",
     "errorNoUser": "No s'han pogut carregar les dades de l'usuari per editar.",
     "goBackToProfile": "Tornar al perfil"
+  },
+  "changePassword": {
+    "title": "Canviar contrasenya",
+    "subtitle": "Introdueix la teva contrasenya actual i tria una de nova",
+    
+    "currentPassword": "Contrasenya actual",
+    "currentPasswordHint": "Introdueix la teva contrasenya actual",
+    "currentPasswordRequired": "La contrasenya actual és obligatòria",
+    
+    "newPassword": "Nova contrasenya",
+    "newPasswordHint": "Introdueix la teva nova contrasenya",
+    "newPasswordRequired": "La nova contrasenya és obligatòria",
+    "passwordTooShort": "La contrasenya ha de tenir almenys 6 caràcters",
+    "samePassword": "La nova contrasenya ha de ser diferent de l'actual",
+    
+    "confirmNewPassword": "Confirmar nova contrasenya",
+    "confirmNewPasswordHint": "Confirma la teva nova contrasenya",
+    "confirmPasswordRequired": "Si us plau confirma la teva nova contrasenya",
+    "passwordsDoNotMatch": "Les contrasenyes no coincideixen",
+    
+    "weakPassword": "Contrasenya feble",
+    "mediumPassword": "Contrasenya mitjana",
+    "strongPassword": "Contrasenya forta",
+    
+    "changePasswordButton": "Canviar contrasenya",
+    "changing": "Canviant...",
+    
+    "passwordChangedSuccess": "Contrasenya canviada amb èxit",
+    "changePasswordError": "Error en canviar la contrasenya",
+    "incorrectCurrentPassword": "La contrasenya actual és incorrecta",
+    "notAuthenticated": "Usuari no autenticat"
   },
   "feedPage": {
     "title": "Activitats dels usuaris que segueixes",

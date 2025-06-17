@@ -10,20 +10,12 @@ const ChangePasswordPage: React.FC = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
 
-  // Debug: verificar estado de autenticación
-  React.useEffect(() => {
-    console.log('ChangePasswordPage - User from context:', user);
-    console.log('ChangePasswordPage - AccessToken:', localStorage.getItem('accessToken'));
-    console.log('ChangePasswordPage - UserId:', localStorage.getItem('userId'));
-  }, [user]);
-
   // Redirigir si no está autenticado (pero dar tiempo para que cargue el contexto)
   React.useEffect(() => {
     const token = localStorage.getItem('accessToken');
     
     // Si no hay token en localStorage, redirigir inmediatamente
     if (!token) {
-      console.log('No token found, redirecting to login');
       navigate('/login');
       return;
     }
@@ -32,7 +24,6 @@ const ChangePasswordPage: React.FC = () => {
     if (!user) {
       const timeoutId = setTimeout(() => {
         if (!user) {
-          console.log('User not loaded after timeout, redirecting to login');
           navigate('/login');
         }
       }, 2000); // Esperar 2 segundos para que el contexto se inicialice
@@ -64,7 +55,7 @@ const ChangePasswordPage: React.FC = () => {
   if (token && !user) {
     return (
       <div className={styles.loadingContainer}>
-        <p>{t('general.loading') || 'Cargando usuario...'}</p>
+        <p>{t('general.loading')}</p>
       </div>
     );
   }

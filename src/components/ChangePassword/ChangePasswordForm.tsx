@@ -1,22 +1,18 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Eye, EyeOff, Lock, CheckCircle, AlertCircle } from 'lucide-react';
 import { useAuth } from '../../hooks/useAuth';
 import { changePassword as changePasswordService } from '../../services/userService';
+import PasswordStrengthMeter from '../PasswordStrength/PasswordStrengthMeter';
+import styles from './ChangePasswordForm.module.css';
 
 interface ChangePasswordProps {
   onSuccess?: () => void;
   onCancel?: () => void;
 }
 
-interface PasswordStrength {
-  score: number;
-  feedback: string;
-}
-
 const ChangePasswordForm: React.FC<ChangePasswordProps> = ({ onSuccess, onCancel }) => {
   const { t } = useTranslation();
-  const { user } = useAuth(); // Usar el contexto de autenticación
+  const { user } = useAuth();
   
   const [formData, setFormData] = useState({
     currentPassword: '',
@@ -34,46 +30,6 @@ const ChangePasswordForm: React.FC<ChangePasswordProps> = ({ onSuccess, onCancel
   const [errors, setErrors] = useState<{[key: string]: string}>({});
   const [successMessage, setSuccessMessage] = useState('');
   const [apiError, setApiError] = useState('');
-
-  // Función para evaluar la fuerza de la contraseña
-  const evaluatePasswordStrength = (password: string): PasswordStrength => {
-    let score = 0;
-    let feedback = '';
-
-    if (password.length >= 8) score += 1;
-    if (/[a-z]/.test(password)) score += 1;
-    if (/[A-Z]/.test(password)) score += 1;
-    if (/[0-9]/.test(password)) score += 1;
-    if (/[^a-zA-Z0-9]/.test(password)) score += 1;
-
-    switch (score) {
-      case 0:
-      case 1:
-        feedback = t('changePassword.weakPassword') || 'Contraseña débil';
-        break;
-      case 2:
-      case 3:
-        feedback = t('changePassword.mediumPassword') || 'Contraseña media';
-        break;
-      case 4:
-      case 5:
-        feedback = t('changePassword.strongPassword') || 'Contraseña fuerte';
-        break;
-      default:
-        feedback = '';
-    }
-
-    return { score, feedback };
-  };
-
-  const passwordStrength = evaluatePasswordStrength(formData.newPassword);
-
-  const togglePasswordVisibility = (field: 'current' | 'new' | 'confirm') => {
-    setShowPasswords(prev => ({
-      ...prev,
-      [field]: !prev[field]
-    }));
-  };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -98,23 +54,23 @@ const ChangePasswordForm: React.FC<ChangePasswordProps> = ({ onSuccess, onCancel
     const newErrors: {[key: string]: string} = {};
 
     if (!formData.currentPassword) {
-      newErrors.currentPassword = t('changePassword.currentPasswordRequired') || 'La contraseña actual es requerida';
+      newErrors.currentPassword = t('changePassword.currentPasswordRequired');
     }
 
     if (!formData.newPassword) {
-      newErrors.newPassword = t('changePassword.newPasswordRequired') || 'La nueva contraseña es requerida';
+      newErrors.newPassword = t('changePassword.newPasswordRequired');
     } else if (formData.newPassword.length < 6) {
-      newErrors.newPassword = t('changePassword.passwordTooShort') || 'La contraseña debe tener al menos 6 caracteres';
+      newErrors.newPassword = t('changePassword.passwordTooShort');
     }
 
     if (!formData.confirmPassword) {
-      newErrors.confirmPassword = t('changePassword.confirmPasswordRequired') || 'Confirma tu nueva contraseña';
+      newErrors.confirmPassword = t('changePassword.confirmPasswordRequired');
     } else if (formData.newPassword !== formData.confirmPassword) {
-      newErrors.confirmPassword = t('changePassword.passwordsDoNotMatch') || 'Las contraseñas no coinciden';
+      newErrors.confirmPassword = t('changePassword.passwordsDoNotMatch');
     }
 
     if (formData.currentPassword === formData.newPassword) {
-      newErrors.newPassword = t('changePassword.samePassword') || 'La nueva contraseña debe ser diferente a la actual';
+      newErrors.newPassword = t('changePassword.samePassword');
     }
 
     setErrors(newErrors);
@@ -133,202 +89,309 @@ const ChangePasswordForm: React.FC<ChangePasswordProps> = ({ onSuccess, onCancel
     setSuccessMessage('');
 
     try {
-      // Usar el servicio en lugar de fetch directo
       await changePasswordService(formData.currentPassword, formData.newPassword);
       
-      setSuccessMessage(t('changePassword.passwordChangedSuccess') || 'Contraseña cambiada con éxito');
+      setSuccessMessage(t('changePassword.passwordChangedSuccess'));
       setFormData({
         currentPassword: '',
         newPassword: '',
         confirmPassword: ''
       });
       
-      // Llamar a onSuccess después de un breve delay para mostrar el mensaje
       setTimeout(() => {
         onSuccess?.();
       }, 2000);
       
     } catch (error: any) {
-      setApiError(error.message || t('changePassword.changePasswordError') || 'Error al cambiar la contraseña');
+      setApiError(error.message || t('changePassword.changePasswordError'));
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  const getPasswordStrengthColor = (score: number) => {
-    if (score <= 2) return '#ef4444';
-    if (score <= 3) return '#f97316';
-    return '#22c55e';
+  const togglePasswordVisibility = (field: 'current' | 'new' | 'confirm') => {
+    setShowPasswords(prev => ({
+      ...prev,
+      [field]: !prev[field]
+    }));
   };
 
-  const getPasswordStrengthWidth = (score: number) => {
-    return `${(score / 5) * 100}%`;
-  };
+  const passwordsMatch = formData.newPassword === formData.confirmPassword;
+  const showPasswordMatch = formData.confirmPassword.length > 0;
 
   return (
-    <div className="max-w-md mx-auto bg-white rounded-xl shadow-lg p-6">
-      <div className="text-center mb-6">
-        <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
-          <Lock className="w-8 h-8 text-white" />
-        </div>
-        <h2 className="text-2xl font-bold text-gray-900 mb-2">
-          {t('changePassword.title') || 'Cambiar Contraseña'}
-        </h2>
-        <p className="text-gray-600">
-          {t('changePassword.subtitle') || 'Introduce tu contraseña actual y elige una nueva'}
+    <div className={styles.formContainer}>
+      {/* Header */}
+      <div className={styles.titleContainer}>
+        <h1 className={styles.pageTitle}>
+          {t('changePassword.title')}
+        </h1>
+        <p className={styles.pageSubtitle}>
+          {t('changePassword.subtitle')}
         </p>
       </div>
 
-      {/* Mensajes de éxito y error */}
+      {/* Mensaje de éxito */}
       {successMessage && (
-        <div className="mb-4 p-4 bg-green-50 border border-green-200 rounded-lg flex items-center">
-          <CheckCircle className="w-5 h-5 text-green-500 mr-2" />
-          <span className="text-green-700">{successMessage}</span>
+        <div className={styles.successMessage}>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9 12L11 14L15 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2"/>
+          </svg>
+          <span>{successMessage}</span>
         </div>
       )}
 
+      {/* Mensaje de error */}
       {apiError && (
-        <div className="mb-4 p-4 bg-red-50 border border-red-200 rounded-lg flex items-center">
-          <AlertCircle className="w-5 h-5 text-red-500 mr-2" />
-          <span className="text-red-700">{apiError}</span>
+        <div className={styles.errorMessage}>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2"/>
+            <line x1="15" y1="9" x2="9" y2="15" stroke="currentColor" strokeWidth="2"/>
+            <line x1="9" y1="9" x2="15" y2="15" stroke="currentColor" strokeWidth="2"/>
+          </svg>
+          <span>{apiError}</span>
         </div>
       )}
 
-      <div className="space-y-4">
-        {/* Contraseña actual */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            {t('changePassword.currentPassword') || 'Contraseña Actual'}
+      <form onSubmit={handleSubmit} className={styles.form}>
+        {/* Campo Contraseña Actual */}
+        <div className={styles.inputGroup}>
+          <label htmlFor="currentPassword" className={styles.label}>
+            {t('changePassword.currentPassword')}
           </label>
-          <div className="relative">
+          <div className={styles.inputContainer}>
             <input
-              type={showPasswords.current ? 'text' : 'password'}
+              id="currentPassword"
+              type={showPasswords.current ? "text" : "password"}
               name="currentPassword"
               value={formData.currentPassword}
               onChange={handleInputChange}
-              className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                errors.currentPassword ? 'border-red-500 bg-red-50' : 'border-gray-300'
-              }`}
-              placeholder={t('changePassword.currentPasswordHint') || 'Introduce tu contraseña actual'}
+              required
+              className={`${styles.input} ${errors.currentPassword ? styles.inputError : ''}`}
+              placeholder={t('changePassword.currentPasswordHint')}
+              disabled={isSubmitting}
             />
+            <div className={styles.inputIcon}>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <circle cx="12" cy="16" r="1" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M7 11V7C7 5.67392 7.52678 4.40215 8.46447 3.46447C9.40215 2.52678 10.6739 2 12 2C13.3261 2 14.5979 2.52678 15.5355 3.46447C16.4732 4.40215 17 5.67392 17 7V11" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </div>
             <button
               type="button"
+              className={styles.passwordToggle}
               onClick={() => togglePasswordVisibility('current')}
-              className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700"
+              aria-label={showPasswords.current ? t('registerPage.hidePassword') : t('registerPage.showPassword')}
+              disabled={isSubmitting}
             >
-              {showPasswords.current ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+              {showPasswords.current ? (
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20C7 20 2.73 16.39 1 12A18.45 18.45 0 0 1 5.06 5.06L17.94 17.94Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M1 1L23 23" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M10.59 10.59A2 2 0 0 0 13.41 13.41" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4C17 4 21.27 7.61 23 12A18.5 18.5 0 0 1 19.42 16.42" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              ) : (
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1 12S5 4 12 4S23 12 23 12S19 20 12 20S1 12 1 12Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              )}
             </button>
           </div>
           {errors.currentPassword && (
-            <p className="mt-1 text-sm text-red-600">{errors.currentPassword}</p>
+            <div className={styles.fieldError}>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2"/>
+                <line x1="15" y1="9" x2="9" y2="15" stroke="currentColor" strokeWidth="2"/>
+                <line x1="9" y1="9" x2="15" y2="15" stroke="currentColor" strokeWidth="2"/>
+              </svg>
+              <span>{errors.currentPassword}</span>
+            </div>
           )}
         </div>
 
-        {/* Nueva contraseña */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            {t('changePassword.newPassword') || 'Nueva Contraseña'}
+        {/* Campo Nueva Contraseña */}
+        <div className={styles.inputGroup}>
+          <label htmlFor="newPassword" className={styles.label}>
+            {t('changePassword.newPassword')}
           </label>
-          <div className="relative">
+          <div className={styles.inputContainer}>
             <input
-              type={showPasswords.new ? 'text' : 'password'}
+              id="newPassword"
+              type={showPasswords.new ? "text" : "password"}
               name="newPassword"
               value={formData.newPassword}
               onChange={handleInputChange}
-              className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                errors.newPassword ? 'border-red-500 bg-red-50' : 'border-gray-300'
-              }`}
-              placeholder={t('changePassword.newPasswordHint') || 'Introduce tu nueva contraseña'}
+              required
+              className={`${styles.input} ${errors.newPassword ? styles.inputError : ''}`}
+              placeholder={t('changePassword.newPasswordHint')}
+              disabled={isSubmitting}
             />
+            <div className={styles.inputIcon}>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <circle cx="12" cy="16" r="1" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M7 11V7C7 5.67392 7.52678 4.40215 8.46447 3.46447C9.40215 2.52678 10.6739 2 12 2C13.3261 2 14.5979 2.52678 15.5355 3.46447C16.4732 4.40215 17 5.67392 17 7V11" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </div>
             <button
               type="button"
+              className={styles.passwordToggle}
               onClick={() => togglePasswordVisibility('new')}
-              className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700"
+              aria-label={showPasswords.new ? t('registerPage.hidePassword') : t('registerPage.showPassword')}
+              disabled={isSubmitting}
             >
-              {showPasswords.new ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+              {showPasswords.new ? (
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20C7 20 2.73 16.39 1 12A18.45 18.45 0 0 1 5.06 5.06L17.94 17.94Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M1 1L23 23" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M10.59 10.59A2 2 0 0 0 13.41 13.41" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4C17 4 21.27 7.61 23 12A18.5 18.5 0 0 1 19.42 16.42" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              ) : (
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1 12S5 4 12 4S23 12 23 12S19 20 12 20S1 12 1 12Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              )}
             </button>
           </div>
-          
-          {/* Indicador de fuerza de contraseña */}
+          {/* Password Strength Meter - igual que en Register */}
           {formData.newPassword && (
-            <div className="mt-2">
-              <div className="w-full bg-gray-200 rounded-full h-2">
-                <div
-                  className="h-2 rounded-full transition-all duration-300"
-                  style={{
-                    width: getPasswordStrengthWidth(passwordStrength.score),
-                    backgroundColor: getPasswordStrengthColor(passwordStrength.score)
-                  }}
-                />
-              </div>
-              <p className="text-xs mt-1" style={{ color: getPasswordStrengthColor(passwordStrength.score) }}>
-                {passwordStrength.feedback}
-              </p>
+            <div className={styles.passwordStrength}>
+              <PasswordStrengthMeter password={formData.newPassword} />
             </div>
           )}
-          
           {errors.newPassword && (
-            <p className="mt-1 text-sm text-red-600">{errors.newPassword}</p>
+            <div className={styles.fieldError}>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2"/>
+                <line x1="15" y1="9" x2="9" y2="15" stroke="currentColor" strokeWidth="2"/>
+                <line x1="9" y1="9" x2="15" y2="15" stroke="currentColor" strokeWidth="2"/>
+              </svg>
+              <span>{errors.newPassword}</span>
+            </div>
           )}
         </div>
 
-        {/* Confirmar contraseña */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            {t('changePassword.confirmNewPassword') || 'Confirmar Nueva Contraseña'}
+        {/* Campo Confirmar Contraseña */}
+        <div className={styles.inputGroup}>
+          <label htmlFor="confirmPassword" className={styles.label}>
+            {t('changePassword.confirmNewPassword')}
           </label>
-          <div className="relative">
+          <div className={styles.inputContainer}>
             <input
-              type={showPasswords.confirm ? 'text' : 'password'}
+              id="confirmPassword"
+              type={showPasswords.confirm ? "text" : "password"}
               name="confirmPassword"
               value={formData.confirmPassword}
               onChange={handleInputChange}
-              className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                errors.confirmPassword ? 'border-red-500 bg-red-50' : 'border-gray-300'
-              }`}
-              placeholder={t('changePassword.confirmNewPasswordHint') || 'Confirma tu nueva contraseña'}
+              required
+              className={`${styles.input} ${showPasswordMatch && !passwordsMatch ? styles.inputError : ''}`}
+              placeholder={t('changePassword.confirmNewPasswordHint')}
+              disabled={isSubmitting}
             />
+            <div className={styles.inputIcon}>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9 12L11 14L15 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </div>
             <button
               type="button"
+              className={styles.passwordToggle}
               onClick={() => togglePasswordVisibility('confirm')}
-              className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700"
+              aria-label={showPasswords.confirm ? t('registerPage.hidePassword') : t('registerPage.showPassword')}
+              disabled={isSubmitting}
             >
-              {showPasswords.confirm ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+              {showPasswords.confirm ? (
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20C7 20 2.73 16.39 1 12A18.45 18.45 0 0 1 5.06 5.06L17.94 17.94Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M1 1L23 23" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M10.59 10.59A2 2 0 0 0 13.41 13.41" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4C17 4 21.27 7.61 23 12A18.5 18.5 0 0 1 19.42 16.42" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              ) : (
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1 12S5 4 12 4S23 12 23 12S19 20 12 20S1 12 1 12Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              )}
             </button>
           </div>
+          {/* Password Match Indicator - igual que en Register */}
+          {showPasswordMatch && (
+            <div className={`${styles.passwordMatch} ${passwordsMatch ? styles.match : styles.noMatch}`}>
+              <div className={styles.matchIcon}>
+                {passwordsMatch ? (
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9 12L11 14L15 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2"/>
+                  </svg>
+                ) : (
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2"/>
+                    <line x1="15" y1="9" x2="9" y2="15" stroke="currentColor" strokeWidth="2"/>
+                    <line x1="9" y1="9" x2="15" y2="15" stroke="currentColor" strokeWidth="2"/>
+                  </svg>
+                )}
+              </div>
+              <span>
+                {passwordsMatch ? (t('registerPage.passwordsMatch')) : (t('registerPage.passwordsNoMatch'))}
+              </span>
+            </div>
+          )}
           {errors.confirmPassword && (
-            <p className="mt-1 text-sm text-red-600">{errors.confirmPassword}</p>
+            <div className={styles.fieldError}>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2"/>
+                <line x1="15" y1="9" x2="9" y2="15" stroke="currentColor" strokeWidth="2"/>
+                <line x1="9" y1="9" x2="15" y2="15" stroke="currentColor" strokeWidth="2"/>
+              </svg>
+              <span>{errors.confirmPassword}</span>
+            </div>
           )}
         </div>
 
         {/* Botones */}
-        <div className="flex space-x-3 pt-4">
+        <div className={styles.buttonGroup}>
           {onCancel && (
             <button
               type="button"
               onClick={onCancel}
-              className="flex-1 px-4 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+              className={styles.cancelButton}
+              disabled={isSubmitting}
             >
-              {t('general.cancel') || 'Cancelar'}
+              <span>{t('general.cancel')}</span>
             </button>
           )}
-          <button
-            type="button"
-            onClick={handleSubmit}
-            disabled={isSubmitting}
-            className="flex-1 bg-gradient-to-r from-blue-500 to-purple-600 text-white py-3 px-4 rounded-lg hover:from-blue-600 hover:to-purple-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 flex items-center justify-center"
+          
+          <button 
+            type="submit" 
+            className={styles.button} 
+            disabled={isSubmitting || !passwordsMatch || !formData.currentPassword || !formData.newPassword}
           >
             {isSubmitting ? (
               <>
-                <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
-                {t('changePassword.changing') || 'Cambiando...'}
+                <div className={styles.spinner}></div>
+                <span>{t('changePassword.changing')}</span>
               </>
             ) : (
-              t('changePassword.changePasswordButton') || 'Cambiar Contraseña'
+              <>
+                <span>{t('changePassword.changePasswordButton')}</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  <circle cx="12" cy="16" r="1" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M7 11V7C7 5.67392 7.52678 4.40215 8.46447 3.46447C9.40215 2.52678 10.6739 2 12 2C13.3261 2 14.5979 2.52678 15.5355 3.46447C16.4732 4.40215 17 5.67392 17 7V11" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </>
             )}
           </button>
         </div>
-      </div>
+      </form>
     </div>
   );
 };

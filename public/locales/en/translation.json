@@ -17,6 +17,7 @@
     "myActivities": "My activities",
     "myAchievements": "My achievements",
     "settings": "Edit profile",
+    "changePassword": "Change password",
     "logout": "Log out",
     "login": "Log in",
     "signup": "Sign up"
@@ -169,6 +170,37 @@
     "profileUpdatedError": "Error updating profile.",
     "errorNoUser": "Could not load user data for editing.",
     "goBackToProfile": "Back to profile"
+  },
+  "changePassword": {
+    "title": "Change password",
+    "subtitle": "Enter your current password and choose a new one",
+
+    "currentPassword": "Current password",
+    "currentPasswordHint": "Enter your current password",
+    "currentPasswordRequired": "Current password is required",
+    
+    "newPassword": "New password",
+    "newPasswordHint": "Enter your new password",
+    "newPasswordRequired": "New password is required",
+    "passwordTooShort": "Password must be at least 6 characters long",
+    "samePassword": "New password must be different from the current one",
+    
+    "confirmNewPassword": "Confirm new password",
+    "confirmNewPasswordHint": "Confirm your new password",
+    "confirmPasswordRequired": "Please confirm your new password",
+    "passwordsDoNotMatch": "Passwords do not match",
+    
+    "weakPassword": "Weak password",
+    "mediumPassword": "Medium password",
+    "strongPassword": "Strong password",
+    
+    "changePasswordButton": "Change password",
+    "changing": "Changing...",
+    
+    "passwordChangedSuccess": "Password changed successfully",
+    "changePasswordError": "Error changing password",
+    "incorrectCurrentPassword": "Current password is incorrect",
+    "notAuthenticated": "User not authenticated"
   },
   "feedPage": {
     "title": "Activities from uers you follow",

@@ -194,7 +194,6 @@ export const changePassword = async (currentPassword: string, newPassword: strin
                     userId = decoded.id || decoded.userId;
                 } catch (error) {
                     console.error('Error decodificando token:', error);
-                    throw new Error('Usuario no autenticado');
                 }
             }
         }
