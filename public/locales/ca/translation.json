@@ -161,7 +161,7 @@
     "title": "Editar perfil",
     "loadingUser": "Carregant dades de l'usuari...",
     "usernameLabel": "Nom d'usuari",
-    "emailLabel": "Correu Electrònic (no editable)",
+    "emailLabel": "Correu electrònic (no editable)",
     "bioLabel": "Biografia",
     "saveChangesButton": "Desar canvis",
     "savingChanges": "Desant canvis...",
@@ -171,7 +171,7 @@
     "goBackToProfile": "Tornar al perfil"
   },
   "feedPage": {
-    "title": "Activitat dels usuaris que segueixes",
+    "title": "Activitats dels usuaris que segueixes",
     "loading": "Carregant activitats...",
     "noActivities": "Encara no hi ha activitat dels usuaris que segueixes.",
     "error": "Error en carregar les activitats del feed.",

@@ -24,7 +24,7 @@
   "homePage": {
     "welcomeMessage": "¡Bienvenido a TRAZER!",
     "introText": "Realiza un seguimiento de tus carreras, rutas en bicicleta y entrenamientos. ¡Registra dónde entrenas, gana logros y únete a una comunidad de gente activa!",
-    "featuresTitle": "Logros y registro de Actividades",
+    "featuresTitle": "Logros y registro de actividades",
     "feature1": "Registra tus actividades de correr, ciclismo u otras con seguimiento de ubicación.",
     "feature2": "Gana insignias y logros a medida que alcanzas nuevos hitos.",
     "feature3": "Revisa tus estadísticas y progreso a lo largo del tiempo.",
@@ -172,7 +172,7 @@
     "goBackToProfile": "Volver al perfil"
   },
   "feedPage": {
-    "title": "Actividad de los Usuarios que sigues",
+    "title": "Actividades de los usuarios que sigues",
     "loading": "Cargando actividades...",
     "noActivities": "Aún no hay actividad de los usuarios que sigues.",
     "error": "Error al cargar las actividades del feed.",
