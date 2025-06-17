@@ -29,7 +29,6 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   const navLinks = [
     { href: '/', labelKey: 'navbar.home' },
     { href: '/explore-routes', labelKey: 'navbar.exploreRoutes' },
-    { href: '/about', labelKey: 'navbar.about' }
   ];
 
   return (
