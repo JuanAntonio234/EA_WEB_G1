@@ -88,7 +88,7 @@
     "pagination": "Page {{currentPage}} of {{totalPages}}"
   },
   "achievementsPage": {
-    "title": "Your achievements 🏆",
+    "title": "My achievements 🏆",
     "loading": "Loading achievements...",
     "noAchievements": "You haven't unlocked any achievements yet. Keep pushing! 💪",
     "error": "Error: Could not load achievements.",
